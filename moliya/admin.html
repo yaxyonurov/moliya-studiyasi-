@@ -277,6 +277,10 @@ const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const ADMIN_PASS = localStorage.getItem('admin_pass') || 'moliya2026';
 
+function htmlEscape(str){
+  return String(str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
 // Admin login
 function adminKirish(){
   const pass = document.getElementById('admin-pass').value;
@@ -366,22 +370,21 @@ async function tokenlarYukla(){
   }
 
   tbody.innerHTML = data.map(t => {
-    const muddat = t.muddat ? new Date(t.muddat).toLocaleDateString('uz-UZ') : '—';
-    const tugadimi = t.muddat && new Date(t.muddat) < new Date();
-    const holat = !t.faol
+    const escToken   = htmlEscape(t.token);
+    const escIsm     = htmlEscape(t.ism || '—');
+    const escIsmAttr = htmlEscape(t.ism || '');
+    const muddat     = t.muddat ? new Date(t.muddat).toLocaleDateString('uz-UZ') : '—';
+    const tugadimi   = t.muddat && new Date(t.muddat) < new Date();
+    const holat      = !t.faol
       ? '<span class="badge badge-red">Bloklangan</span>'
       : tugadimi
         ? '<span class="badge badge-amber">Muddati tugagan</span>'
         : '<span class="badge badge-green">Faol</span>';
-    const qurilma = t.qurilma
-      ? `<span style="font-size:11px;color:rgba(240,236,255,0.5)">${t.qurilma.substr(0,12)}...</span>`
-      : '<span style="color:rgba(240,236,255,0.3)">—</span>';
-
-    const tel = t.telefon ? `<a href="tel:${t.telefon}" style="color:#9B7BFF">${t.telefon}</a>` : '—';
-    const oxirgi = t.oxirgi_kirish ? new Date(t.oxirgi_kirish).toLocaleString('uz-UZ') : '—';
+    const tel        = t.telefon ? `<a href="tel:${htmlEscape(t.telefon)}" style="color:#9B7BFF">${htmlEscape(t.telefon)}</a>` : '—';
+    const oxirgi     = t.oxirgi_kirish ? new Date(t.oxirgi_kirish).toLocaleString('uz-UZ') : '—';
     return `<tr>
-      <td><span class="token-code">${t.token}</span></td>
-      <td>${t.ism || '—'}</td>
+      <td><span class="token-code">${escToken}</span></td>
+      <td>${escIsm}</td>
       <td>${tel}</td>
       <td>${muddat}</td>
       <td>${holat}</td>
@@ -389,11 +392,11 @@ async function tokenlarYukla(){
       <td>
         <div class="actions">
           ${t.faol
-            ? `<button class="btn btn-danger btn-sm" onclick="bloklash('${t.token}', false)">Blokla</button>`
-            : `<button class="btn btn-success btn-sm" onclick="bloklash('${t.token}', true)">Ochish</button>`
+            ? `<button class="btn btn-danger btn-sm" data-action="blokla" data-token="${escToken}">Blokla</button>`
+            : `<button class="btn btn-success btn-sm" data-action="ochish" data-token="${escToken}">Ochish</button>`
           }
-          <button class="btn btn-sm" style="background:rgba(255,255,255,0.06);color:rgba(240,236,255,0.6)" onclick="qurilmaReset('${t.token}')">Reset</button>
-          <button class="btn btn-sm" style="background:rgba(255,50,50,0.15);color:#FF6B6B;border:1px solid rgba(255,50,50,0.3)" onclick="tokenOchir('${t.token}', '${t.ism || ''}')">O'chir</button>
+          <button class="btn btn-sm" style="background:rgba(255,255,255,0.06);color:rgba(240,236,255,0.6)" data-action="reset" data-token="${escToken}">Reset</button>
+          <button class="btn btn-sm" style="background:rgba(255,50,50,0.15);color:#FF6B6B;border:1px solid rgba(255,50,50,0.3)" data-action="ochir" data-token="${escToken}" data-ism="${escIsmAttr}">O'chir</button>
         </div>
       </td>
     </tr>`;
@@ -402,22 +405,31 @@ async function tokenlarYukla(){
 
 // Bloklash/ochish
 async function bloklash(token, faol){
-  await sb.from('tokenlar').update({faol}).eq('token', token);
-  tokenlarYukla();
+  try {
+    const {error} = await sb.from('tokenlar').update({faol}).eq('token', token);
+    if(error) throw error;
+    tokenlarYukla();
+  } catch(e){ alert('Xatolik: ' + e.message); }
 }
 
 // Token o'chirish
 async function tokenOchir(token, ism){
   if(!confirm(`"${ism}" (${token}) tokenini butunlay o'chirasizmi? Bu amalni qaytarib bo'lmaydi!`)) return;
-  await sb.from('tokenlar').delete().eq('token', token);
-  tokenlarYukla();
+  try {
+    const {error} = await sb.from('tokenlar').delete().eq('token', token);
+    if(error) throw error;
+    tokenlarYukla();
+  } catch(e){ alert('Xatolik: ' + e.message); }
 }
 
 // Qurilma reset
 async function qurilmaReset(token){
   if(!confirm('Bu o\'quvchi boshqa qurilmadan kira oladi. Davom etasizmi?')) return;
-  await sb.from('tokenlar').update({qurilma: null}).eq('token', token);
-  tokenlarYukla();
+  try {
+    const {error} = await sb.from('tokenlar').update({qurilma: null}).eq('token', token);
+    if(error) throw error;
+    tokenlarYukla();
+  } catch(e){ alert('Xatolik: ' + e.message); }
 }
 
 
@@ -445,16 +457,20 @@ async function xabarlarYukla(){
   });
 
   tbody.innerHTML = Object.values(guruhlar).map(g => {
-    const yangiSon = g.xabarlar.filter(x => !x.oqildi && !x.admin_xabar).length;
-    const oxirgi = g.xabarlar[g.xabarlar.length - 1];
-    const sana = new Date(oxirgi.sana).toLocaleString('uz-UZ');
-    return `<tr style="cursor:pointer" onclick="chatOch('${g.token}', '${g.ism||''}')">
+    const escToken   = htmlEscape(g.token || '');
+    const escIsm     = htmlEscape(g.ism || 'Noma\'lum');
+    const escIsmAttr = htmlEscape(g.ism || '');
+    const yangiSon   = g.xabarlar.filter(x => !x.oqildi && !x.admin_xabar).length;
+    const oxirgi     = g.xabarlar[g.xabarlar.length - 1];
+    const sana       = new Date(oxirgi.sana).toLocaleString('uz-UZ');
+    const preview    = htmlEscape((oxirgi.xabar || '').substring(0, 50));
+    return `<tr style="cursor:pointer" data-chat-token="${escToken}" data-chat-ism="${escIsmAttr}">
       <td>
         <div style="display:flex;align-items:center;gap:10px">
-          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#6C3FE8,#00C9A7);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0">${(g.ism||'?')[0].toUpperCase()}</div>
+          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#6C3FE8,#00C9A7);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0">${htmlEscape((g.ism||'?')[0].toUpperCase())}</div>
           <div>
-            <div style="font-weight:600;font-size:14px">${g.ism||'Noma\'lum'} ${yangiSon>0?`<span style="background:#FF6B6B;color:#fff;padding:1px 7px;border-radius:100px;font-size:11px">${yangiSon}</span>`:''}</div>
-            <div style="font-size:12px;color:rgba(240,236,255,0.5)">${oxirgi.xabar?.substring(0,50)}...</div>
+            <div style="font-weight:600;font-size:14px">${escIsm} ${yangiSon>0?`<span style="background:#FF6B6B;color:#fff;padding:1px 7px;border-radius:100px;font-size:11px">${yangiSon}</span>`:''}</div>
+            <div style="font-size:12px;color:rgba(240,236,255,0.5)">${preview}...</div>
           </div>
         </div>
       </td>
@@ -491,13 +507,13 @@ async function chatXabarlarYukla(token){
     const isAdmin = x.admin_xabar;
     return `<div style="display:flex;flex-direction:column;align-items:${isAdmin?'flex-end':'flex-start'};margin-bottom:12px">
       <div style="max-width:75%;padding:10px 14px;border-radius:${isAdmin?'14px 14px 4px 14px':'14px 14px 14px 4px'};background:${isAdmin?'linear-gradient(135deg,#6C3FE8,#9B7BFF)':'rgba(255,255,255,0.08)'};color:#F0ECFF;font-size:13px;line-height:1.5">
-        ${x.xabar}
+        ${htmlEscape(x.xabar)}
       </div>
       <div style="font-size:10px;color:rgba(240,236,255,0.3);margin-top:3px;padding:0 4px">${isAdmin?'Siz':'O\'quvchi'} · ${sana}</div>
     </div>`;
   }).join('');
   box.scrollTop = box.scrollHeight;
-  xabarlarYukla();
+  // xabarlarYukla() removed — realtime subscription handles badge/list refresh
 }
 
 async function chatJavobYuborish(){
@@ -522,6 +538,25 @@ async function xabarOqildi(id){
   await sb.from('xabarlar').update({oqildi: true}).eq('id', id);
   xabarlarYukla();
 }
+
+// Event delegation — token table actions (XSS-safe: no inline onclick)
+document.getElementById('tokenlar-tbody').addEventListener('click', function(e){
+  const btn = e.target.closest('[data-action]');
+  if(!btn) return;
+  const token = btn.dataset.token;
+  const action = btn.dataset.action;
+  if(action === 'blokla')  bloklash(token, false);
+  else if(action === 'ochish') bloklash(token, true);
+  else if(action === 'reset')  qurilmaReset(token);
+  else if(action === 'ochir')  tokenOchir(token, btn.dataset.ism || '');
+});
+
+// Event delegation — xabarlar rows
+document.getElementById('xabarlar-tbody').addEventListener('click', function(e){
+  const row = e.target.closest('[data-chat-token]');
+  if(!row) return;
+  chatOch(row.dataset.chatToken, row.dataset.chatIsm);
+});
 
 // Sahifa yuklanganda
 window.onload = function(){

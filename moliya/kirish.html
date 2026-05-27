@@ -206,7 +206,13 @@ document.getElementById('token').addEventListener('keypress', function(e){
 
 // Allaqachon kirgan bo'lsa
 if(localStorage.getItem('ms_token')){
-  window.location.href = 'index.html';
+  // Oflayn redirect loop ni oldini olish
+  if(localStorage.getItem('ms_offline_redirect')){
+    localStorage.removeItem('ms_offline_redirect');
+    showMsg('❌ Internet mavjud emas. Qayta urinib ko\'ring.', 'error');
+  } else {
+    window.location.href = 'index.html';
+  }
 }
 </script>
 </body>
