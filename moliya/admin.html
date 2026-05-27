@@ -193,10 +193,11 @@ tr:hover td{background:rgba(255,255,255,0.02);}
           <tr>
             <th>O'quvchi</th>
             <th>Oxirgi xabar vaqti</th>
+            <th></th>
           </tr>
         </thead>
         <tbody id="xabarlar-tbody">
-          <tr><td colspan="2" style="text-align:center;color:rgba(240,236,255,0.3);padding:24px">Yuklanmoqda...</td></tr>
+          <tr><td colspan="3" style="text-align:center;color:rgba(240,236,255,0.3);padding:24px">Yuklanmoqda...</td></tr>
         </tbody>
       </table>
     </div>
@@ -235,6 +236,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
       <div style="display:flex;gap:10px;align-items:center">
         <a id="tg-link" href="https://t.me/ynurov" target="_blank" style="font-size:12px;color:#00C9A7;text-decoration:none">✈️ Telegram</a>
         <a id="gmail-link" href="mailto:yahyonurov05@gmail.com" style="font-size:12px;color:#9B7BFF;text-decoration:none">📧 Gmail</a>
+        <button onclick="xabarGuruhOchirModal()" title="Barcha xabarlarni o'chirish" style="background:rgba(255,50,50,0.15);border:1px solid rgba(255,50,50,0.3);color:#FF9DB5;padding:0 10px;height:28px;border-radius:8px;cursor:pointer;font-size:12px;font-family:'Onest',sans-serif">🗑️</button>
         <button onclick="chatYop()" style="background:rgba(255,255,255,0.08);border:none;color:#F0ECFF;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:16px">×</button>
       </div>
     </div>
@@ -444,7 +446,7 @@ async function xabarlarYukla(){
   const tbody = document.getElementById('xabarlar-tbody');
   if(!tbody) return;
   if(data.length === 0){
-    tbody.innerHTML = '<tr><td colspan="2" style="text-align:center;color:rgba(240,236,255,0.3);padding:24px">Hali xabar yo\'q</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;color:rgba(240,236,255,0.3);padding:24px">Hali xabar yo\'q</td></tr>';
     return;
   }
 
@@ -475,6 +477,9 @@ async function xabarlarYukla(){
         </div>
       </td>
       <td style="font-size:12px;color:rgba(240,236,255,0.4);white-space:nowrap">${sana}</td>
+      <td onclick="event.stopPropagation()">
+        <button class="btn btn-danger btn-sm" data-action="xabar-ochir" data-token="${escToken}" data-ism="${escIsmAttr}">🗑️</button>
+      </td>
     </tr>`;
   }).join('');
 }
@@ -539,6 +544,29 @@ async function xabarOqildi(id){
   xabarlarYukla();
 }
 
+// Bitta o'quvchining barcha xabarlarini o'chirish (ro'yxatdan)
+async function xabarGuruhOchir(token, ism){
+  if(!confirm(`"${ism || 'O\'quvchi'}" ning barcha xabarlari o'chiriladi. Davom etasizmi?`)) return;
+  try {
+    const {error} = await sb.from('xabarlar').delete().eq('token', token);
+    if(error) throw error;
+    xabarlarYukla();
+  } catch(e){ alert('Xatolik: ' + e.message); }
+}
+
+// Chat modal ichidagi "O'chir" tugmasi
+async function xabarGuruhOchirModal(){
+  const token = document.getElementById('chat-token').value;
+  const title = document.getElementById('chat-title').textContent.replace('💬 ', '');
+  if(!confirm(`"${title}" ning barcha xabarlari o'chiriladi. Davom etasizmi?`)) return;
+  try {
+    const {error} = await sb.from('xabarlar').delete().eq('token', token);
+    if(error) throw error;
+    chatYop();
+    xabarlarYukla();
+  } catch(e){ alert('Xatolik: ' + e.message); }
+}
+
 // Event delegation — token table actions (XSS-safe: no inline onclick)
 document.getElementById('tokenlar-tbody').addEventListener('click', function(e){
   const btn = e.target.closest('[data-action]');
@@ -553,6 +581,10 @@ document.getElementById('tokenlar-tbody').addEventListener('click', function(e){
 
 // Event delegation — xabarlar rows
 document.getElementById('xabarlar-tbody').addEventListener('click', function(e){
+  // O'chir tugmasi
+  const delBtn = e.target.closest('[data-action="xabar-ochir"]');
+  if(delBtn){ xabarGuruhOchir(delBtn.dataset.token, delBtn.dataset.ism); return; }
+  // Qator bosilsa chat ochish
   const row = e.target.closest('[data-chat-token]');
   if(!row) return;
   chatOch(row.dataset.chatToken, row.dataset.chatIsm);
