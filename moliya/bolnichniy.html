@@ -414,6 +414,43 @@ tr:hover td { background: rgba(255,255,255,0.02); }
   .hisob-table{font-size:12px;}
   .hisob-table th,.hisob-table td{padding:7px 8px;}
 }
+
+/* ===== LIGHT MODE ===== */
+body.light{
+  --bg:#F5F3FF; --bg2:#EDE8FF; --bg3:#E0D8FF;
+  --card:rgba(255,255,255,0.92); --card-border:rgba(108,63,232,0.15);
+  --text:#1A0A3D; --muted:rgba(26,10,61,0.7); --muted2:rgba(26,10,61,0.5);
+  --border:rgba(108,63,232,0.15); --gray:rgba(26,10,61,0.65);
+  --gray-light:rgba(108,63,232,0.04);
+  background:#F5F3FF; color:#1A0A3D;
+}
+body.light::before{
+  background:
+    radial-gradient(ellipse 60% 40% at 15% 10%,rgba(108,63,232,0.07) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 30% at 80% 80%,rgba(0,201,167,0.05) 0%,transparent 60%);
+}
+body.light nav{background:rgba(245,243,255,0.96);border-color:rgba(108,63,232,0.12);}
+/* Note kartalar */
+body.light .note-blue{background:rgba(124,107,255,0.08);color:#3A28A0;}
+body.light .note-amber{background:rgba(255,184,48,0.08);color:#7A4E00;}
+body.light .note-green{background:rgba(0,201,167,0.08);color:#006B55;}
+body.light .note-red{background:rgba(255,107,107,0.08);color:#8B0030;}
+/* Formula */
+body.light .formula{color:#4030A0;}
+/* Badgelar */
+body.light .b-blue{background:rgba(124,107,255,0.12);color:#3A28A0;border-color:rgba(124,107,255,0.3);}
+body.light .b-red{background:rgba(255,107,107,0.1);color:#8B0030;border-color:rgba(255,107,107,0.25);}
+body.light .sc-amber{background:rgba(255,184,48,0.1);color:#7A4E00;border-color:rgba(255,184,48,0.3);}
+body.light .sc-emp{background:rgba(255,184,48,0.1);color:#7A4E00;border-color:rgba(255,184,48,0.25);}
+body.light .sc-state{background:rgba(124,107,255,0.1);color:#3A28A0;border-color:rgba(124,107,255,0.25);}
+/* Natija */
+body.light .res-big .rv{color:#006B55;}
+/* Support & Chat */
+body.light .support-modal{background:#F0ECFF;border-color:rgba(108,63,232,0.25);}
+body.light .support-option{background:rgba(108,63,232,0.05);border-color:rgba(108,63,232,0.15);color:#1A0A3D;}
+body.light .support-option:hover{background:rgba(108,63,232,0.12);}
+body.light .support-form textarea{background:rgba(255,255,255,0.8);border-color:rgba(108,63,232,0.2);color:#1A0A3D;}
+body.light #chatWindow{background:#F0ECFF;border-color:rgba(108,63,232,0.3);}
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -961,6 +998,11 @@ document.addEventListener('click',function(e){
     w.style.display='none';
   }
 });
+
+// Saqlangan temani tiklash
+if(localStorage.getItem('ms_theme')==='light'){
+  document.body.classList.add('light');
+}
 </script>
 
 </body>

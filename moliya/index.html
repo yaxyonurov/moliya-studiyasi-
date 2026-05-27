@@ -318,6 +318,34 @@ body.light .card-desc{color:#4A3A6D;}
 body.light .tag{background:rgba(108,63,232,0.08);color:#6C3FE8;border-color:rgba(108,63,232,0.2);}
 body.light footer{border-color:rgba(108,63,232,0.1);}
 body.light .footer-sub{color:rgba(26,10,61,0.4);}
+/* Nav elementlari */
+.nav-ism-text{font-size:12px;color:rgba(240,236,255,0.5);}
+body.light .nav-ism-text{color:rgba(26,10,61,0.5);}
+body.light .logout-btn{color:rgba(26,10,61,0.55);border-color:rgba(108,63,232,0.2);}
+body.light .logout-btn:hover{color:#C0183A;border-color:rgba(192,24,58,0.35);}
+/* Hero */
+body.light .hero p{color:rgba(26,10,61,0.65);}
+/* Stats */
+body.light .stat-label{color:rgba(26,10,61,0.55);}
+/* Search */
+body.light .search-input::placeholder{color:rgba(26,10,61,0.35);}
+body.light .no-result{color:rgba(26,10,61,0.4);}
+/* Cards */
+body.light .card-arrow{color:rgba(26,10,61,0.2);}
+body.light .mavzu-card:hover .card-arrow{color:rgba(26,10,61,0.6);}
+/* Coming soon */
+body.light .coming-name{color:rgba(26,10,61,0.5);}
+body.light .coming-card{border-color:rgba(108,63,232,0.12);}
+/* Progress */
+body.light .progress-bar-wrap{background:rgba(108,63,232,0.1);}
+/* Theme button */
+body.light .theme-btn{background:rgba(108,63,232,0.08);border-color:rgba(108,63,232,0.2);}
+/* Support & Chat */
+body.light .support-modal{background:#F0ECFF;border-color:rgba(108,63,232,0.25);}
+body.light .support-option{background:rgba(108,63,232,0.05);border-color:rgba(108,63,232,0.15);color:#1A0A3D;}
+body.light .support-option:hover{background:rgba(108,63,232,0.12);}
+body.light .support-form textarea{background:rgba(255,255,255,0.8);border-color:rgba(108,63,232,0.2);color:#1A0A3D;}
+body.light #chatWindow{background:#F0ECFF;border-color:rgba(108,63,232,0.3);}
 
 /* SEARCH */
 .search-wrap{position:relative;margin-bottom:24px;}
@@ -370,7 +398,7 @@ body.light .search-input{background:#fff;border-color:rgba(108,63,232,0.2);color
 
 <nav>
   <div class="nav-logo">📚 Moliya Studiyasi</div>
-  <div style="display:flex;gap:10px;align-items:center"><span id="nav-ism" style="font-size:12px;color:rgba(240,236,255,0.5)"></span><button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button><a href="#" class="logout-btn" onclick="chiqish()">Chiqish</a></div>
+  <div style="display:flex;gap:10px;align-items:center"><span id="nav-ism" class="nav-ism-text"></span><button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button><a href="#" class="logout-btn" onclick="chiqish()">Chiqish</a></div>
 </nav>
 
 <div class="wrap">
