@@ -1,0 +1,1 @@
+ALTER TABLE tokenlar ADD COLUMN IF NOT EXISTS oxirgi_kirish TIMESTAMPTZ;

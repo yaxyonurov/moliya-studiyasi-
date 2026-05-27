@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mehnatga Layoqatsizlik va Homiladorlik Nafaqalari</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Onest:wght@300;400;500;600&display=swap');
+:root {
+  --purple: #6C3FE8;
+  --purple-light: #9B7BFF;
+  --teal: #00C9A7;
+  --coral: #FF6B6B;
+  --amber: #FFB830;
+  --bg: #0A0616;
+  --bg2: #110D22;
+  --bg3: #1A1435;
+  --card: rgba(255,255,255,0.05);
+  --card-border: rgba(255,255,255,0.09);
+  --text: #F0ECFF;
+  --muted: rgba(240,236,255,0.72);
+  --muted2: rgba(240,236,255,0.45);
+  --border: rgba(255,255,255,0.09);
+  --blue: #7C6BFF;
+  --blue-bg: rgba(124,107,255,0.12);
+  --green: #3DFFB0;
+  --green-bg: rgba(0,201,167,0.1);
+  --amber-c: #FFB830;
+  --amber-bg: rgba(255,184,48,0.1);
+  --red: #FF6B9D;
+  --red-bg: rgba(255,107,107,0.1);
+  --gray: rgba(240,236,255,0.72);
+  --gray-light: rgba(255,255,255,0.03);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Onest', 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+body::before {
+  content:'';
+  position:fixed;top:0;left:0;right:0;bottom:0;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 10%, rgba(108,63,232,0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 30% at 80% 80%, rgba(0,201,167,0.1) 0%, transparent 60%);
+  pointer-events:none;z-index:0;
+}
+
+/* NAV — xaridlar style */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,6,22,0.85);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--card-border);
+  padding:12px 24px;
+  display:flex;gap:8px;flex-wrap:wrap;justify-content:center;
+}
+nav a{
+  font-size:11px;font-weight:500;
+  padding:5px 14px;border-radius:100px;
+  border:1px solid rgba(108,63,232,0.3);
+  color:var(--purple-light);
+  text-decoration:none;
+  transition:all 0.2s;
+  background:rgba(108,63,232,0.08);
+}
+nav a:hover{background:rgba(108,63,232,0.25);border-color:var(--purple-light);}
+
+/* HERO */
+.hero{padding:70px 20px 50px;text-align:center;position:relative;}
+.hero-badge{
+  display:inline-block;font-size:11px;font-weight:500;
+  padding:5px 16px;border-radius:100px;
+  background:rgba(108,63,232,0.15);border:1px solid rgba(108,63,232,0.4);
+  color:var(--purple-light);margin-bottom:24px;letter-spacing:0.5px;
+}
+.hero h1{
+  font-family:'Unbounded',sans-serif;
+  font-size:clamp(28px,5vw,52px);font-weight:800;line-height:1.15;
+  background:linear-gradient(135deg,#fff 0%,var(--purple-light) 50%,var(--teal) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:16px;
+}
+.hero p{font-size:14px;color:var(--muted);max-width:520px;margin:0 auto 36px;}
+.hero-stats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.hero-stat{
+  background:var(--card);border:1px solid var(--card-border);
+  border-radius:14px;padding:14px 20px;text-align:center;min-width:110px;
+}
+.hero-stat-num{
+  font-family:'Unbounded',sans-serif;font-size:18px;font-weight:800;
+  background:linear-gradient(135deg,var(--purple-light),var(--teal));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-stat-label{font-size:11px;color:var(--muted);margin-top:4px;}
+
+/* WRAP */
+.wrap{max-width:960px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1;}
+
+html{scroll-behavior:smooth;}
+body::before{
+  content:'';position:fixed;top:0;left:0;right:0;bottom:0;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 10%,rgba(108,63,232,0.22) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 30% at 80% 80%,rgba(0,201,167,0.1) 0%,transparent 60%);
+  pointer-events:none;z-index:0;
+}
+
+/* QONUN */
+.qonun-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:600px){.qonun-grid{grid-template-columns:1fr;}}
+.qonun-card{
+  background:var(--card);border:1px solid var(--card-border);
+  border-radius:14px;padding:18px;transition:border-color 0.2s;
+}
+.qonun-card:hover{border-color:rgba(108,63,232,0.4);}
+.qonun-badge{
+  font-family:'Unbounded',sans-serif;font-size:11px;font-weight:800;
+  color:var(--purple-light);margin-bottom:8px;
+}
+.qonun-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px;}
+.qonun-desc{font-size:12px;color:var(--muted);line-height:1.6;}
+
+/* SECTION TITLE */
+.sec-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 11px; font-weight: 700; color: var(--purple-light);
+  text-transform: uppercase; letter-spacing: 2px;
+  margin: 28px 0 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.sec-title::after { content:''; flex:1; height:1px; background: linear-gradient(90deg, rgba(108,63,232,0.4), transparent); }
+.sec-title:first-child { margin-top: 0; }
+
+/* BOX */
+.box {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 14px; padding: 20px; margin-bottom: 14px;
+  transition: border-color 0.2s;
+}
+.box:hover { border-color: rgba(108,63,232,0.35); }
+.box-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+
+/* TEXT */
+p, li { font-size: 14px; color: var(--muted); line-height: 1.75; }
+ul { padding-left: 20px; }
+ul li { margin-bottom: 4px; }
+strong { color: var(--text); font-weight: 600; }
+
+/* CALLOUT BOXES */
+.note { border-radius: 8px; padding: 12px 16px; margin: 12px 0; font-size: 13.5px; line-height: 1.7; }
+.note-blue { background: var(--blue-bg); border-left: 3px solid var(--blue); color: #B0A8FF; }
+.note-amber { background: var(--amber-bg); border-left: 3px solid var(--amber-c); color: #FFD580; }
+.note-green { background: var(--green-bg); border-left: 3px solid var(--teal); color: #5FFFD9; }
+.note-red { background: var(--red-bg); border-left: 3px solid var(--coral); color: #FF9DB5; }
+.note strong { color: inherit; }
+
+/* FORMULA */
+.formula-wrap {
+  background: linear-gradient(135deg, rgba(108,63,232,0.15), rgba(0,201,167,0.08));
+  border: 1.5px solid rgba(108,63,232,0.35);
+  border-radius: 12px; padding: 20px; margin: 14px 0; text-align: center;
+}
+.formula { font-size: 20px; font-weight: 800; color: #C4B0FF; font-family: 'Unbounded', monospace; letter-spacing: 1px; }
+.formula-sub { font-size: 12px; color: var(--purple-light); margin-top: 8px; }
+
+/* TABLE */
+.tbl-wrap { overflow-x: auto; margin: 10px 0; }
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+th {
+  background: rgba(108,63,232,0.2);
+  padding: 9px 14px; text-align: left; font-weight: 700;
+  color: var(--purple-light);
+  border-bottom: 1px solid rgba(108,63,232,0.3);
+}
+td { padding: 9px 14px; border-bottom: 1px solid var(--border); color: var(--muted); vertical-align: top; }
+tr:hover td { background: rgba(255,255,255,0.02); }
+
+/* BADGE */
+.badge { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+.b-blue { background: rgba(124,107,255,0.2); color: #B0A8FF; border: 1px solid rgba(124,107,255,0.4); }
+.b-green { background: rgba(0,201,167,0.15); color: var(--teal); border: 1px solid rgba(0,201,167,0.35); }
+.b-amber { background: rgba(255,184,48,0.15); color: var(--amber-c); border: 1px solid rgba(255,184,48,0.35); }
+.b-red { background: rgba(255,107,107,0.15); color: #FF9DB5; border: 1px solid rgba(255,107,107,0.35); }
+
+/* STEPS */
+.steps { display: flex; flex-direction: column; gap: 0; }
+.step { display: flex; gap: 14px; padding: 13px 0; border-bottom: 1px solid var(--border); }
+.step:last-child { border-bottom: none; }
+.step-n {
+  width: 28px; height: 28px; min-width: 28px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--purple), var(--purple-light));
+  color: #fff; font-size: 12px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; margin-top: 1px;
+}
+.step-body h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; color: var(--text); }
+
+/* STAJ CARDS */
+.staj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; }
+.staj-card { border-radius: 12px; padding: 18px; border: 1.5px solid; text-align: center; }
+.staj-card .sc-staj { font-size: 12px; font-weight: 600; margin-bottom: 6px; }
+.staj-card .sc-pct { font-size: 32px; font-weight: 800; font-family: 'Unbounded', sans-serif; }
+.staj-card .sc-note { font-size: 11.5px; margin-top: 6px; }
+.sc-amber { background: rgba(255,184,48,0.1); border-color: rgba(255,184,48,0.4); color: #FFD580; }
+.sc-green { background: rgba(0,201,167,0.1); border-color: rgba(0,201,167,0.4); color: var(--teal); }
+
+/* TABS (inner) */
+.itabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
+.itab {
+  padding: 7px 16px; border-radius: 8px;
+  border: 1px solid var(--card-border);
+  background: rgba(255,255,255,0.03);
+  font-size: 13px; cursor: pointer; color: var(--muted2); transition: .2s;
+  font-family: 'Onest', sans-serif;
+}
+.itab:hover { color: var(--text); border-color: rgba(108,63,232,0.4); }
+.itab.on {
+  background: linear-gradient(135deg, var(--purple), var(--purple-light));
+  color: #fff; border-color: transparent; font-weight: 600;
+}
+.itab-pane { display: none; }
+.itab-pane.on { display: block; }
+
+/* CALC */
+.calc-form { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+.cf-full { grid-column: 1 / -1; }
+.cf label { display: block; font-size: 11px; font-weight: 700; color: var(--muted2); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
+.cf input, .cf select {
+  width: 100%; padding: 10px 14px;
+  border: 1px solid var(--card-border);
+  border-radius: 8px; font-size: 14px;
+  color: var(--text);
+  background: rgba(255,255,255,0.04);
+  outline: none; transition: border .2s;
+  font-family: 'Onest', sans-serif;
+}
+.cf input:focus, .cf select:focus { border-color: var(--purple); background: rgba(108,63,232,0.08); }
+.cf select option { background: #1A1435; color: var(--text); }
+.calc-btn {
+  width: 100%; padding: 13px;
+  background: linear-gradient(135deg, var(--purple), var(--purple-light));
+  color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 700;
+  cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: opacity .2s; font-family: 'Unbounded', sans-serif;
+}
+.calc-btn:hover { opacity: 0.9; }
+.result-area { display: none; margin-top: 20px; }
+.res-table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-bottom: 14px; }
+.res-table tr td { padding: 9px 14px; border-bottom: 1px solid var(--border); }
+.res-table tr td:first-child { color: var(--muted); }
+.res-table tr td:last-child { font-weight: 700; color: var(--text); text-align: right; }
+.res-big {
+  background: linear-gradient(135deg, rgba(0,201,167,0.12), rgba(61,255,176,0.06));
+  border: 1.5px solid rgba(0,201,167,0.3);
+  border-radius: 12px; padding: 20px; text-align: center;
+}
+.res-big .rl { font-size: 13px; color: var(--teal); font-weight: 600; margin-bottom: 6px; }
+.res-big .rv { font-size: 28px; font-weight: 800; color: #3DFFB0; font-family: 'Unbounded', sans-serif; }
+.split-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+.split-card { border-radius: 10px; padding: 14px; text-align: center; }
+.split-card .sl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 5px; }
+.split-card .sv { font-size: 16px; font-weight: 700; font-family: 'Unbounded', sans-serif; }
+.sc-emp { background: rgba(255,184,48,0.12); color: #FFD580; border: 1px solid rgba(255,184,48,0.3); }
+.sc-state { background: rgba(124,107,255,0.12); color: #B0A8FF; border: 1px solid rgba(124,107,255,0.3); }
+
+/* TASK */
+.task { border: 1px solid var(--card-border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+.task-head {
+  padding: 14px 18px; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;
+  background: var(--card); transition: background .2s;
+}
+.task-head:hover { background: rgba(108,63,232,0.08); }
+.task-head-left { flex: 1; }
+.task-head-left h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; color: var(--text); }
+.task-head-left p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.task-body {
+  display: none; border-top: 1px solid var(--border);
+  padding: 16px 18px; background: rgba(255,255,255,0.02);
+}
+.task.open .task-body { display: block; }
+.task.open { border-color: rgba(0,201,167,0.4); }
+.hint-btn {
+  font-size: 12px; color: var(--purple-light); cursor: pointer;
+  margin-top: 8px; display: inline-flex; align-items: center; gap: 4px;
+  border: none; background: none; padding: 0; text-decoration: underline;
+  font-family: 'Onest', sans-serif;
+}
+.hint-box { display: none; margin-top: 8px; }
+.hint-box.on { display: block; }
+
+/* 1C */
+.code-block {
+  background: rgba(10,6,22,0.8);
+  border: 1px solid rgba(108,63,232,0.25);
+  border-radius: 10px; padding: 14px 16px;
+  font-family: monospace; font-size: 13px; line-height: 1.9; margin: 10px 0;
+}
+.code-block .p { color: #cba6f7; }
+.code-block .h { color: #89b4fa; font-weight: 700; }
+.code-block .v { color: #a6e3a1; }
+.code-block .c { color: rgba(255,255,255,0.3); font-style: italic; }
+
+@media(max-width: 600px) {
+  .staj-grid, .calc-form, .split-cards { grid-template-columns: 1fr; }
+  .cf-full { grid-column: 1; }
+  .topbar-title { font-size: 11px; padding: 12px 14px; }
+  .nav-btn { padding: 13px 12px; font-size: 12px; }
+  .formula { font-size: 15px; }
+}
+
+/* SUPPORT BUTTON */
+.support-fab{
+  position:fixed;bottom:24px;right:24px;z-index:999;
+  width:56px;height:56px;border-radius:50%;
+  background:linear-gradient(135deg,#6C3FE8,#00C9A7);
+  border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;
+  box-shadow:0 4px 20px rgba(108,63,232,0.4);
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.support-fab:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(108,63,232,0.6);}
+.support-modal{
+  display:none;position:fixed;bottom:90px;right:24px;z-index:998;
+  background:#1A1435;border:1px solid rgba(108,63,232,0.35);
+  border-radius:20px;padding:20px;width:260px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.5);
+}
+.support-modal.open{display:block;}
+.support-modal h4{font-family:'Unbounded',sans-serif;font-size:12px;font-weight:700;color:#9B7BFF;margin-bottom:14px;}
+.support-option{
+  display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
+  text-decoration:none;color:#F0ECFF;font-size:13px;margin-bottom:8px;
+  transition:all 0.2s;cursor:pointer;
+}
+.support-option:hover{background:rgba(108,63,232,0.15);border-color:rgba(108,63,232,0.4);}
+.support-option:last-child{margin-bottom:0;}
+.support-icon{font-size:20px;width:28px;text-align:center;}
+.support-form{display:none;margin-top:12px;}
+.support-form textarea{
+  width:100%;padding:10px;background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);border-radius:8px;
+  color:#F0ECFF;font-size:13px;font-family:'Onest',sans-serif;
+  resize:none;height:80px;outline:none;
+}
+.support-form textarea:focus{border-color:rgba(108,63,232,0.5);}
+.support-send{
+  width:100%;padding:9px;margin-top:8px;
+  background:linear-gradient(135deg,#6C3FE8,#9B7BFF);
+  color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;
+  cursor:pointer;font-family:'Unbounded',sans-serif;
+}
+.support-success{display:none;text-align:center;padding:12px;font-size:13px;color:#3DFFB0;}
+@media(max-width:600px){
+  .support-modal{width:calc(100vw - 48px);right:24px;}
+}
+
+/* ===== MOBIL VERSIYA ===== */
+@media(max-width:768px){
+  /* Jadvallar */
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{min-width:500px;font-size:12px;}
+  th,td{padding:8px 10px;}
+  
+  /* Provodka jadvali */
+  .prov-head,.prov-row{
+    grid-template-columns:70px 70px 90px 1fr !important;
+    font-size:11px !important;
+  }
+  .prov-head > span,.prov-row > span{padding:8px 8px !important;}
+  .deb,.kred{font-size:11px !important;}
+  
+  /* Kalkulyator */
+  .calc-form{grid-template-columns:1fr !important;}
+  .cf-full{grid-column:1 !important;}
+  .res-big .rv{font-size:20px !important;}
+  .split-cards{grid-template-columns:1fr !important;}
+  
+  /* Hero */
+  .hero h1{font-size:24px !important;}
+  .hero p{font-size:13px !important;}
+  .hero-stats{gap:8px !important;}
+  .hero-stat{min-width:80px !important;padding:10px 12px !important;}
+  .hero-stat-num{font-size:14px !important;}
+  
+  /* Nav */
+  nav{padding:10px 12px !important;gap:6px !important;}
+  nav a{font-size:10px !important;padding:4px 10px !important;}
+  
+  /* Cards */
+  .two-col,.staj-grid,.qonun-grid,.grid2{grid-template-columns:1fr !important;}
+  .stats-grid{grid-template-columns:repeat(2,1fr) !important;}
+  
+  /* Wrap */
+  .wrap{padding:0 12px 60px !important;}
+  
+  /* Box */
+  .box,.card{padding:14px !important;}
+  
+  /* Formula */
+  .formula{font-size:14px !important;}
+  
+  /* Task */
+  .task-head{padding:12px !important;}
+  .task-body{padding:12px !important;}
+  
+  /* Hisobvaraqlar */
+  .hisob-table{font-size:12px;}
+  .hisob-table th,.hisob-table td{padding:7px 8px;}
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth_check.js"></script>
+</head>
+<body>
+
+<nav>
+  <a href="#n1">📖 Umumiy qoidalar</a>
+  <a href="#n2">🧮 Formula</a>
+  <a href="#n3">📊 Staj koeffitsienti</a>
+  <a href="#n4">⚠️ Istisnolar</a>
+  <a href="#kalk">🔢 Kalkulyator</a>
+  <a href="#qonun">⚖️ Qonuniy asoslar</a>
+</nav>
+
+<div class="wrap">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">📚 Buxgalteriya kursi · 2026 yil holati</div>
+  <h1>Mehnatga Layoqatsizlik<br>Nafaqasi (Bolnichniy)</h1>
+  <p>Hisoblash tartibi · Formula · Staj koeffitsienti · INPS · Kalkulyator · Topshiriqlar</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">25.3</div><div class="hero-stat-label">O'rtacha ish kunlari</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">60/80%</div><div class="hero-stat-label">Staj koeffitsienti</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">182</div><div class="hero-stat-label">Yillik limit (kun)</div></div>
+  </div>
+</div>
+
+<!-- ===== NAZARIYA ===== -->
+<div id="nazariya">
+
+  <!-- TAB 1 -->
+  <div id="n1">
+    <div class="sec-title">1. Umumiy Qoidalar va Tizimning Ishlash Mexanizmi</div>
+
+    <div class="box">
+      <div class="box-title"><i class="ti ti-info-circle" style="color:var(--blue)"></i> Nafaqa nima va kim uchun?</div>
+      <p>Mehnat qonunchiligiga ko'ra barcha xodimlar belgilangan tartibda <strong>vaqtincha mehnatga layoqatsizlik nafaqalari</strong>ni, ayollar esa bundan tashqari <strong>homiladorlik va tug'ish nafaqalari</strong>ni oladilar.</p>
+      <div class="note note-blue" style="margin-top:12px">
+        <strong>2026 yildan yangilik:</strong> O'zR VMning 17.12.2025 yildagi 796-sonli qaroriga muvofiq nafaqalar <strong>proaktiv shaklda</strong> — fuqaro murojaati talab etilmagan holda to'lanadi.
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="box-title"><i class="ti ti-users" style="color:var(--blue)"></i> Kim olish huquqiga ega? (kamida 6 oy staj bilan)</div>
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div class="step-body"><h4>Rasmiy xodimlar</h4><p>Ish beruvchi bilan yakka tartibdagi mehnat munosabatlarida bo'lgan shaxslar</p></div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-body"><h4>Fuqarolik shartnomasi bilan ishlaydigan</h4><p>Yuridik yoki jismoniy shaxslar bilan GPC shartnoma asosida xizmat ko'rsatuvchilar</p></div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-body"><h4>YaTT va o'zini o'zi band qilgan shaxslar</h4><p>Qonunchilikda belgilangan tartibda rasmiy faoliyat bilan bandlar</p></div></div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="box-title"><i class="ti ti-list-check" style="color:var(--blue)"></i> Qanday hollarda beriladi?</div>
+      <ul>
+        <li>Vaqtincha mehnat layoqatini yo'qotish bilan bog'liq <strong>kasallik</strong> vaqtida (shikastlanishda)</li>
+        <li><strong>Sanatoriy va sog'lomlashtirish</strong> muassasalarida davolanganda</li>
+        <li>Kasallangan <strong>oila a'zosini parvarishlash</strong> zarur bo'lganda</li>
+        <li><strong>Karantinda</strong></li>
+        <li>Sil kasalligi tufayli vaqtincha <strong>boshqa ishga o'tkazilganda</strong></li>
+        <li>Mehnat layoqatini tiklash yoki <strong>protez qo'yish</strong> uchun reabilitatsiya muassasalarida</li>
+      </ul>
+      <div class="note note-green" style="margin-top:12px">
+        Nafaqa mehnat qobiliyati yo'qolgan <strong>birinchi kundan</strong> to u tiklanguncha yoki TMEK tomonidan nogironlik belgilangunga qadar beriladi — hatto shu davrda mehnat shartnomasi bekor qilingan bo'lsa ham.
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="box-title"><i class="ti ti-clock-hour-4" style="color:var(--blue)"></i> Sug'urta staji nima?</div>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Toifa</th><th>Staj hisoblanadigan davr</th></tr>
+          <tr><td>Rasmiy xodim</td><td>Majburiy tartibda ish haqidan daromad solig'i hisoblangan davr</td></tr>
+          <tr><td>Yakka tartibdagi tadbirkor</td><td>Har oylik ijtimoiy soliq to'lab borilgan davr</td></tr>
+          <tr><td>O'zini o'zi band qilgan</td><td>Ijtimoiy soliq to'lab borilgan davr</td></tr>
+          <tr><td>Ishlamaydigan fuqaro</td><td>Eri/xotini tomonidan ixtiyoriy sug'urta badali to'langan davr</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2 -->
+  <div id="n2">
+    <div class="sec-title">2. Hisoblash Tartibi va Formula</div>
+
+    <div class="box">
+      <div class="box-title"><i class="ti ti-math-function" style="color:var(--blue)"></i> Asosiy formula</div>
+      <div class="formula-wrap">
+        <div class="formula">Nafaqa = O'OIH ÷ 25.3 × SK × KS</div>
+        <div class="formula-sub">Bu formula o'zgarmaydi — har doim shu asosda hisoblanadi</div>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Belgi</th><th>Nomi</th><th>Izoh</th></tr>
+          <tr><td><strong>O'OIH</strong></td><td>O'rtacha oylik ish haqi</td><td>Hisoblangan o'rtacha oylik ish haqi</td></tr>
+          <tr><td><strong>25.3</strong></td><td>O'rtacha oylik ish kunlari</td><td>O'zgarmas son!</td></tr>
+          <tr><td><strong>SK</strong></td><td>Staj koeffitsienti</td><td>Sug'urta stajiga qarab: 60% yoki 80%</td></tr>
+          <tr><td><strong>KS</strong></td><td>Hisob-kitob kunlari</td><td>Varaqadagi kunlar — yakshanba va bayram kunlarisiz</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="box-title"><i class="ti ti-alert-circle" style="color:#d97706"></i> O'OIH chegarasi (limiti)</div>
+      <p>Nafaqa hisoblash uchun O'OIH nafaqa tayinlangan sanadagi <strong>MHTEKM × 10</strong> dan ortiq bo'lmagan qismi inobatga olinadi.</p>
+      <div class="note note-amber" style="margin-top:10px">
+        <strong>Hozirgi MHTEKM:</strong> 1 271 000 so'm<br>
+        <strong>Chegara (limit):</strong> 1 271 000 × 10 = <strong>12 710 000 so'm</strong><br>
+        Ish haqi bundan ko'p bo'lsa — ortiqcha qismi hisobga olinmaydi.
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="box-title"><i class="ti ti-calendar-x" style="color:var(--blue)"></i> Qaysi kunlar hisoblanmaydi?</div>
+      <p>Varaqadagi davr ichida quyidagi kunlar nafaqa miqdorini hisoblashda <strong>inobatga olinmaydi:</strong></p>
+      <ul style="margin-top:8px">
+        <li><strong>Yakshanba kunlari</strong></li>
+        <li>Mehnat kodeksining 208-moddasidagi <strong>ishlanmaydigan bayram kunlari</strong></li>
+      </ul>
+      <div class="note note-blue" style="margin-top:10px">
+        <strong>Misol:</strong> 10 kunlik varaqada 1 yakshanba + 1 bayram bo'lsa → KS = 10 − 1 − 1 = <strong>8 kun</strong>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="box-title"><i class="ti ti-building-bank" style="color:var(--blue)"></i> Kim to'laydi — 5 kunlik qoida</div>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Davr</th><th>Kim to'laydi</th></tr>
+          <tr><td>Dastlabki <strong>1–5 kun</strong></td><td><span class="badge b-amber">Ish beruvchi</span> (xodim 6 oydan ko'p stajga ega bo'lsa)</td></tr>
+          <tr><td><strong>6-kundan</strong> boshlab</td><td><span class="badge b-blue">Davlat ijtimoiy sug'urta jamg'armasi</span></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="box-title"><i class="ti ti-receipt-tax" style="color:var(--blue)"></i> Soliqlar</div>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>To'lov turi</th><th>JShDS (12%)</th><th>INPS (0.1%)</th><th>Ijtimoiy soliq (12%)</th><th>Foyda solig'i</th></tr>
+          <tr><td>Bolnichniy summasi</td><td><span class="badge b-amber">Ha — tutiladi</span></td><td><span class="badge b-amber">Ha — tutiladi</span></td><td><span class="badge b-green">Tutilmaydi</span></td><td>Bazadan chegiriladi</td></tr>
+          <tr><td>Ish haqi</td><td><span class="badge b-amber">Ha — tutiladi</span></td><td><span class="badge b-amber">Ha — tutiladi</span></td><td><span class="badge b-amber">Ha — tutiladi</span></td><td>Odatdagidek</td></tr>
+        </table>
+      </div>
+      <div class="note note-green" style="margin-top:10px">
+        Vaqtincha mehnatga layoqatsizlik nafaqasi JShDS maqsadida xodimning boshqa daromadi sifatida jami daromadlari tarkibiga kiritiladi.
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="box-title"><i class="ti ti-arrows-exchange" style="color:var(--blue)"></i> Provodkalar — soliqlar</div>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Debet</th><th>Kredit</th><th>Izoh</th></tr>
+          <tr><td><strong style="color:#3DFFB0">6710</strong></td><td><strong style="color:#FF6B9D">6420</strong></td><td>JShDS 12% hisoblandi (xodimdan)</td></tr>
+          <tr><td><strong style="color:#3DFFB0">6420</strong></td><td><strong style="color:#FF6B9D">6530</strong></td><td>INPS 0.1% — daromad solig'idan yechiladi</td></tr>
+          <tr><td><strong style="color:#3DFFB0">9420</strong></td><td><strong style="color:#FF6B9D">6520</strong></td><td>Ijtimoiy soliq 12% hisoblandi (ish beruvchidan)</td></tr>
+          <tr><td><strong style="color:#3DFFB0">6420</strong></td><td><strong style="color:#FF6B9D">5110</strong></td><td>JShDS o'tkazildi</td></tr>
+          <tr><td><strong style="color:#3DFFB0">6530</strong></td><td><strong style="color:#FF6B9D">5110</strong></td><td>INPS o'tkazildi</td></tr>
+          <tr><td><strong style="color:#3DFFB0">6520</strong></td><td><strong style="color:#FF6B9D">5110</strong></td><td>Ijtimoiy soliq o'tkazildi</td></tr>
+        </table>
+      </div>
+      <div class="note note-amber" style="margin-top:10px">
+        <strong>6420</strong> — Daromad solig'i (JShDS 12%) &nbsp;|&nbsp; <strong>6530</strong> — INPS (0.1%, 6420 dan yechiladi) &nbsp;|&nbsp; <strong>6520</strong> — Ijtimoiy soliq (12%, ish beruvchi) &nbsp;|&nbsp; <strong>6710</strong> — Xodimga to'lanadigan ish haqi
+      </div>
+    </div>
+
+  <!-- TAB 3 -->
+  <div id="n3">
+    <div class="sec-title">3. Staj Koeffitsienti (SK)</div>
+
+    <div class="box">
+      <div class="box-title"><i class="ti ti-percentage" style="color:var(--blue)"></i> Vaqtincha mehnatga layoqatsizlik uchun SK</div>
+      <div class="staj-grid">
+        <div class="staj-card sc-amber">
+          <div class="sc-staj">6 oydan 96 oygacha (to'liq 8 yilgacha)</div>
+          <div class="sc-pct">60%</div>
+          <div class="sc-note">Formula uchun: × 0.6</div>
+        </div>
+        <div class="staj-card sc-green">
+          <div class="sc-staj">97 oy va undan ortiq (8 yildan ko'p)</div>
+          <div class="sc-pct">80%</div>
+          <div class="sc-note">Formula uchun: × 0.8</div>
+        </div>
+      </div>
+      <div class="note note-green">
+        <strong>+20% qo'shimcha</strong> quyidagi shaxslarga:<br>
+        • I va II guruh nogironligi bo'lgan shaxslarga<br>
+        • 18 yoshga to'lmagan 4 yoki undan ko'p farzandi bo'lganlarga<br>
+        • Farzandlaridan kamida birida nogironlik bo'lganlarga
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="box-title"><i class="ti ti-calendar-stats" style="color:var(--blue)"></i> 77 kun qoidasi</div>
+      <p>Kalendar yil davomida rasmiylashtirilgan mehnatga layoqatsizlik varaqalaridagi <strong>77 kalendar kundan oshgan davr</strong> uchun tegishli staj koeffitsienti <span class="badge b-red">−10%</span> kamaytirilgan holda hisoblanadi.</p>
+      <div class="note note-amber" style="margin-top:10px">
+        Vaqtincha mehnatga layoqatsizlik nafaqasi o'rtacha hisobda yil davomida <strong>182 kalendar kundan oshmagan</strong> qismi uchun amalga oshiriladi (homiladorlik va tug'ish davri kirmaydi).
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="box-title"><i class="ti ti-clock-plus" style="color:var(--blue)"></i> Nafaqa muddati uzaytirilishi</div>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Holat</th><th>Uzaytirish</th></tr>
+          <tr><td>14 yoshgacha bo'lgan farzandni parvarishlash</td><td>+20 kalendar kunga</td></tr>
+          <tr><td>16 yoshgacha nogironligi bo'lgan farzandni parvarishlash</td><td>+40 kalendar kunga</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 4 -->
+  <div id="n4">
+    <div class="sec-title">4. Muhim Istisnolar va Tartiblar</div>
+
+    <div class="box">
+      <div class="box-title"><i class="ti ti-ban" style="color:#dc2626"></i> Nafaqa to'lanmaydigan holatlar</div>
+      <ul>
+        <li>Ish haqi <strong>saqlanmagan ta'til</strong> davrida</li>
+        <li>Ish haqi <strong>qisman saqlanadigan ta'til</strong> davrida</li>
+        <li><strong>Bolani parvarishlash</strong> bo'yicha ta'til davrida</li>
+        <li><strong>Harbiy o'quv tekshiruv yig'ini</strong> davrida</li>
+        <li>Ishlab chiqarishdan ajralmagan holda o'quv yurtlarida tahsil olish munosabati bilan berilgan <strong>qo'shimcha ta'til</strong> davrida</li>
+      </ul>
+      <div class="note note-blue" style="margin-top:10px">
+        Ushbu davrlarda boshlanib, davom etayotgan mehnatga qobiliyatsizlik nafaqasi xodim <strong>ishga chiqishi lozim bo'lgan kundan</strong> boshlab beriladi.
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="box-title"><i class="ti ti-info-circle" style="color:#d97706"></i> Qo'shimcha ma'lumot</div>
+      <div class="note note-amber">
+        Ish beruvchi ixtiyoriga ko'ra (ichki mehnat tartibi qoidalari yoki jamoaviy shartnomalar orqali) qonunchilikda belgilangan normalardan <strong>ortiqcha to'lov</strong> amalga oshirilishi mumkin. Bunday hollarda ortiqcha to'langan summadan <strong>ijtimoiy soliq</strong> to'lanadi — chunki Soliq kodeksining 374-moddasi 1-qismi 9-bandiga asosan normadan ortig'i kompensatsiya daromadi hisoblanadi.
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- ===== KALKULYATOR ===== -->
+<div id="kalk">
+  <div class="sec-title">Bolnichniy Kalkulyatori</div>
+  <div class="box">
+    <div class="calc-form">
+      <div class="cf cf-full">
+        <label>O'rtacha oylik ish haqi — O'OIH (so'm)</label>
+        <input type="number" id="c_oih" placeholder="Masalan: 4 875 000">
+      </div>
+      <div class="cf cf-full">
+        <label>Oylik okl — shtat jadvali bo'yicha (so'm)</label>
+        <input type="number" id="c_okl" placeholder="Masalan: 4 500 000">
+      </div>
+      <div class="cf">
+        <label>Oylik jami ish kunlari (soni)</label>
+        <input type="number" id="c_oaykun" placeholder="Masalan: 24">
+      </div>
+      <div class="cf">
+        <label>Sug'urta staji (oy soni)</label>
+        <input type="number" id="c_staj" placeholder="Masalan: 24">
+      </div>
+      <div class="cf">
+        <label>Bolnichniy kunlari (jami)</label>
+        <input type="number" id="c_bkun" placeholder="Masalan: 10">
+      </div>
+      <div class="cf">
+        <label>Shundan yakshanba kunlari</label>
+        <input type="number" id="c_yak" value="0">
+      </div>
+      <div class="cf">
+        <label>Shundan bayram kunlari</label>
+        <input type="number" id="c_bay" value="0">
+      </div>
+      <div class="cf">
+        <label>Qo'shimcha holat</label>
+        <select id="c_plus">
+          <option value="0">Yo'q</option>
+          <option value="0.2">+20% (I-II guruh nogironlik yoki 4+ farzand)</option>
+        </select>
+      </div>
+    </div>
+    <button class="calc-btn" onclick="calcIt()"><i class="ti ti-calculator"></i> Hisoblash</button>
+
+    <div class="result-area" id="res_area">
+      <table class="res-table">
+        <tr><td>Staj → Koeffitsient (SK)</td><td id="r_sk">—</td></tr>
+        <tr><td>Chegara tekshiruvi (O'OIH ≤ 12 710 000)</td><td id="r_chegara">—</td></tr>
+        <tr><td>Hisob-kitob kunlari (KS)</td><td id="r_ks">—</td></tr>
+        <tr><td>Bolnichniy summasi (yalpi)</td><td id="r_bn">—</td></tr>
+        <tr><td>Ishlagan kunlar uchun ish haqi</td><td id="r_ih">—</td></tr>
+        <tr><td>Jami hisoblangan</td><td id="r_jami">—</td></tr>
+        <tr><td>JShDS 12% (jami summadan)</td><td id="r_jshds">—</td></tr>
+        <tr><td>INPS 0.1% (jami summadan)</td><td id="r_inps">—</td></tr>
+        <tr><td>Ijtimoiy soliq 12% (faqat ish haqidan, ish beruvchi)</td><td id="r_ijt">—</td></tr>
+      </table>
+      <div class="res-big">
+        <div class="rl">Xodim qo'liga oladi (JShDS va INPS chegirilgandan so'ng):</div>
+        <div class="rv" id="r_qolga">—</div>
+      </div>
+      <div class="split-cards">
+        <div class="split-card sc-emp">
+          <div class="sl">Ish beruvchi to'laydi (1–5 kun)</div>
+          <div class="sv" id="r_emp">—</div>
+        </div>
+        <div class="split-card sc-state">
+          <div class="sl">Davlat to'laydi (6+ kun)</div>
+          <div class="sv" id="r_state">—</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TOPSHIRIQLAR ===== -->
+</div>
+
+<!-- ===== QONUNIY ASOSLAR ===== -->
+<div id="qonun">
+  <div class="sec-title">Qonuniy asoslar</div>
+
+  <div class="qonun-grid">
+    <div class="qonun-card">
+      <div class="qonun-badge">MK 179-modda</div>
+      <div class="qonun-name">Nafaqa berish asoslari</div>
+      <div class="qonun-desc">Vaqtincha mehnatga layoqatsizlik nafaqasi qaysi hollarda berilishi va kim olish huquqiga ega ekanligi belgilanadi.</div>
+    </div>
+    <div class="qonun-card">
+      <div class="qonun-badge">MK 180-modda</div>
+      <div class="qonun-name">Nafaqa miqdori va hisoblash</div>
+      <div class="qonun-desc">Nafaqa miqdori, hisoblash tartibi va staj koeffitsienti (60% yoki 80%) qo'llanilishi tartibga solinadi.</div>
+    </div>
+    <div class="qonun-card">
+      <div class="qonun-badge">MK 181-modda</div>
+      <div class="qonun-name">Nafaqa to'lanmaydigan holatlar</div>
+      <div class="qonun-desc">Ta'til davri, bolani parvarishlash, harbiy yig'in va boshqa hollarda nafaqa to'lanmasligi ko'rsatiladi.</div>
+    </div>
+    <div class="qonun-card">
+      <div class="qonun-badge">SK 374-modda, 9-band</div>
+      <div class="qonun-name">Ijtimoiy soliqdan ozodlik</div>
+      <div class="qonun-desc">Nafaqalar ijtimoiy soliqdan ozod. Normadan ortiq to'langan qism esa kompensatsiya daromadi sifatida soliqqa tortiladi.</div>
+    </div>
+    <div class="qonun-card">
+      <div class="qonun-badge">SK 387-modda</div>
+      <div class="qonun-name">JShDS — nafaqa daromad hisoblanadi</div>
+      <div class="qonun-desc">Vaqtincha mehnatga layoqatsizlik nafaqasi JShDS maqsadida xodimning daromadi sifatida jami daromadlari tarkibiga kiritiladi.</div>
+    </div>
+    <div class="qonun-card">
+      <div class="qonun-badge">VMQ №796 — 17.12.2025</div>
+      <div class="qonun-name">Proaktiv to'lov tartibi</div>
+      <div class="qonun-desc">2026 yildan nafaqalar proaktiv shaklda — fuqaro alohida murojaat qilmasdan avtomatik to'lanadi.</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+
+
+<script>
+function goTab(prefix,id,btn){
+  var panes=document.querySelectorAll('[id^="'+prefix+'tp-"]');
+  panes.forEach(p=>p.classList.remove('on'));
+  btn.closest('.itabs').querySelectorAll('.itab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(prefix+'tp-'+id).classList.add('on');
+  btn.classList.add('on');
+}
+function fmt(n){return Math.round(n).toLocaleString('ru-RU')+' so\'m';}
+function calcIt(){
+  var oih=+document.getElementById('c_oih').value||0;
+  var okl=+document.getElementById('c_okl').value||0;
+  var oaykun=+document.getElementById('c_oaykun').value||0;
+  var staj=+document.getElementById('c_staj').value||0;
+  var bkun=+document.getElementById('c_bkun').value||0;
+  var yak=+document.getElementById('c_yak').value||0;
+  var bay=+document.getElementById('c_bay').value||0;
+  var plus=+document.getElementById('c_plus').value||0;
+  if(!oih||!okl||!oaykun||!staj||!bkun){alert('Barcha maydonlarni to\'ldiring!');return;}
+  var sk=staj<97?0.6:0.8; sk=Math.min(sk+plus,1.0);
+  var ks=bkun-yak-bay;
+  var lim=12710000; var effOih=Math.min(oih,lim);
+  var bn=effOih/25.3*sk*ks;
+  var ishlagan=oaykun-bkun;
+  var ih=okl/oaykun*ishlagan;
+  var jami=bn+ih;
+  var jshds=jami*0.12;
+  var inps=jami*0.001;
+  var ijt=ih*0.12;
+  var qolga=jami-jshds-inps;
+  var k5=Math.min(ks,5); var emp=effOih/25.3*sk*k5;
+  var state=ks>5?effOih/25.3*sk*(ks-5):0;
+  document.getElementById('r_sk').textContent=(sk*100).toFixed(0)+'%';
+  document.getElementById('r_chegara').textContent=oih>lim?'Limit qo\'llanildi: '+fmt(lim):'Limit kerak emas';
+  document.getElementById('r_ks').textContent=ks+' kun';
+  document.getElementById('r_bn').textContent=fmt(bn);
+  document.getElementById('r_ih').textContent=fmt(ih)+' ('+ishlagan+' kun)';
+  document.getElementById('r_jami').textContent=fmt(jami);
+  document.getElementById('r_jshds').textContent=fmt(jshds);
+  document.getElementById('r_inps').textContent=fmt(inps);
+  document.getElementById('r_ijt').textContent=fmt(ijt);
+  document.getElementById('r_qolga').textContent=fmt(qolga);
+  document.getElementById('r_emp').textContent=fmt(emp);
+  document.getElementById('r_state').textContent=fmt(state);
+  document.getElementById('res_area').style.display='block';
+}
+function openTask(id){
+  var t=document.getElementById(id);
+  var ic=document.getElementById('ic_'+id);
+  t.classList.toggle('open');
+  ic.className=t.classList.contains('open')?'ti ti-chevron-up':'ti ti-chevron-down';
+  ic.style.cssText='font-size:20px;color:var(--muted);flex-shrink:0;margin-top:4px';
+}
+function showHint(id,e){
+  e.stopPropagation();
+  document.getElementById(id).classList.toggle('on');
+}
+</script>
+
+<!-- CHAT BUTTON -->
+<button class="support-fab" onclick="chatToggle()" title="Yordam va Chat" id="chatFab">
+  💬<span id="chatBadge" style="display:none;position:absolute;top:-4px;right:-4px;background:#FF6B6B;color:#fff;border-radius:50%;width:18px;height:18px;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center"></span>
+</button>
+
+<!-- CHAT WINDOW -->
+<div id="chatWindow" style="display:none;position:fixed;bottom:90px;right:24px;z-index:998;width:320px;background:#1A1435;border:1px solid rgba(108,63,232,0.35);border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.6)">
+  <!-- Header -->
+  <div style="padding:14px 16px;background:linear-gradient(135deg,rgba(108,63,232,0.3),rgba(0,201,167,0.1));display:flex;align-items:center;justify-content:space-between">
+    <div>
+      <div style="font-family:Unbounded,sans-serif;font-size:11px;font-weight:700;color:#9B7BFF">💬 MOLIYA STUDIYASI</div>
+      <div style="font-size:11px;color:rgba(240,236,255,0.5);margin-top:2px">Yordam xizmati</div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <a href="https://t.me/ynurov" target="_blank" style="width:30px;height:30px;border-radius:50%;background:rgba(0,136,204,0.2);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:15px" title="Telegram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.92c-.12.56-.48.7-.96.44l-2.64-1.94-1.28 1.22c-.14.14-.26.26-.52.26l.18-2.66 4.74-4.28c.2-.18-.04-.28-.32-.1L7.4 14.48l-2.58-.8c-.56-.18-.58-.56.12-.82l10.08-3.88c.46-.18.88.1.62.82z" fill="#0088cc"/></svg>
+      </a>
+      <a href="mailto:yahyonurov05@gmail.com" style="width:30px;height:30px;border-radius:50%;background:rgba(234,67,53,0.2);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:15px" title="Gmail">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="#EA4335"/></svg>
+      </a>
+      <button onclick="chatToggle()" style="width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.08);border:none;color:#F0ECFF;font-size:16px;cursor:pointer">×</button>
+    </div>
+  </div>
+  <!-- Messages -->
+  <div id="chatMessages" style="height:260px;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px">
+    <div style="text-align:center;color:rgba(240,236,255,0.3);font-size:12px;padding:20px 0">Xabarlar yuklanmoqda...</div>
+  </div>
+  <!-- Emoji bar -->
+  <div style="padding:8px 12px;border-top:1px solid rgba(255,255,255,0.06);display:flex;gap:6px">
+    <span onclick="emojiQosh('👍')" style="cursor:pointer;font-size:18px">👍</span>
+    <span onclick="emojiQosh('🙏')" style="cursor:pointer;font-size:18px">🙏</span>
+    <span onclick="emojiQosh('✅')" style="cursor:pointer;font-size:18px">✅</span>
+    <span onclick="emojiQosh('❓')" style="cursor:pointer;font-size:18px">❓</span>
+    <span onclick="emojiQosh('😊')" style="cursor:pointer;font-size:18px">😊</span>
+    <span onclick="emojiQosh('📚')" style="cursor:pointer;font-size:18px">📚</span>
+    <span onclick="emojiQosh('💡')" style="cursor:pointer;font-size:18px">💡</span>
+    <span onclick="emojiQosh('🔥')" style="cursor:pointer;font-size:18px">🔥</span>
+  </div>
+  <!-- Input -->
+  <div style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.08);display:flex;gap:8px">
+    <input id="chatInput" type="text" placeholder="Xabar yozing..." style="flex:1;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:#F0ECFF;font-size:13px;font-family:Onest,sans-serif;outline:none"
+      onkeypress="if(event.key==='Enter')chatYuborish()">
+    <button onclick="chatYuborish()" style="padding:9px 14px;background:linear-gradient(135deg,#6C3FE8,#9B7BFF);border:none;border-radius:10px;color:#fff;font-size:13px;font-weight:700;cursor:pointer">→</button>
+  </div>
+</div>
+
+<script>
+const SB_URL='https://dovhuxkzctjvlhwhcveg.supabase.co';
+const SB_KEY='sb_publishable_zJkKgBt7pT4ZMINElu0A4Q_0_L3TC1G';
+const sbChat=supabase.createClient(SB_URL,SB_KEY);
+
+function chatToggle(){
+  const w=document.getElementById('chatWindow');
+  const open=w.style.display==='none';
+  w.style.display=open?'block':'none';
+  if(open){chatXabarlarYukla();chatBadgeYangi();}
+}
+
+function emojiQosh(e){
+  const input=document.getElementById('chatInput');
+  input.value+=e;input.focus();
+}
+
+function chatXabarlarRender(data){
+  const box=document.getElementById('chatMessages');
+  if(!data||data.length===0){
+    box.innerHTML='<div style="text-align:center;color:rgba(240,236,255,0.3);font-size:12px;padding:20px 0">Hali xabar yo\'q. Savolingizni yozing!</div>';
+    return;
+  }
+  box.innerHTML=data.map(x=>{
+    const isAdmin=x.admin_xabar;
+    return `<div style="display:flex;flex-direction:column;align-items:${isAdmin?'flex-end':'flex-start'}">
+      <div style="max-width:80%;padding:9px 12px;border-radius:${isAdmin?'12px 12px 3px 12px':'12px 12px 12px 3px'};background:${isAdmin?'linear-gradient(135deg,#6C3FE8,#9B7BFF)':'rgba(255,255,255,0.08)'};color:#F0ECFF;font-size:13px;line-height:1.5">${x.xabar}</div>
+      <div style="font-size:10px;color:rgba(240,236,255,0.3);margin-top:2px;padding:0 3px">${isAdmin?'Admin':'Siz'}</div>
+    </div>`;
+  }).join('');
+  box.scrollTop=box.scrollHeight;
+}
+
+async function chatXabarlarYukla(){
+  const token=localStorage.getItem('ms_token')||'anon';
+  const {data}=await sbChat.from('xabarlar').select('*').eq('token',token).order('sana',{ascending:true});
+  chatXabarlarRender(data);
+}
+
+async function chatBadgeYangi(){
+  const token=localStorage.getItem('ms_token')||'anon';
+  const {data}=await sbChat.from('xabarlar').select('id').eq('token',token).eq('admin_xabar',true).eq('oqildi',false);
+  const badge=document.getElementById('chatBadge');
+  if(data&&data.length>0&&badge){badge.style.display='flex';badge.textContent=data.length;}
+  else if(badge){badge.style.display='none';}
+}
+
+async function chatYuborish(){
+  const msg=document.getElementById('chatInput').value.trim();
+  if(!msg)return;
+  const token=localStorage.getItem('ms_token')||'anon';
+  const ism=localStorage.getItem('ms_ism')||'O\'quvchi';
+  await sbChat.from('xabarlar').insert({ism,token,xabar:msg,sana:new Date().toISOString(),oqildi:false,admin_xabar:false});
+  document.getElementById('chatInput').value='';
+  chatXabarlarYukla();
+}
+
+// REALTIME — refresh kerak emas!
+const token_rt = localStorage.getItem('ms_token') || 'anon';
+sbChat.channel('xabarlar_' + token_rt)
+  .on('postgres_changes', {
+    event: 'INSERT',
+    schema: 'public',
+    table: 'xabarlar',
+    filter: 'token=eq.' + token_rt
+  }, (payload) => {
+    // Yangi xabar keldi
+    if(document.getElementById('chatWindow').style.display !== 'none'){
+      chatXabarlarYukla();
+    }
+    chatBadgeYangi();
+  })
+  .subscribe();
+
+chatBadgeYangi();
+
+document.addEventListener('click',function(e){
+  const w=document.getElementById('chatWindow');
+  const fab=document.getElementById('chatFab');
+  if(w&&w.style.display!=='none'&&!w.contains(e.target)&&fab&&!fab.contains(e.target)){
+    w.style.display='none';
+  }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xaridlar va Avans — Buxgalteriya Kursi</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Onest:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --purple: #6C3FE8;
+  --purple-light: #9B7BFF;
+  --purple-dark: #3D1FA8;
+  --teal: #00C9A7;
+  --teal-dark: #008F76;
+  --coral: #FF6B6B;
+  --amber: #FFB830;
+  --bg: #0A0616;
+  --bg2: #110D22;
+  --bg3: #1A1435;
+  --card: rgba(255,255,255,0.04);
+  --card-border: rgba(255,255,255,0.08);
+  --text: #F0ECFF;
+  --muted: rgba(240,236,255,0.75);
+  --muted2: rgba(240,236,255,0.5);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Onest',sans-serif;
+  font-size:15px;
+  line-height:1.7;
+  overflow-x:hidden;
+}
+
+/* BG decorations */
+body::before{
+  content:'';
+  position:fixed;top:0;left:0;right:0;bottom:0;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 10%, rgba(108,63,232,0.25) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 30% at 80% 80%, rgba(0,201,167,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 60% 30%, rgba(155,123,255,0.08) 0%, transparent 60%);
+  pointer-events:none;z-index:0;
+}
+
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,6,22,0.8);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--card-border);
+  padding:12px 24px;
+  display:flex;gap:8px;flex-wrap:wrap;justify-content:center;
+}
+nav a{
+  font-size:11px;font-weight:500;
+  padding:5px 14px;border-radius:100px;
+  border:1px solid rgba(108,63,232,0.3);
+  color:var(--purple-light);
+  text-decoration:none;
+  transition:all 0.2s;
+  background:rgba(108,63,232,0.08);
+}
+nav a:hover{background:rgba(108,63,232,0.25);border-color:var(--purple-light);}
+
+/* CONTAINER */
+.wrap{max-width:900px;margin:0 auto;padding:0 20px;position:relative;z-index:1;}
+
+/* HERO */
+.hero{
+  padding:80px 20px 60px;
+  text-align:center;
+  position:relative;
+}
+.hero-badge{
+  display:inline-block;
+  font-size:11px;font-weight:500;
+  padding:5px 16px;border-radius:100px;
+  background:rgba(108,63,232,0.15);
+  border:1px solid rgba(108,63,232,0.4);
+  color:var(--purple-light);
+  margin-bottom:24px;
+  letter-spacing:0.5px;
+}
+.hero h1{
+  font-family:'Unbounded',sans-serif;
+  font-size:clamp(32px,6vw,64px);
+  font-weight:800;
+  line-height:1.1;
+  background:linear-gradient(135deg,#fff 0%,var(--purple-light) 50%,var(--teal) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:16px;
+}
+.hero p{font-size:15px;color:var(--muted);max-width:500px;margin:0 auto 40px;}
+.hero-stats{
+  display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
+}
+.hero-stat{
+  background:var(--card);border:1px solid var(--card-border);
+  border-radius:14px;padding:16px 24px;text-align:center;
+  min-width:120px;
+}
+.hero-stat-num{
+  font-family:'Unbounded',sans-serif;font-size:22px;font-weight:800;
+  background:linear-gradient(135deg,var(--purple-light),var(--teal));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-stat-label{font-size:11px;color:var(--muted);margin-top:4px;}
+
+/* SECTION */
+section{padding:60px 0;}
+.sec-title{
+  font-family:'Unbounded',sans-serif;
+  font-size:11px;font-weight:600;
+  color:var(--purple-light);
+  text-transform:uppercase;letter-spacing:2px;
+  margin-bottom:28px;
+  display:flex;align-items:center;gap:10px;
+}
+.sec-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(108,63,232,0.4),transparent);}
+
+/* CARD */
+.card{
+  background:var(--card);
+  border:1px solid var(--card-border);
+  border-radius:16px;
+  padding:24px;
+  margin-bottom:16px;
+  transition:border-color 0.2s,transform 0.2s;
+}
+.card:hover{border-color:rgba(108,63,232,0.4);transform:translateY(-2px);}
+.card-head{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.card-icon{
+  width:40px;height:40px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+}
+.card-icon.purple{background:rgba(108,63,232,0.2);}
+.card-icon.teal{background:rgba(0,201,167,0.15);}
+.card-icon.coral{background:rgba(255,107,107,0.15);}
+.card-icon.amber{background:rgba(255,184,48,0.15);}
+.card-title{font-size:16px;font-weight:600;color:var(--text);}
+.badge{
+  display:inline-block;font-size:10px;font-weight:600;
+  padding:2px 10px;border-radius:100px;margin-left:8px;
+}
+.badge-purple{background:rgba(108,63,232,0.25);color:var(--purple-light);border:1px solid rgba(108,63,232,0.4);}
+.badge-teal{background:rgba(0,201,167,0.15);color:var(--teal);border:1px solid rgba(0,201,167,0.3);}
+.badge-amber{background:rgba(255,184,48,0.12);color:var(--amber);border:1px solid rgba(255,184,48,0.3);}
+.badge-coral{background:rgba(255,107,107,0.12);color:var(--coral);border:1px solid rgba(255,107,107,0.3);}
+.card-body{font-size:14px;color:var(--muted);line-height:1.7;}
+
+/* TWO COLUMN */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+@media(max-width:600px){.two-col{grid-template-columns:1fr;}}
+
+/* HUJJATLAR CARD */
+.doc-card{
+  background:var(--card);border:1px solid var(--card-border);
+  border-radius:16px;padding:20px;
+}
+.doc-card-head{
+  font-size:13px;font-weight:600;
+  padding-bottom:12px;margin-bottom:12px;
+  border-bottom:1px solid var(--card-border);
+  display:flex;align-items:center;gap:8px;
+}
+.doc-card-head.purple{color:var(--purple-light);}
+.doc-card-head.teal{color:var(--teal);}
+.doc-item{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:6px 0;font-size:13px;color:var(--text);
+}
+.doc-num{
+  width:20px;height:20px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;flex-shrink:0;margin-top:2px;
+}
+.doc-num.purple{background:rgba(108,63,232,0.3);color:var(--purple-light);}
+.doc-num.teal{background:rgba(0,201,167,0.2);color:var(--teal);}
+.doc-sub{font-size:12px;color:rgba(240,236,255,0.65);margin-top:4px;margin-left:30px;line-height:1.9;}
+
+/* FAKTURA */
+.faktura-box{
+  background:linear-gradient(135deg,rgba(108,63,232,0.1),rgba(0,201,167,0.05));
+  border:1px solid rgba(108,63,232,0.3);
+  border-radius:16px;padding:24px;margin-bottom:16px;
+}
+.faktura-title{
+  font-family:'Unbounded',sans-serif;font-size:14px;font-weight:600;
+  color:var(--purple-light);margin-bottom:12px;
+}
+.faktura-body{font-size:14px;color:var(--muted);line-height:1.7;}
+
+/* WARN */
+.warn-box{
+  background:rgba(255,184,48,0.06);
+  border:1px solid rgba(255,184,48,0.25);
+  border-left:3px solid var(--amber);
+  border-radius:0 12px 12px 0;
+  padding:14px 18px;margin-bottom:12px;
+  font-size:13px;color:rgba(255,184,48,0.9);
+}
+.warn-box strong{color:var(--amber);}
+
+/* STATS GRID */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
+@media(max-width:600px){.stats-grid{grid-template-columns:repeat(2,1fr);}}
+.stat-card{
+  background:var(--card);border:1px solid var(--card-border);
+  border-radius:12px;padding:16px;text-align:center;
+}
+.stat-num{
+  font-family:'Unbounded',sans-serif;font-size:20px;font-weight:800;
+  background:linear-gradient(135deg,var(--purple-light),var(--teal));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:4px;
+}
+.stat-label{font-size:11px;color:var(--muted);}
+
+/* MANBALAR */
+.manba-row{
+  display:flex;align-items:center;gap:14px;
+  padding:12px 0;border-bottom:1px solid var(--card-border);
+  font-size:14px;
+}
+.manba-row:last-child{border-bottom:none;}
+.manba-num{
+  width:28px;height:28px;border-radius:8px;
+  background:rgba(108,63,232,0.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;color:var(--purple-light);flex-shrink:0;
+}
+.manba-name{flex:1;color:var(--text);}
+.manba-desc{font-size:12px;color:var(--muted);}
+
+/* HISOBVARAQLAR TABLE */
+.hisob-table{width:100%;border-collapse:collapse;}
+.hisob-table th{
+  background:rgba(108,63,232,0.15);
+  padding:10px 14px;font-size:12px;font-weight:600;
+  color:var(--purple-light);text-align:left;
+}
+.hisob-table th:first-child{border-radius:8px 0 0 8px;}
+.hisob-table th:last-child{border-radius:0 8px 8px 0;}
+.hisob-table td{
+  padding:10px 14px;font-size:13px;
+  border-bottom:1px solid var(--card-border);
+  color:var(--muted);
+}
+.hisob-table tr:last-child td{border-bottom:none;}
+.hisob-table tr:hover td{background:rgba(255,255,255,0.02);}
+.hisob-table td:first-child{
+  font-family:'Unbounded',sans-serif;font-size:13px;font-weight:600;
+  color:var(--purple-light);
+}
+
+/* PROVODKA */
+.prov-section{margin-bottom:32px;}
+.prov-title{
+  font-size:14px;font-weight:600;color:#F0ECFF;
+  margin-bottom:12px;display:flex;align-items:center;gap:8px;
+}
+.prov-meta{
+  background:rgba(0,201,167,0.08);
+  border:1px solid rgba(0,201,167,0.25);
+  border-radius:10px;padding:10px 14px;
+  font-size:12px;color:#5FFFD9;margin-bottom:12px;
+}
+.prov-box{
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:12px;overflow:hidden;
+}
+.prov-row{
+  display:grid;
+  grid-template-columns:95px 95px 130px 1fr;
+  align-items:center;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+.prov-row:last-child{border-bottom:none;}
+.prov-row:hover{background:rgba(255,255,255,0.03);}
+.prov-row > span{
+  padding:13px 14px;
+  border-right:1px solid rgba(255,255,255,0.07);
+}
+.prov-row > span:last-child{border-right:none;}
+.deb{color:#3DFFB0;font-weight:700;font-size:12px;font-family:'Unbounded',sans-serif;white-space:nowrap;}
+.kred{color:#FF6B9D;font-weight:700;font-size:12px;font-family:'Unbounded',sans-serif;white-space:nowrap;}
+.prov-sum{font-size:12px;font-weight:600;color:#FFFFFF;font-family:'Unbounded',sans-serif;white-space:nowrap;}
+.prov-label{color:#D8D4F0;font-size:13px;line-height:1.5;}
+.prov-head{
+  display:grid;
+  grid-template-columns:95px 95px 130px 1fr;
+  background:rgba(108,63,232,0.35);
+  font-size:12px;font-weight:700;color:#FFFFFF;
+  letter-spacing:1px;text-transform:uppercase;
+}
+.prov-head > span{
+  padding:11px 14px;
+  border-right:1px solid rgba(255,255,255,0.15);
+}
+.prov-head > span:last-child{border-right:none;}
+
+/* QONUNLAR */
+.qonun-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:600px){.qonun-grid{grid-template-columns:1fr;}}
+.qonun-card{
+  background:var(--card);border:1px solid var(--card-border);
+  border-radius:14px;padding:18px;
+  transition:border-color 0.2s;
+}
+.qonun-card:hover{border-color:rgba(108,63,232,0.4);}
+.qonun-badge{
+  font-family:'Unbounded',sans-serif;
+  font-size:11px;font-weight:800;
+  color:var(--purple-light);margin-bottom:8px;
+}
+.qonun-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.qonun-desc{font-size:12px;color:var(--muted);line-height:1.6;}
+
+/* FOOTER */
+footer{
+  border-top:1px solid var(--card-border);
+  padding:40px 20px;text-align:center;
+}
+.footer-title{
+  font-family:'Unbounded',sans-serif;font-size:13px;font-weight:600;
+  color:var(--purple-light);margin-bottom:8px;
+}
+.footer-sub{font-size:12px;color:var(--muted2);}
+
+/* ANIMATION */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+.hero{animation:fadeUp 0.8s ease both;}
+.card,.doc-card,.stat-card,.qonun-card{animation:fadeUp 0.6s ease both;}
+
+
+/* SUPPORT BUTTON */
+.support-fab{
+  position:fixed;bottom:24px;right:24px;z-index:999;
+  width:56px;height:56px;border-radius:50%;
+  background:linear-gradient(135deg,#6C3FE8,#00C9A7);
+  border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;
+  box-shadow:0 4px 20px rgba(108,63,232,0.4);
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.support-fab:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(108,63,232,0.6);}
+.support-modal{
+  display:none;position:fixed;bottom:90px;right:24px;z-index:998;
+  background:#1A1435;border:1px solid rgba(108,63,232,0.35);
+  border-radius:20px;padding:20px;width:260px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.5);
+}
+.support-modal.open{display:block;}
+.support-modal h4{font-family:'Unbounded',sans-serif;font-size:12px;font-weight:700;color:#9B7BFF;margin-bottom:14px;}
+.support-option{
+  display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
+  text-decoration:none;color:#F0ECFF;font-size:13px;margin-bottom:8px;
+  transition:all 0.2s;cursor:pointer;
+}
+.support-option:hover{background:rgba(108,63,232,0.15);border-color:rgba(108,63,232,0.4);}
+.support-option:last-child{margin-bottom:0;}
+.support-icon{font-size:20px;width:28px;text-align:center;}
+.support-form{display:none;margin-top:12px;}
+.support-form textarea{
+  width:100%;padding:10px;background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);border-radius:8px;
+  color:#F0ECFF;font-size:13px;font-family:'Onest',sans-serif;
+  resize:none;height:80px;outline:none;
+}
+.support-form textarea:focus{border-color:rgba(108,63,232,0.5);}
+.support-send{
+  width:100%;padding:9px;margin-top:8px;
+  background:linear-gradient(135deg,#6C3FE8,#9B7BFF);
+  color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;
+  cursor:pointer;font-family:'Unbounded',sans-serif;
+}
+.support-success{display:none;text-align:center;padding:12px;font-size:13px;color:#3DFFB0;}
+@media(max-width:600px){
+  .support-modal{width:calc(100vw - 48px);right:24px;}
+}
+
+/* ===== MOBIL VERSIYA ===== */
+@media(max-width:768px){
+  /* Jadvallar */
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{min-width:500px;font-size:12px;}
+  th,td{padding:8px 10px;}
+  
+  /* Provodka jadvali */
+  .prov-head,.prov-row{
+    grid-template-columns:70px 70px 90px 1fr !important;
+    font-size:11px !important;
+  }
+  .prov-head > span,.prov-row > span{padding:8px 8px !important;}
+  .deb,.kred{font-size:11px !important;}
+  
+  /* Kalkulyator */
+  .calc-form{grid-template-columns:1fr !important;}
+  .cf-full{grid-column:1 !important;}
+  .res-big .rv{font-size:20px !important;}
+  .split-cards{grid-template-columns:1fr !important;}
+  
+  /* Hero */
+  .hero h1{font-size:24px !important;}
+  .hero p{font-size:13px !important;}
+  .hero-stats{gap:8px !important;}
+  .hero-stat{min-width:80px !important;padding:10px 12px !important;}
+  .hero-stat-num{font-size:14px !important;}
+  
+  /* Nav */
+  nav{padding:10px 12px !important;gap:6px !important;}
+  nav a{font-size:10px !important;padding:4px 10px !important;}
+  
+  /* Cards */
+  .two-col,.staj-grid,.qonun-grid,.grid2{grid-template-columns:1fr !important;}
+  .stats-grid{grid-template-columns:repeat(2,1fr) !important;}
+  
+  /* Wrap */
+  .wrap{padding:0 12px 60px !important;}
+  
+  /* Box */
+  .box,.card{padding:14px !important;}
+  
+  /* Formula */
+  .formula{font-size:14px !important;}
+  
+  /* Task */
+  .task-head{padding:12px !important;}
+  .task-body{padding:12px !important;}
+  
+  /* Hisobvaraqlar */
+  .hisob-table{font-size:12px;}
+  .hisob-table th,.hisob-table td{padding:7px 8px;}
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth_check.js"></script>
+</head>
+<body>
+
+<nav>
+  <a href="#tushuncha">📖 Tushunchalar</a>
+  <a href="#hujjatlar">📋 Hujjatlar</a>
+  <a href="#faktura">🧾 Faktura</a>
+  <a href="#ishonchnoma">📜 Ishonchnoma</a>
+  <a href="#manbalar">🔄 Manbalar</a>
+  <a href="#hisobvaraqlar">🔢 Hisobvaraqlar</a>
+  <a href="#provodkalar">📒 Provodkalar</a>
+  <a href="#qonunlar">⚖️ Qonunlar</a>
+</nav>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">📚 25.05.2026 · Buxgalteriya kursi · 2026 yil may holati</div>
+    <h1>Xaridlar va Avans</h1>
+    <p>Ulgurchi savdo · Hujjatlar · Provodkalar · Soliq Kodeksi moddalari</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num">SK 45</div><div class="hero-stat-label">Tovar ta'rifi</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">SK 47</div><div class="hero-stat-label">Faktura majburiyati</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">FK 139</div><div class="hero-stat-label">Ishonchnoma</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">VMQ 249</div><div class="hero-stat-label">Elektron ro'yxat</div></div>
+    </div>
+  </div>
+
+  <!-- TUSHUNCHALAR -->
+  <section id="tushuncha">
+    <div class="sec-title">Asosiy tushunchalar</div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon purple">📦</div>
+        <div>
+          <div class="card-title">Tovar nima? <span class="badge badge-purple">SK 45-modda</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        Tabiat yoki inson faoliyatining (shu jumladan intellektual faoliyatning) qiymat bahosiga ega bo'lgan va realizatsiya qilish (haq olish evaziga sotish) uchun mo'ljallangan har qanday predmeti tovar deb e'tirof etiladi. Axborot, intellektual faoliyat natijalari, ma'lumotlar bazasi ham tovar hisoblanadi.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon teal">🔧</div>
+        <div><div class="card-title">Xizmat nima?</div></div>
+      </div>
+      <div class="card-body">
+        Boshqa shaxslarning ehtiyojlarini qanoatlantirishga qaratilgan moddiy yoki nomoddiy mahsulotlarni ishlab chiqarishga doir tadbirkorlik faoliyati turlari, shuningdek daromad olish maqsadida boshqa shaxslar uchun bajariladigan ishlar xizmatlar deb e'tirof etiladi.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon coral">💱</div>
+        <div><div class="card-title">Realizatsiya qilish deganda nimani tushunasiz?</div></div>
+      </div>
+      <div class="card-body">
+        Haq olish evaziga tovarlarga bo'lgan egalik huquqini boshqa shaxslarga (xaridorlarga) o'tkazish yoki haq evaziga xizmatlar ko'rsatish — tovarlarni yoki xizmatlarni realizatsiya qilish (sotish) deb e'tirof etiladi.
+      </div>
+    </div>
+  </section>
+
+  <!-- HUJJATLAR -->
+  <section id="hujjatlar">
+    <div class="sec-title">Ulgurchi savdo — hujjatlar</div>
+    <div class="two-col">
+      <div class="doc-card">
+        <div class="doc-card-head purple">🏪 Sotuvchi tomonidan</div>
+        <div class="doc-item">
+          <div class="doc-num purple">1</div>
+          <div><strong>Shartnoma</strong><br><span style="font-size:12px;color:var(--muted2)">Ikki tomon o'rtasidagi kelishuv</span></div>
+        </div>
+        <div class="doc-item">
+          <div class="doc-num purple">2</div>
+          <div><strong>Schet-faktura (Hisobvaraq-faktura)</strong></div>
+        </div>
+        <div class="doc-sub">
+          📦 <strong>TTH</strong> → Tovar-Transport Hujjati (tovar sotilganda)<br>
+          📝 <strong>AKT</strong> (Dalolatnoma) → xizmat sotilganda
+        </div>
+      </div>
+
+      <div class="doc-card">
+        <div class="doc-card-head teal">🛒 Xaridor tomonidan</div>
+        <div class="doc-item">
+          <div class="doc-num teal">1</div>
+          <div><strong>Ishonchnoma</strong><br><span style="font-size:12px;color:var(--muted2)">Vakolatli vakil belgisi</span></div>
+        </div>
+        <div class="doc-item">
+          <div class="doc-num teal">2</div>
+          <div><strong>Papka-dokumentlar (5 ta):</strong></div>
+        </div>
+        <div class="doc-sub">
+          1. Direktor pasporti<br>
+          2. Korxona guvohnomasi<br>
+          3. Rekvizitlar (STIR, bank hisob raqami)<br>
+          4. NOS guvohnomasi<br>
+          5. Litsenziya
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAKTURA -->
+  <section id="faktura">
+    <div class="sec-title">Hisobvaraq-faktura (Schet-faktura)</div>
+
+    <div class="faktura-box">
+      <div class="faktura-title">📄 Hisobvaraq-faktura nima?</div>
+      <div class="faktura-body">
+        Ulgurji savdoda tovar, xizmat, mahsulot sotilganligini isbotlovchi hujjat. Bajarilgan ishlar, ko'rsatilgan xizmatlar, yuklab jo'natilgan tovarlar miqdori, hajmi va qiymatini ifodalab, soliq solinishi lozim bo'lgan daromadni tasdiqlaydi.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <strong style="color:var(--text)">📌 Soliq Kodeksining 47-moddasiga asosan:</strong><br><br>
+        Tovarlarni (xizmatlarni) realizatsiya qilishda yuridik shaxslar va yakka tartibdagi tadbirkorlar ushbu tovarlarni sotib oluvchilarga <strong>hisobvaraq-fakturani taqdim etishi shart.</strong><br><br>
+        Hisobvaraq-faktura qoida tariqasida <strong>elektron hisobvaraq-fakturalarning (EHF) axborot tizimida</strong> elektron shaklda rasmiylashtiriladi.
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-head"><div class="card-icon teal">✅</div><div class="card-title">Xizmatda — AKT ham kerak</div></div>
+        <div class="card-body">Xizmatlar ko'rsatilganligini, ishlar bajarilganligini tasdiqlash — hisobvaraq-fakturaga <strong>qo'shimcha ravishda dalolatnomada</strong> (AKT) taqdim etiladi.</div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-icon amber">⚠️</div><div class="card-title">Faktura talab qilinmaydi</div></div>
+        <div class="card-body">Tovarlarni realizatsiya qilishda, agar sotuvchi xaridorga <strong>kassa cheki</strong> yoki belgilangan shakldagi boshqa hujjatni bersa, hisobvaraq-faktura qo'llanilmaydi.</div>
+      </div>
+    </div>
+
+    <div class="warn-box">
+      <strong>VMQ 249-son qaror (2021 yil 28 aprel):</strong> Tadbirkorlar shartnomalarni ular kuchga kirgandan keyin <strong>10 kun ichida</strong> yoki elektron hisobvaraq-faktura rasmiylashtirishdan oldin ro'yxatga qo'yishlari shart.
+    </div>
+  </section>
+
+  <!-- ISHONCHNOMA -->
+  <section id="ishonchnoma">
+    <div class="sec-title">Ishonchnoma (FK 139-modda)</div>
+
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-num">3 yil</div><div class="stat-label">Maksimal muddat</div></div>
+      <div class="stat-card"><div class="stat-num">1 yil</div><div class="stat-label">Muddat ko'rsatilmasa</div></div>
+      <div class="stat-card"><div class="stat-num">5 yil</div><div class="stat-label">Ma'lumot saqlanadi</div></div>
+      <div class="stat-card"><div class="stat-num">YEHDAS</div><div class="stat-label">Elektron tizim</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="margin-bottom:14px">📋 Elektron ishonchnomada ko'rsatilishi shart:</div>
+      <div class="card-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;">
+          <div>✦ Ishonchnoma raqami</div>
+          <div>✦ Berilgan sana</div>
+          <div>✦ Amal qilish muddati</div>
+          <div>✦ Ishonchnoma berilgan shaxs FISH va lavozimi</div>
+          <div>✦ Yetkazib beruvchi nomi, shartnoma raqami</div>
+          <div>✦ Mahsulot nomi, o'lchov birligi, miqdori</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="warn-box">
+      <strong>⚠️ Diqqat!</strong> Ishonchnomaning berilgan kuni ko'rsatilmagan bo'lsa — ishonchnoma <strong>haqiqiy hisoblanmaydi!</strong> (FK 139-modda)
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="margin-bottom:14px">🚫 Ishonchnoma qachon bekor bo'ladi?</div>
+      <div class="card-body" style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:13px;">
+        <div>• Muddat tamom bo'lsa</div>
+        <div>• Beruvchi bekor qilsa</div>
+        <div>• Oluvchi bosh tortsa</div>
+        <div>• Yuridik shaxs faoliyati to'xtatilsa</div>
+        <div>• Beruvchi fuqaro vafot etsa</div>
+        <div>• Oluvchi muomalaga layoqatsiz deb topilsa</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANBALAR -->
+  <section id="manbalar">
+    <div class="sec-title">Tovarlar korxonaga kelish manbalari</div>
+    <div class="card">
+      <div class="manba-row"><div class="manba-num">1</div><div><div class="manba-name">Shartnoma asosida mol yetkazib beruvchilardan</div><div class="manba-desc">Eng asosiy yo'l — sotuvchi bilan shartnoma tuziladi</div></div></div>
+      <div class="manba-row"><div class="manba-num">2</div><div><div class="manba-name">Ta'sischi ulushi sifatida tovar shaklida</div><div class="manba-desc">Korxona tashkil etilganda ta'sischi tovar kiritishi mumkin</div></div></div>
+      <div class="manba-row"><div class="manba-num">3</div><div><div class="manba-name">Tekinga olinganda (bepul)</div><div class="manba-desc">Sovg'a yoki xayriya tariqasida kelgan tovarlar</div></div></div>
+      <div class="manba-row"><div class="manba-num">4</div><div><div class="manba-name">Ayirboshlash (barter) orqali</div><div class="manba-desc">Bir tovar boshqa tovar evaziga almashtiriladi</div></div></div>
+    </div>
+  </section>
+
+  <!-- HISOBVARAQLAR -->
+  <section id="hisobvaraqlar">
+    <div class="sec-title">Hisobvaraqlar rejasi — tovarlar va avans</div>
+
+    <div class="card" style="padding:0;overflow:hidden;">
+      <table class="hisob-table">
+        <thead>
+          <tr>
+            <th>Schyot</th>
+            <th>Nomi</th>
+            <th>Turi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>2910</td><td>Ombordagi tovarlar</td><td><span class="badge badge-teal">Aktiv</span></td></tr>
+          <tr><td>2920</td><td>Chakana savdodagi tovarlar</td><td><span class="badge badge-teal">Aktiv</span></td></tr>
+          <tr><td>2930</td><td>Ko'rgazmadagi tovarlar</td><td><span class="badge badge-teal">Aktiv</span></td></tr>
+          <tr><td>2940</td><td>Prokatdagi buyumlar</td><td><span class="badge badge-teal">Aktiv</span></td></tr>
+          <tr><td>2960</td><td>Komissiyaga berilgan tovarlar</td><td><span class="badge badge-teal">Aktiv</span></td></tr>
+          <tr><td>2970</td><td>Yo'ldagi tovarlar</td><td><span class="badge badge-teal">Aktiv</span></td></tr>
+          <tr><td>2990</td><td>Boshqa tovarlar</td><td><span class="badge badge-teal">Aktiv</span></td></tr>
+          <tr><td>6010</td><td>Mol yetkazib beruvchilarga to'lanadigan hisobvaraqlar</td><td><span class="badge badge-coral">Passiv</span></td></tr>
+          <tr><td>4310</td><td>TMQlar uchun mol yetkazib beruvchilarga berilgan bo'naklar</td><td><span class="badge badge-purple">Avans/Tovar</span></td></tr>
+          <tr><td>4890</td><td>Xizmat uchun berilgan bo'naklar (boshqa debitorlar)</td><td><span class="badge badge-purple">Avans/Xizmat</span></td></tr>
+          <tr><td>6990</td><td>Boshqa majburiyatlar (xizmat qarzlari)</td><td><span class="badge badge-coral">Passiv</span></td></tr>
+          <tr><td>1510</td><td>Materiallarni tayyorlash va xarid qilish</td><td><span class="badge badge-amber">Xarajat</span></td></tr>
+          <tr><td>9420</td><td>Ma'muriyat va boshqaruv xarajatlari</td><td><span class="badge badge-amber">Xarajat</span></td></tr>
+          <tr><td>5110</td><td>Hisob-kitob hisobvarag'i (bank)</td><td><span class="badge badge-teal">Aktiv</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- PROVODKALAR -->
+  <section id="provodkalar">
+    <div class="sec-title">Provodkalar — buxgalteriya yozuvlari</div>
+
+    <!-- TOVAR -->
+    <div class="prov-section">
+      <div class="prov-title">📦 1-misol: Tovar sotib olish (100 ta mobil telefon)</div>
+      <div class="prov-meta">
+        Shartnoma summasi: <strong>180 000 000 so'm</strong> &nbsp;|&nbsp;
+        Avans (bo'nak): <strong>40 000 000 so'm</strong> &nbsp;|&nbsp;
+        Yetkazib berish: <strong>1 000 000 so'm</strong> &nbsp;|&nbsp;
+        Qolgan qarz: <strong>141 000 000 so'm</strong>
+      </div>
+      <div class="prov-box">
+        <div class="prov-head"><span>Debet</span><span>Kredit</span><span>Summa (so'm)</span><span>Xo'jalik muomalasi</span></div>
+        <div class="prov-row"><span class="deb">4310</span><span class="kred">5110</span><span class="prov-sum">40 000 000</span><span class="prov-label">Mol yetkazib beruvchiga bo'nak o'tkazildi</span></div>
+        <div class="prov-row"><span class="deb">2910</span><span class="kred">6010</span><span class="prov-sum">180 000 000</span><span class="prov-label">100 dona mobil telefon omborga olindi</span></div>
+        <div class="prov-row"><span class="deb">1510</span><span class="kred">6010</span><span class="prov-sum">1 000 000</span><span class="prov-label">Yetkazib berish xarajatlari hisobga olindi</span></div>
+        <div class="prov-row"><span class="deb">2910</span><span class="kred">1510</span><span class="prov-sum">1 000 000</span><span class="prov-label">Yetkazib berish xarajati tovar tannarxiga kiritildi</span></div>
+        <div class="prov-row"><span class="deb">6010</span><span class="kred">5110</span><span class="prov-sum">141 000 000</span><span class="prov-label">Mol yetkazib beruvchiga qolgan qarz to'landi</span></div>
+        <div class="prov-row"><span class="deb">6010</span><span class="kred">4310</span><span class="prov-sum">40 000 000</span><span class="prov-label">Berilgan bo'nak hisobdan chiqarildi</span></div>
+      </div>
+    </div>
+
+    <!-- XIZMAT -->
+    <div class="prov-section">
+      <div class="prov-title">🔧 2-misol: Xizmat sotib olish (kompyuter xizmati)</div>
+      <div class="prov-meta">
+        Shartnoma summasi: <strong>5 000 000 so'm</strong> &nbsp;|&nbsp;
+        Avans: <strong>2 500 000 so'm</strong> &nbsp;|&nbsp;
+        Qolgan qarz: <strong>2 500 000 so'm</strong>
+      </div>
+      <div class="prov-box">
+        <div class="prov-head"><span>Debet</span><span>Kredit</span><span>Summa (so'm)</span><span>Xo'jalik muomalasi</span></div>
+        <div class="prov-row"><span class="deb">4890</span><span class="kred">5110</span><span class="prov-sum">2 500 000</span><span class="prov-label">Xizmat uchun oldindan bo'nak o'tkazildi</span></div>
+        <div class="prov-row"><span class="deb">9420</span><span class="kred">6990</span><span class="prov-sum">5 000 000</span><span class="prov-label">Ma'muriyat bo'limi uchun xizmat sotib olindi</span></div>
+        <div class="prov-row"><span class="deb">6990</span><span class="kred">4890</span><span class="prov-sum">2 500 000</span><span class="prov-label">Xizmat uchun berilgan bo'nak hisobdan chiqarildi</span></div>
+        <div class="prov-row"><span class="deb">6990</span><span class="kred">5110</span><span class="prov-sum">2 500 000</span><span class="prov-label">Shartnoma bo'yicha qolgan qarz to'landi</span></div>
+      </div>
+    </div>
+
+    <div class="warn-box">
+      <strong>💡 Avans (bo'nak) qoidasi:</strong> Avans berilganda AVVAL 4310 yoki 4890 ga yoziladi. Tovar/xizmat kelgach, u 6010 yoki 6990 bilan <strong>yopiladi (hisobdan chiqariladi).</strong>
+    </div>
+  </section>
+
+  <!-- QONUNLAR -->
+  <section id="qonunlar">
+    <div class="sec-title">Qonuniy asoslar</div>
+    <div class="qonun-grid">
+      <div class="qonun-card">
+        <div class="qonun-badge">SK 45-modda</div>
+        <div class="qonun-name">Tovar ta'rifi</div>
+        <div class="qonun-desc">Soliq kodeksiga ko'ra tovar — qiymat bahosiga ega va sotish uchun mo'ljallangan har qanday predmet (axborot, ma'lumotlar bazasi ham kiritiladi).</div>
+      </div>
+      <div class="qonun-card">
+        <div class="qonun-badge">SK 47-modda</div>
+        <div class="qonun-name">Hisobvaraq-faktura majburiyati</div>
+        <div class="qonun-desc">Yuridik shaxslar va tadbirkorlar tovar/xizmat realizatsiya qilishda xaridorga hisobvaraq-fakturani taqdim etishi shart. Elektron EHF tizimida rasmiylashtiriladi.</div>
+      </div>
+      <div class="qonun-card">
+        <div class="qonun-badge">FK 139-modda</div>
+        <div class="qonun-name">Ishonchnoma muddati</div>
+        <div class="qonun-desc">Fuqarolik Kodeksi bo'yicha ishonchnoma ko'pi bilan 3 yilga beriladi. Muddat ko'rsatilmasa — 1 yil. Sana ko'rsatilmasa — haqiqiy emas.</div>
+      </div>
+      <div class="qonun-card">
+        <div class="qonun-badge">VMQ 249-son qaror</div>
+        <div class="qonun-name">Elektron shartnoma ro'yxati</div>
+        <div class="qonun-desc">2021 yil 28 aprel. Tadbirkorlar shartnomalarni 10 kun ichida yoki EHF rasmiylashtirishdan oldin elektron ro'yxatga kiritishlari shart.</div>
+      </div>
+      <div class="qonun-card">
+        <div class="qonun-badge">VMQ 249/2021 — 3-ilova</div>
+        <div class="qonun-name">Elektron ishonchnoma tartibi</div>
+        <div class="qonun-desc">Ishonchnomalar YEHDAS tizimida elektron tarzda shakllantiriladi. Ma'lumotlar DSQ ma'lumotlar bazasida kamida 5 yil saqlanadi.</div>
+      </div>
+      <div class="qonun-card">
+        <div class="qonun-badge">Rekvizit ta'rifi</div>
+        <div class="qonun-name">Korxona rekvizitlari</div>
+        <div class="qonun-desc">Korxona nomi, hisob raqami, STIR (soliq to'lovchi identifikatsiya raqami), bank kodi, IFUT faoliyat turi kodi kiradi.</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-title">Xaridlar va Avans — To'liq Buxgalteriya Kursi</div>
+    <div class="footer-sub">Daftar + Kitob ma'lumotlari asosida tuzilgan · 2026 yil may holati · O'zbekiston Respublikasi qonunchiligiga mos</div>
+  </div>
+</footer>
+
+
+<!-- CHAT BUTTON -->
+<button class="support-fab" onclick="chatToggle()" title="Yordam va Chat" id="chatFab">
+  💬<span id="chatBadge" style="display:none;position:absolute;top:-4px;right:-4px;background:#FF6B6B;color:#fff;border-radius:50%;width:18px;height:18px;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center"></span>
+</button>
+
+<!-- CHAT WINDOW -->
+<div id="chatWindow" style="display:none;position:fixed;bottom:90px;right:24px;z-index:998;width:320px;background:#1A1435;border:1px solid rgba(108,63,232,0.35);border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.6)">
+  <!-- Header -->
+  <div style="padding:14px 16px;background:linear-gradient(135deg,rgba(108,63,232,0.3),rgba(0,201,167,0.1));display:flex;align-items:center;justify-content:space-between">
+    <div>
+      <div style="font-family:Unbounded,sans-serif;font-size:11px;font-weight:700;color:#9B7BFF">💬 MOLIYA STUDIYASI</div>
+      <div style="font-size:11px;color:rgba(240,236,255,0.5);margin-top:2px">Yordam xizmati</div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <a href="https://t.me/ynurov" target="_blank" style="width:30px;height:30px;border-radius:50%;background:rgba(0,136,204,0.2);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:15px" title="Telegram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.92c-.12.56-.48.7-.96.44l-2.64-1.94-1.28 1.22c-.14.14-.26.26-.52.26l.18-2.66 4.74-4.28c.2-.18-.04-.28-.32-.1L7.4 14.48l-2.58-.8c-.56-.18-.58-.56.12-.82l10.08-3.88c.46-.18.88.1.62.82z" fill="#0088cc"/></svg>
+      </a>
+      <a href="mailto:yahyonurov05@gmail.com" style="width:30px;height:30px;border-radius:50%;background:rgba(234,67,53,0.2);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:15px" title="Gmail">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="#EA4335"/></svg>
+      </a>
+      <button onclick="chatToggle()" style="width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.08);border:none;color:#F0ECFF;font-size:16px;cursor:pointer">×</button>
+    </div>
+  </div>
+  <!-- Messages -->
+  <div id="chatMessages" style="height:260px;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px">
+    <div style="text-align:center;color:rgba(240,236,255,0.3);font-size:12px;padding:20px 0">Xabarlar yuklanmoqda...</div>
+  </div>
+  <!-- Emoji bar -->
+  <div style="padding:8px 12px;border-top:1px solid rgba(255,255,255,0.06);display:flex;gap:6px">
+    <span onclick="emojiQosh('👍')" style="cursor:pointer;font-size:18px">👍</span>
+    <span onclick="emojiQosh('🙏')" style="cursor:pointer;font-size:18px">🙏</span>
+    <span onclick="emojiQosh('✅')" style="cursor:pointer;font-size:18px">✅</span>
+    <span onclick="emojiQosh('❓')" style="cursor:pointer;font-size:18px">❓</span>
+    <span onclick="emojiQosh('😊')" style="cursor:pointer;font-size:18px">😊</span>
+    <span onclick="emojiQosh('📚')" style="cursor:pointer;font-size:18px">📚</span>
+    <span onclick="emojiQosh('💡')" style="cursor:pointer;font-size:18px">💡</span>
+    <span onclick="emojiQosh('🔥')" style="cursor:pointer;font-size:18px">🔥</span>
+  </div>
+  <!-- Input -->
+  <div style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.08);display:flex;gap:8px">
+    <input id="chatInput" type="text" placeholder="Xabar yozing..." style="flex:1;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:#F0ECFF;font-size:13px;font-family:Onest,sans-serif;outline:none"
+      onkeypress="if(event.key==='Enter')chatYuborish()">
+    <button onclick="chatYuborish()" style="padding:9px 14px;background:linear-gradient(135deg,#6C3FE8,#9B7BFF);border:none;border-radius:10px;color:#fff;font-size:13px;font-weight:700;cursor:pointer">→</button>
+  </div>
+</div>
+
+<script>
+const SB_URL='https://dovhuxkzctjvlhwhcveg.supabase.co';
+const SB_KEY='sb_publishable_zJkKgBt7pT4ZMINElu0A4Q_0_L3TC1G';
+const sbChat=supabase.createClient(SB_URL,SB_KEY);
+
+function chatToggle(){
+  const w=document.getElementById('chatWindow');
+  const open=w.style.display==='none';
+  w.style.display=open?'block':'none';
+  if(open){chatXabarlarYukla();chatBadgeYangi();}
+}
+
+function emojiQosh(e){
+  const input=document.getElementById('chatInput');
+  input.value+=e;input.focus();
+}
+
+function chatXabarlarRender(data){
+  const box=document.getElementById('chatMessages');
+  if(!data||data.length===0){
+    box.innerHTML='<div style="text-align:center;color:rgba(240,236,255,0.3);font-size:12px;padding:20px 0">Hali xabar yo\'q. Savolingizni yozing!</div>';
+    return;
+  }
+  box.innerHTML=data.map(x=>{
+    const isAdmin=x.admin_xabar;
+    return `<div style="display:flex;flex-direction:column;align-items:${isAdmin?'flex-end':'flex-start'}">
+      <div style="max-width:80%;padding:9px 12px;border-radius:${isAdmin?'12px 12px 3px 12px':'12px 12px 12px 3px'};background:${isAdmin?'linear-gradient(135deg,#6C3FE8,#9B7BFF)':'rgba(255,255,255,0.08)'};color:#F0ECFF;font-size:13px;line-height:1.5">${x.xabar}</div>
+      <div style="font-size:10px;color:rgba(240,236,255,0.3);margin-top:2px;padding:0 3px">${isAdmin?'Admin':'Siz'}</div>
+    </div>`;
+  }).join('');
+  box.scrollTop=box.scrollHeight;
+}
+
+async function chatXabarlarYukla(){
+  const token=localStorage.getItem('ms_token')||'anon';
+  const {data}=await sbChat.from('xabarlar').select('*').eq('token',token).order('sana',{ascending:true});
+  chatXabarlarRender(data);
+}
+
+async function chatBadgeYangi(){
+  const token=localStorage.getItem('ms_token')||'anon';
+  const {data}=await sbChat.from('xabarlar').select('id').eq('token',token).eq('admin_xabar',true).eq('oqildi',false);
+  const badge=document.getElementById('chatBadge');
+  if(data&&data.length>0&&badge){badge.style.display='flex';badge.textContent=data.length;}
+  else if(badge){badge.style.display='none';}
+}
+
+async function chatYuborish(){
+  const msg=document.getElementById('chatInput').value.trim();
+  if(!msg)return;
+  const token=localStorage.getItem('ms_token')||'anon';
+  const ism=localStorage.getItem('ms_ism')||'O\'quvchi';
+  await sbChat.from('xabarlar').insert({ism,token,xabar:msg,sana:new Date().toISOString(),oqildi:false,admin_xabar:false});
+  document.getElementById('chatInput').value='';
+  chatXabarlarYukla();
+}
+
+// REALTIME — refresh kerak emas!
+const token_rt = localStorage.getItem('ms_token') || 'anon';
+sbChat.channel('xabarlar_' + token_rt)
+  .on('postgres_changes', {
+    event: 'INSERT',
+    schema: 'public',
+    table: 'xabarlar',
+    filter: 'token=eq.' + token_rt
+  }, (payload) => {
+    // Yangi xabar keldi
+    if(document.getElementById('chatWindow').style.display !== 'none'){
+      chatXabarlarYukla();
+    }
+    chatBadgeYangi();
+  })
+  .subscribe();
+
+chatBadgeYangi();
+
+document.addEventListener('click',function(e){
+  const w=document.getElementById('chatWindow');
+  const fab=document.getElementById('chatFab');
+  if(w&&w.style.display!=='none'&&!w.contains(e.target)&&fab&&!fab.contains(e.target)){
+    w.style.display='none';
+  }
+});
+</script>
+
+</body>
+</html>

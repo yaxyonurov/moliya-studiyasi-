@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moliya Studiyasi — Kirish</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Onest:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Onest',sans-serif;
+  background:#0A0616;
+  color:#F0ECFF;
+  min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+}
+body::before{
+  content:'';position:fixed;top:0;left:0;right:0;bottom:0;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 10%,rgba(108,63,232,0.25) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 30% at 80% 80%,rgba(0,201,167,0.12) 0%,transparent 60%);
+  pointer-events:none;z-index:0;
+}
+.box{
+  position:relative;z-index:1;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:24px;
+  padding:48px 40px;
+  width:100%;max-width:420px;
+  text-align:center;
+}
+.logo{
+  font-family:'Unbounded',sans-serif;
+  font-size:13px;font-weight:800;
+  background:linear-gradient(135deg,#9B7BFF,#00C9A7);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  margin-bottom:8px;
+}
+h1{
+  font-family:'Unbounded',sans-serif;
+  font-size:22px;font-weight:800;
+  color:#F0ECFF;margin-bottom:8px;
+}
+.sub{font-size:13px;color:rgba(240,236,255,0.5);margin-bottom:32px;}
+.input-wrap{margin-bottom:16px;text-align:left;}
+label{font-size:11px;font-weight:600;color:rgba(240,236,255,0.5);text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:6px;}
+input{
+  width:100%;padding:12px 16px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:10px;
+  color:#F0ECFF;font-size:15px;
+  font-family:'Onest',sans-serif;
+  outline:none;transition:border 0.2s;
+  letter-spacing:2px;
+}
+input:focus{border-color:rgba(108,63,232,0.6);}
+input::placeholder{letter-spacing:0;color:rgba(240,236,255,0.3);}
+.btn{
+  width:100%;padding:14px;margin-top:8px;
+  background:linear-gradient(135deg,#6C3FE8,#9B7BFF);
+  color:#fff;border:none;border-radius:10px;
+  font-size:15px;font-weight:700;
+  font-family:'Unbounded',sans-serif;
+  cursor:pointer;transition:opacity 0.2s;
+}
+.btn:hover{opacity:0.9;}
+.btn:disabled{opacity:0.5;cursor:not-allowed;}
+.msg{
+  margin-top:16px;padding:12px 16px;
+  border-radius:10px;font-size:13px;display:none;
+}
+.msg.error{background:rgba(255,107,107,0.12);border:1px solid rgba(255,107,107,0.3);color:#FF9DB5;}
+.msg.success{background:rgba(0,201,167,0.1);border:1px solid rgba(0,201,167,0.3);color:#3DFFB0;}
+.loader{display:none;margin-top:16px;}
+.loader-dot{
+  display:inline-block;width:8px;height:8px;border-radius:50%;
+  background:#9B7BFF;margin:0 3px;
+  animation:bounce 1.2s infinite;
+}
+.loader-dot:nth-child(2){animation-delay:0.2s;}
+.loader-dot:nth-child(3){animation-delay:0.4s;}
+@keyframes bounce{0%,80%,100%{transform:scale(0.6);}40%{transform:scale(1.0);}}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="logo">📚 MOLIYA STUDIYASI</div>
+  <h1>Xush kelibsiz!</h1>
+  <p class="sub">Kirishni davom ettirish uchun tokeningizni kiriting</p>
+
+  <div class="input-wrap">
+    <label>Token</label>
+    <input type="text" id="token" placeholder="MS-XXXX-XXXX" autocomplete="off">
+  </div>
+  <div class="input-wrap">
+    <label>Telefon raqam</label>
+    <input type="tel" id="telefon" placeholder="+998 90 123 45 67" autocomplete="off">
+  </div>
+
+  <button class="btn" onclick="kirish()" id="btn">Kirish →</button>
+
+  <div class="loader" id="loader">
+    <div class="loader-dot"></div>
+    <div class="loader-dot"></div>
+    <div class="loader-dot"></div>
+  </div>
+
+  <div class="msg" id="msg"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = 'https://dovhuxkzctjvlhwhcveg.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_zJkKgBt7pT4ZMINElu0A4Q_0_L3TC1G';
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+function getDeviceId(){
+  let id = localStorage.getItem('device_id');
+  if(!id){
+    id = 'DEV-' + Math.random().toString(36).substr(2,9).toUpperCase();
+    localStorage.setItem('device_id', id);
+  }
+  return id;
+}
+
+function showMsg(text, type){
+  const m = document.getElementById('msg');
+  m.textContent = text;
+  m.className = 'msg ' + type;
+  m.style.display = 'block';
+}
+
+async function kirish(){
+  const token = document.getElementById('token').value.trim().toUpperCase();
+  if(!token){ showMsg('Token kiriting!', 'error'); return; }
+
+  const btn = document.getElementById('btn');
+  const loader = document.getElementById('loader');
+  btn.disabled = true;
+  loader.style.display = 'block';
+  document.getElementById('msg').style.display = 'none';
+
+  try {
+    // Tokenni tekshirish
+    const {data, error} = await sb
+      .from('tokenlar')
+      .select('*')
+      .eq('token', token)
+      .single();
+
+    if(error || !data){
+      showMsg('❌ Token topilmadi yoki noto\'g\'ri!', 'error');
+      btn.disabled = false; loader.style.display = 'none';
+      return;
+    }
+
+    // Muddatini tekshirish
+    if(data.muddat && new Date(data.muddat) < new Date()){
+      showMsg('⏰ Token muddati tugagan!', 'error');
+      btn.disabled = false; loader.style.display = 'none';
+      return;
+    }
+
+    // Faolmi?
+    if(!data.faol){
+      showMsg('🚫 Token bloklangan!', 'error');
+      btn.disabled = false; loader.style.display = 'none';
+      return;
+    }
+
+    const deviceId = getDeviceId();
+
+    // Qurilma tekshirish
+    if(data.qurilma && data.qurilma !== deviceId){
+      showMsg('🚫 Bu token boshqa qurilmada ishlatilgan!', 'error');
+      btn.disabled = false; loader.style.display = 'none';
+      return;
+    }
+
+    // Birinchi marta kirish — qurilmani va telefonni yozib olish
+    const telefon = document.getElementById('telefon').value.trim();
+    if(!data.qurilma){
+      await sb.from('tokenlar').update({qurilma: deviceId, telefon: telefon}).eq('token', token);
+    } else if(telefon) {
+      await sb.from('tokenlar').update({telefon: telefon}).eq('token', token);
+    }
+
+    // Sessiyani saqlash
+    localStorage.setItem('ms_token', token);
+    localStorage.setItem('ms_ism', data.ism || 'O\'quvchi');
+
+    showMsg('✅ Muvaffaqiyatli! Yuklanmoqda...', 'success');
+    setTimeout(()=>{ window.location.href = 'index.html'; }, 1000);
+
+  } catch(e){
+    showMsg('Xatolik yuz berdi, qayta urinib ko\'ring.', 'error');
+    btn.disabled = false; loader.style.display = 'none';
+  }
+}
+
+document.getElementById('token').addEventListener('keypress', function(e){
+  if(e.key === 'Enter') kirish();
+});
+
+// Allaqachon kirgan bo'lsa
+if(localStorage.getItem('ms_token')){
+  window.location.href = 'index.html';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+ALTER TABLE xabarlar ADD COLUMN IF NOT EXISTS admin_xabar BOOLEAN DEFAULT false;

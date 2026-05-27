@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mehnat Ta'tili — To'liq Qo'llanma 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a1a;
+    --bg2: #0e0e2a;
+    --card: rgba(255,255,255,0.04);
+    --border: rgba(255,255,255,0.09);
+    --purple: #7c3aed;
+    --violet: #6d28d9;
+    --pink: #ec4899;
+    --cyan: #06b6d4;
+    --green: #10b981;
+    --orange: #f59e0b;
+    --red: #ef4444;
+    --white: #f1f5f9;
+    --muted: #94a3b8;
+    --g1: linear-gradient(135deg, #7c3aed, #ec4899);
+    --g2: linear-gradient(135deg, #06b6d4, #7c3aed);
+    --g3: linear-gradient(135deg, #10b981, #06b6d4);
+    --g4: linear-gradient(135deg, #f59e0b, #ef4444);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg);
+    color: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ANIMATED BG */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background:
+      radial-gradient(ellipse 600px 400px at 20% 20%, rgba(124,58,237,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 500px 350px at 80% 80%, rgba(236,72,153,0.10) 0%, transparent 70%),
+      radial-gradient(ellipse 400px 300px at 60% 20%, rgba(6,182,212,0.08) 0%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .container { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 20px 60px; }
+
+  /* HERO */
+  .hero {
+    text-align: center;
+    padding: 60px 20px 50px;
+    position: relative;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(124,58,237,0.2);
+    border: 1px solid rgba(124,58,237,0.4);
+    color: #c4b5fd;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    padding: 6px 18px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 6vw, 64px);
+    font-weight: 900;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #c4b5fd 0%, #f9a8d4 50%, #67e8f9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+  }
+  .hero p {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 600px;
+    margin: 0 auto 30px;
+    line-height: 1.7;
+  }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .htag {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 5px 14px;
+    border-radius: 100px;
+    border: 1px solid;
+  }
+  .htag-p { color: #c4b5fd; border-color: rgba(196,181,253,0.35); background: rgba(124,58,237,0.1); }
+  .htag-c { color: #67e8f9; border-color: rgba(103,232,249,0.35); background: rgba(6,182,212,0.1); }
+  .htag-g { color: #6ee7b7; border-color: rgba(110,231,183,0.35); background: rgba(16,185,129,0.1); }
+  .htag-o { color: #fcd34d; border-color: rgba(252,211,77,0.35); background: rgba(245,158,11,0.1); }
+
+  /* SECTION */
+  .section { margin-bottom: 30px; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .section-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .si-purple { background: linear-gradient(135deg, rgba(124,58,237,0.4), rgba(109,40,217,0.4)); border: 1px solid rgba(124,58,237,0.4); }
+  .si-pink { background: linear-gradient(135deg, rgba(236,72,153,0.3), rgba(219,39,119,0.3)); border: 1px solid rgba(236,72,153,0.35); }
+  .si-cyan { background: linear-gradient(135deg, rgba(6,182,212,0.3), rgba(14,165,233,0.3)); border: 1px solid rgba(6,182,212,0.35); }
+  .si-green { background: linear-gradient(135deg, rgba(16,185,129,0.3), rgba(5,150,105,0.3)); border: 1px solid rgba(16,185,129,0.35); }
+  .si-orange { background: linear-gradient(135deg, rgba(245,158,11,0.3), rgba(217,119,6,0.3)); border: 1px solid rgba(245,158,11,0.35); }
+  .si-red { background: linear-gradient(135deg, rgba(239,68,68,0.3), rgba(220,38,38,0.3)); border: 1px solid rgba(239,68,68,0.35); }
+
+  .section-header h2 {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--white);
+  }
+  .section-header span {
+    font-size: 11px;
+    color: var(--muted);
+    display: block;
+    font-weight: 500;
+  }
+
+  /* CARDS GRID */
+  .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .card:hover { transform: translateY(-3px); border-color: rgba(124,58,237,0.35); }
+  .card-icon { font-size: 28px; margin-bottom: 10px; }
+  .card-label { font-size: 11px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+  .card-value { font-size: 16px; font-weight: 700; color: var(--white); line-height: 1.4; }
+  .card-sub { font-size: 12px; color: var(--muted); margin-top: 5px; }
+
+  .card-gp { border-color: rgba(124,58,237,0.3); background: linear-gradient(135deg, rgba(124,58,237,0.12), rgba(109,40,217,0.06)); }
+  .card-gc { border-color: rgba(6,182,212,0.3); background: linear-gradient(135deg, rgba(6,182,212,0.12), rgba(14,165,233,0.06)); }
+  .card-gg { border-color: rgba(16,185,129,0.3); background: linear-gradient(135deg, rgba(16,185,129,0.12), rgba(5,150,105,0.06)); }
+  .card-go { border-color: rgba(245,158,11,0.3); background: linear-gradient(135deg, rgba(245,158,11,0.12), rgba(217,119,6,0.06)); }
+
+  /* TABLE */
+  .table-wrap { overflow-x: auto; border-radius: 16px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead tr { background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(236,72,153,0.15)); }
+  th { padding: 13px 16px; text-align: left; font-size: 11px; font-weight: 700; color: #c4b5fd; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
+  td { padding: 11px 16px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #cbd5e1; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(124,58,237,0.07); }
+  .law-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-family: 'Fira Code', monospace;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 6px;
+    background: rgba(124,58,237,0.25);
+    color: #c4b5fd;
+    border: 1px solid rgba(124,58,237,0.4);
+    white-space: nowrap;
+  }
+  .law-badge-c { background: rgba(6,182,212,0.2); color: #67e8f9; border-color: rgba(6,182,212,0.4); }
+  .law-badge-g { background: rgba(16,185,129,0.2); color: #6ee7b7; border-color: rgba(16,185,129,0.4); }
+  .law-badge-o { background: rgba(245,158,11,0.2); color: #fcd34d; border-color: rgba(245,158,11,0.4); }
+  .law-badge-r { background: rgba(239,68,68,0.2); color: #fca5a5; border-color: rgba(239,68,68,0.4); }
+
+  /* FORMULA */
+  .formula-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  .formula-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .formula-title::before {
+    content: '';
+    width: 3px; height: 14px;
+    border-radius: 2px;
+    background: var(--g1);
+    display: inline-block;
+  }
+  .formula-eq {
+    font-family: 'Fira Code', monospace;
+    font-size: clamp(13px, 2vw, 16px);
+    font-weight: 600;
+    color: var(--white);
+    background: rgba(124,58,237,0.12);
+    border: 1px solid rgba(124,58,237,0.25);
+    border-radius: 10px;
+    padding: 14px 18px;
+    line-height: 1.6;
+  }
+  .formula-eq .highlight { color: #f9a8d4; }
+  .formula-eq .num { color: #67e8f9; }
+  .formula-note {
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+    padding-left: 4px;
+  }
+
+  /* EXAMPLE BLOCK */
+  .example-block {
+    background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(6,182,212,0.05));
+    border: 1px solid rgba(16,185,129,0.25);
+    border-radius: 16px;
+    padding: 24px;
+  }
+  .example-title {
+    font-size: 13px;
+    font-weight: 800;
+    color: #6ee7b7;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .steps { display: flex; flex-direction: column; gap: 10px; }
+  .step { display: flex; gap: 14px; align-items: flex-start; }
+  .step-num {
+    width: 28px; height: 28px; flex-shrink: 0;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #7c3aed, #ec4899);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 800; color: white;
+  }
+  .step-body { font-size: 13px; color: #cbd5e1; line-height: 1.6; padding-top: 4px; }
+  .step-body strong { color: #f9a8d4; font-weight: 700; }
+  .step-body .result { color: #6ee7b7; font-weight: 800; }
+
+  /* PROVODKA */
+  .provodka-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+  }
+  .provodka-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.03);
+    margin-bottom: 8px;
+    font-family: 'Fira Code', monospace;
+    font-size: 13px;
+    flex-wrap: wrap;
+  }
+  .provodka-item:last-child { margin-bottom: 0; }
+  .deb { color: #6ee7b7; font-weight: 700; }
+  .kred { color: #fca5a5; font-weight: 700; }
+  .arrow { color: var(--muted); }
+  .p-sum { color: #fcd34d; font-weight: 700; margin-left: auto; white-space: nowrap; }
+  .p-desc { font-size: 11px; color: var(--muted); width: 100%; margin-top: 2px; font-family: 'Montserrat', sans-serif; }
+
+  /* WARNING */
+  .warn-block {
+    background: rgba(239,68,68,0.07);
+    border: 1px solid rgba(239,68,68,0.25);
+    border-radius: 16px;
+    padding: 22px 24px;
+  }
+  .warn-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #cbd5e1;
+  }
+  .warn-item:last-child { margin-bottom: 0; }
+  .warn-icon { flex-shrink: 0; font-size: 16px; margin-top: 1px; }
+
+  /* LAW REFERENCE */
+  .law-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .law-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .law-item:last-child { border-bottom: none; }
+  .law-ref {
+    padding: 14px 16px;
+    background: rgba(124,58,237,0.08);
+    border-right: 1px solid rgba(255,255,255,0.05);
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: #c4b5fd;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+  }
+  .law-source { font-size: 10px; color: var(--muted); font-family: 'Montserrat', sans-serif; font-weight: 500; }
+  .law-text {
+    padding: 14px 16px;
+    font-size: 13px;
+    color: #cbd5e1;
+    line-height: 1.6;
+  }
+
+  /* TASK */
+  .task-block {
+    background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(239,68,68,0.05));
+    border: 1px solid rgba(245,158,11,0.25);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  .task-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: #fcd34d;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .task-answer {
+    background: rgba(16,185,129,0.08);
+    border: 1px solid rgba(16,185,129,0.25);
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 14px;
+  }
+  .task-answer-title { font-size: 11px; font-weight: 700; color: #6ee7b7; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(124,58,237,0.4), rgba(236,72,153,0.4), transparent);
+    margin: 40px 0;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 30px 20px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.8;
+  }
+  .footer strong { color: #c4b5fd; }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .law-item { grid-template-columns: 1fr; }
+    .law-ref { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .p-sum { margin-left: 0; }
+    .cards-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* SCROLL NAV */
+  .nav-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,26,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 20px;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .nav-link {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 100px;
+    background: rgba(124,58,237,0.12);
+    border: 1px solid rgba(124,58,237,0.25);
+    color: #c4b5fd;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .nav-link:hover { background: rgba(124,58,237,0.3); border-color: rgba(124,58,237,0.6); }
+
+/* SUPPORT BUTTON */
+.support-fab{
+  position:fixed;bottom:24px;right:24px;z-index:999;
+  width:56px;height:56px;border-radius:50%;
+  background:linear-gradient(135deg,#6C3FE8,#00C9A7);
+  border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;
+  box-shadow:0 4px 20px rgba(108,63,232,0.4);
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.support-fab:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(108,63,232,0.6);}
+.support-modal{
+  display:none;position:fixed;bottom:90px;right:24px;z-index:998;
+  background:#1A1435;border:1px solid rgba(108,63,232,0.35);
+  border-radius:20px;padding:20px;width:260px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.5);
+}
+.support-modal.open{display:block;}
+.support-modal h4{font-family:'Unbounded',sans-serif;font-size:12px;font-weight:700;color:#9B7BFF;margin-bottom:14px;}
+.support-option{
+  display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
+  text-decoration:none;color:#F0ECFF;font-size:13px;margin-bottom:8px;
+  transition:all 0.2s;cursor:pointer;
+}
+.support-option:hover{background:rgba(108,63,232,0.15);border-color:rgba(108,63,232,0.4);}
+.support-option:last-child{margin-bottom:0;}
+.support-icon{font-size:20px;width:28px;text-align:center;}
+.support-form{display:none;margin-top:12px;}
+.support-form textarea{
+  width:100%;padding:10px;background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);border-radius:8px;
+  color:#F0ECFF;font-size:13px;font-family:'Onest',sans-serif;
+  resize:none;height:80px;outline:none;
+}
+.support-form textarea:focus{border-color:rgba(108,63,232,0.5);}
+.support-send{
+  width:100%;padding:9px;margin-top:8px;
+  background:linear-gradient(135deg,#6C3FE8,#9B7BFF);
+  color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;
+  cursor:pointer;font-family:'Unbounded',sans-serif;
+}
+.support-success{display:none;text-align:center;padding:12px;font-size:13px;color:#3DFFB0;}
+@media(max-width:600px){
+  .support-modal{width:calc(100vw - 48px);right:24px;}
+}
+
+/* ===== MOBIL VERSIYA ===== */
+@media(max-width:768px){
+  /* Jadvallar */
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{min-width:500px;font-size:12px;}
+  th,td{padding:8px 10px;}
+  
+  /* Provodka jadvali */
+  .prov-head,.prov-row{
+    grid-template-columns:70px 70px 90px 1fr !important;
+    font-size:11px !important;
+  }
+  .prov-head > span,.prov-row > span{padding:8px 8px !important;}
+  .deb,.kred{font-size:11px !important;}
+  
+  /* Kalkulyator */
+  .calc-form{grid-template-columns:1fr !important;}
+  .cf-full{grid-column:1 !important;}
+  .res-big .rv{font-size:20px !important;}
+  .split-cards{grid-template-columns:1fr !important;}
+  
+  /* Hero */
+  .hero h1{font-size:24px !important;}
+  .hero p{font-size:13px !important;}
+  .hero-stats{gap:8px !important;}
+  .hero-stat{min-width:80px !important;padding:10px 12px !important;}
+  .hero-stat-num{font-size:14px !important;}
+  
+  /* Nav */
+  nav{padding:10px 12px !important;gap:6px !important;}
+  nav a{font-size:10px !important;padding:4px 10px !important;}
+  
+  /* Cards */
+  .two-col,.staj-grid,.qonun-grid,.grid2{grid-template-columns:1fr !important;}
+  .stats-grid{grid-template-columns:repeat(2,1fr) !important;}
+  
+  /* Wrap */
+  .wrap{padding:0 12px 60px !important;}
+  
+  /* Box */
+  .box,.card{padding:14px !important;}
+  
+  /* Formula */
+  .formula{font-size:14px !important;}
+  
+  /* Task */
+  .task-head{padding:12px !important;}
+  .task-body{padding:12px !important;}
+  
+  /* Hisobvaraqlar */
+  .hisob-table{font-size:12px;}
+  .hisob-table th,.hisob-table td{padding:7px 8px;}
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth_check.js"></script>
+</head>
+<body>
+
+<!-- STICKY NAV -->
+<nav class="nav-bar">
+  <a class="nav-link" href="#asoslar">📖 Asoslar</a>
+  <a class="nav-link" href="#turlar">📋 Turlar</a>
+  <a class="nav-link" href="#formula">🧮 Formula</a>
+  <a class="nav-link" href="#provodka">📒 Provodkalar</a>
+  <a class="nav-link" href="#qonun">⚖️ Qonunlar</a>
+  <a class="nav-link" href="#kalkulyator">🧮 Kalkulyator</a>
+  <a class="nav-link" href="#eslatma">⚠️ Eslatmalar</a>
+</nav>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">📚 Buxgalteriya kursi · 2026 yil may</div>
+    <h1>Mehnat Ta'tili<br>Hisob-kitobi</h1>
+    <p>Kitobning 136–145 betlari asosida to'liq amaliy qo'llanma. Mehnat kodeksi, Soliq kodeksi, provodkalar va amaliy misollar.</p>
+    <div class="hero-tags">
+      <span class="htag htag-p">MK 217-modda</span>
+      <span class="htag htag-p">MK 221-modda</span>
+      <span class="htag htag-p">MK 233-modda</span>
+      <span class="htag htag-p">MK 257-modda</span>
+      <span class="htag htag-c">SK 374-modda</span>
+      <span class="htag htag-c">SK 387-modda</span>
+      <span class="htag htag-c">SK 403-modda</span>
+      <span class="htag htag-g">O'RQ-1030</span>
+      <span class="htag htag-o">JShDS 12%</span>
+      <span class="htag htag-o">Ijtimoiy soliq 12/25%</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 1. ASOSLAR -->
+  <div class="section" id="asoslar">
+    <div class="section-header">
+      <div class="section-icon si-purple">📖</div>
+      <div>
+        <h2>1. Yillik Mehnat Ta'tili — Asosiy Qoidalar</h2>
+        <span>Mehnat Kodeksi asosida · 2026 yil holatida</span>
+      </div>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card card-gp">
+        <div class="card-icon">🏝️</div>
+        <div class="card-label">Ta'rif</div>
+        <div class="card-value">Ish joyi, lavozimi va o'rtacha ish haqi saqlanib, xodimga beriladigan pullik dam olish vaqti</div>
+      </div>
+      <div class="card card-gc">
+        <div class="card-icon">📅</div>
+        <div class="card-label">Minimal muddat</div>
+        <div class="card-value">21 kalendar kun</div>
+        <div class="card-sub">MK 217-modda — asosiy eng kam ta'til</div>
+      </div>
+      <div class="card card-gg">
+        <div class="card-icon">👤</div>
+        <div class="card-label">Kimga beriladi?</div>
+        <div class="card-value">Barcha xodimlar, o'rindoshlik asosidagilar ham</div>
+        <div class="card-sub">Har yili ish yili davomida beriladi</div>
+      </div>
+      <div class="card card-go">
+        <div class="card-icon">💰</div>
+        <div class="card-label">To'lov muddati</div>
+        <div class="card-value">Ta'til boshlanishidan oldingi oxirgi ish kuni</div>
+        <div class="card-sub">MK 257-modda — kechiktirish taqiqlanadi</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. TURLAR -->
+  <div class="section" id="turlar">
+    <div class="section-header">
+      <div class="section-icon si-pink">📋</div>
+      <div>
+        <h2>2. Mehnat Ta'tili Turlari</h2>
+        <span>MK 217, 219, 220, 222-moddalar asosida</span>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Tur</th>
+            <th>Muddat</th>
+            <th>Kimga beriladi</th>
+            <th>Huquqiy asos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>🌴 Asosiy eng kam ta'til</td>
+            <td><strong style="color:#6ee7b7">21 kalendar kun</strong></td>
+            <td>Barcha xodimlar (majburiy)</td>
+            <td><span class="law-badge">MK 217-modda</span></td>
+          </tr>
+          <tr>
+            <td>⬆️ Asosiy uzaytirilgan ta'til</td>
+            <td><strong style="color:#6ee7b7">30 kalendar kun</strong></td>
+            <td>18 yoshga to'lmagan xodimlar; I–II guruh nogironlar</td>
+            <td><span class="law-badge">MK 217-modda</span></td>
+          </tr>
+          <tr>
+            <td>➕ Staj uchun qo'shimcha</td>
+            <td>+2 kun (har 5 yil uchun, max 8 kun)</td>
+            <td>Bitta tashkilotda uzoq ishlaganlar</td>
+            <td><span class="law-badge">MK 220-modda</span></td>
+          </tr>
+          <tr>
+            <td>🏭 Noqulay sharoit ta'tili</td>
+            <td>+3 kundan +14 kungacha</td>
+            <td>Og'ir, zararli, noqulay sharoitda ishlovchilar</td>
+            <td><span class="law-badge">MK 219, 222-modda</span></td>
+          </tr>
+          <tr>
+            <td>👩 Ona ta'tili (tug'ruq oldi)</td>
+            <td>70 kalendar kun</td>
+            <td>Homilador ayollar</td>
+            <td><span class="law-badge law-badge-c">MK 240-modda</span></td>
+          </tr>
+          <tr>
+            <td>👶 Tug'ruqdan keyingi</td>
+            <td>56 kalendar kun (murakkab — 70 kun)</td>
+            <td>Tug'ruqdan chiqqan ayollar</td>
+            <td><span class="law-badge law-badge-c">MK 240-modda</span></td>
+          </tr>
+          <tr>
+            <td>🧸 Bola parvarish ta'tili</td>
+            <td>3 yoshga qadar</td>
+            <td>Ota yoki ona (ish o'rni saqlanadi)</td>
+            <td><span class="law-badge law-badge-c">MK 242-modda</span></td>
+          </tr>
+          <tr>
+            <td>👧 14 yoshgacha bolali ayollar</td>
+            <td>Asosiy ta'tilga qo'shimcha</td>
+            <td>14 yoshgacha (nogironlarda 16 yoshgacha) bolasi bor ayollar</td>
+            <td><span class="law-badge">MK 219-modda</span></td>
+          </tr>
+          <tr>
+            <td>📚 O'quv ta'tili</td>
+            <td>Sessiyaga qarab</td>
+            <td>Sirtqi ta'lim olayotganlar, diplom himoyachilar</td>
+            <td><span class="law-badge law-badge-g">MK 249-modda</span></td>
+          </tr>
+          <tr>
+            <td>🖤 Haq to'lanmagan ta'til</td>
+            <td>Kelishuv asosida</td>
+            <td>Shaxsiy sabablarga ko'ra so'rab oluvchilar</td>
+            <td><span class="law-badge law-badge-o">MK 247-modda</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 3. FORMULA -->
+  <div class="section" id="formula">
+    <div class="section-header">
+      <div class="section-icon si-cyan">🧮</div>
+      <div>
+        <h2>3. Ta'til Pulini Hisoblash Formulasi</h2>
+        <span>MK 257-modda · O'RQ-1030-sonli Qonun · 2026 yil holatida</span>
+      </div>
+    </div>
+
+    <div class="formula-block">
+      <div class="formula-title">ASOSIY FORMULA</div>
+      <div class="formula-eq">
+        Ta'til puli = <span class="highlight">O'rtacha kunlik ish haqi</span> × <span class="num">Ish kunlari soni</span>
+      </div>
+      <div class="formula-note">⚠️ <strong>Diqqat:</strong> Ta'til faqat <strong>ish kunlari</strong> bo'yicha hisoblanadi — yakshanba va bayram kunlari ta'til kuniga kirmaydi. (O'RQ-1030 · MK 233-modda o'zgarishi)</div>
+    </div>
+
+    <div class="formula-block">
+      <div class="formula-title">O'RTACHA OYLIK ISH HAQI</div>
+      <div class="formula-eq">
+        O'rtacha oylik = (<span class="highlight">Oxirgi 12 oy barcha daromadlari</span>) ÷ <span class="num">12</span><br>
+        <span style="font-size:12px;color:#94a3b8">— Maosh + ustamalar + mukofotlar (1/12 qilib) + ovqat puli va boshq.</span>
+      </div>
+    </div>
+
+    <div class="formula-block">
+      <div class="formula-title">O'RTACHA KUNLIK ISH HAQI</div>
+      <div class="formula-eq">
+        O'rtacha kunlik = O'rtacha oylik ÷ <span class="num">25.3</span>
+      </div>
+      <div class="formula-note">
+        25.3 = (365 kun − 52 yakshanba − 9 bayram) ÷ 12 = 304 ÷ 12 ≈ 25.3<br>
+        📌 MK 208-modda — 9 ta ishlanmaydigan bayram kunlari ro'yxati belgilangan
+      </div>
+    </div>
+
+    <div class="formula-block">
+      <div class="formula-title">ISHLANGAN VAQTGA MUTANOSIB HISOBLASH</div>
+      <div class="formula-eq">
+        Ta'til kunlari = (Yillik ta'til ÷ <span class="num">12</span>) × <span class="highlight">To'liq ishlangan oylar</span>
+      </div>
+      <div class="formula-note">
+        📌 MK 221-modda: 15 va undan ko'p kun → 1 oy deb yaxlitlanadi. 15 kundan kam → chiqarib tashlanadi.<br>
+        <strong>Misol:</strong> 6 oy 20 kun ishlasa → 7 oyga yaxlitlanadi. Ta'til: (21÷12) × 7 = 12.25 → 12 kun
+      </div>
+    </div>
+
+    <!-- EXAMPLE -->
+    <div class="example-block">
+      <div class="example-title">📘 KITOB MISOLI (138-bet) — To'liq yechim</div>
+      <div style="font-size:12px;color:#94a3b8;margin-bottom:14px;">
+        Xodim: Oylik 2 000 000 so'm | Ovqat puli: 720 000 so'm/oy | Yil davomida mukofot: 3 000 000 so'm | 1 fevraldan 21 kunga ta'til
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">O'rtacha oylik hisoblash:<br>
+          (2 000 000 × 12 + 720 000 × 12 + 3 000 000) ÷ 12<br>
+          = 35 640 000 ÷ 12 = <strong>2 970 000 so'm</strong></div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">O'rtacha kunlik:<br>
+          2 970 000 ÷ 25.3 = <strong>117 391,30 so'm/kun</strong></div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">21 kundan 3 ta yakshanba ayiriladi → <strong>18 ish kuni</strong><br>
+          117 391,30 × 18 = <strong class="result">2 113 043 so'm</strong> (ta'til puli)</div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">JShDS (12%): 2 113 043 × 12% = <strong>253 565 so'm</strong></div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-body">INPS (JShDS dan 0.1%): 253 565 × 0.1% = <strong>254 so'm</strong><br>
+          JShDS davlatga: 253 565 − 254 = <strong>253 311 so'm</strong></div>
+        </div>
+        <div class="step">
+          <div class="step-num">6</div>
+          <div class="step-body">Xodim qo'liga: 2 113 043 − 253 565 = <span class="result">1 859 478 so'm ✅</span></div>
+        </div>
+        <div class="step">
+          <div class="step-num">7</div>
+          <div class="step-body">Korxonadan ijtimoiy soliq (12%): 2 113 043 × 12% = <strong>253 565 so'm</strong> (davlatga)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. PROVODKALAR -->
+  <div class="section" id="provodka">
+    <div class="section-header">
+      <div class="section-icon si-green">📒</div>
+      <div>
+        <h2>4. Buxgalteriya Yozuvlari (Provodkalar)</h2>
+        <span>2010, 6710, 6400, 6710, 5010 schyotlar</span>
+      </div>
+    </div>
+
+    <div class="provodka-block">
+      <div style="font-size:11px;color:var(--muted);margin-bottom:16px;font-weight:600;">
+        SCHYOTLAR: &nbsp;
+        <span style="color:#6ee7b7">2010</span> — Asosiy ishlab chiqarish xarajatlari &nbsp;|&nbsp;
+        <span style="color:#fca5a5">6710</span> — Xodimlarga ish haqi to'lash majburiyati &nbsp;|&nbsp;
+        <span style="color:#fcd34d">6420</span> — Byudjetga to'lovlar (JShDS) &nbsp;|&nbsp;
+        <span style="color:#67e8f9">6520</span> — Ijtimoiy sug'urta (hisoblangan) &nbsp;|&nbsp;
+        <span style="color:#f9a8d4">6530</span> — Ijtimoiy sug'urta (to'lash) &nbsp;|&nbsp;
+        <span style="color:#c4b5fd">5010/5110</span> — Kassa / Bank
+      </div>
+
+      <!-- ── HISOBLASH ── -->
+      <div style="font-size:10px;font-weight:700;color:#7c3aed;letter-spacing:2px;text-transform:uppercase;padding:10px 14px 4px;opacity:0.8;">▶ Hisoblash</div>
+
+      <div class="provodka-item">
+        <span class="deb">Deb 2010</span>
+        <span class="arrow">—</span>
+        <span class="kred">Kred 6710</span>
+        <span class="p-sum">2 113 043 so'm</span>
+        <span class="p-desc">Ishlab chiqarish xodimiga ta'til puli hisoblandi</span>
+      </div>
+      <div class="provodka-item">
+        <span class="deb">Deb 6710</span>
+        <span class="arrow">—</span>
+        <span class="kred">Kred 6420</span>
+        <span class="p-sum">253 565 so'm</span>
+        <span class="p-desc">JShDS (12%) hisoblandi — SK 387-modda, 374-modda</span>
+      </div>
+      <div class="provodka-item">
+        <span class="deb">Deb 6420</span>
+        <span class="arrow">—</span>
+        <span class="kred">Kred 6530</span>
+        <span class="p-sum">2 114 so'm</span>
+        <span class="p-desc">INPS hisoblandi (JShDS summasidan 0.1%)</span>
+      </div>
+      <div class="provodka-item">
+        <span class="deb">Deb 2010</span>
+        <span class="arrow">—</span>
+        <span class="kred">Kred 6520</span>
+        <span class="p-sum">253 565 so'm</span>
+        <span class="p-desc">Ijtimoiy soliq (korxonadan 12%) hisoblandi — SK 403-modda</span>
+      </div>
+
+      <!-- ── TO'LASH ── -->
+      <div style="font-size:10px;font-weight:700;color:#06b6d4;letter-spacing:2px;text-transform:uppercase;padding:10px 14px 4px;opacity:0.8;">▶ To'lash</div>
+
+      <div class="provodka-item">
+        <span class="deb">Deb 6710</span>
+        <span class="arrow">—</span>
+        <span class="kred">Kred 5010/5110</span>
+        <span class="p-sum">1 859 478 so'm</span>
+        <span class="p-desc">Xodimning ta'til (otpuska) puli to'landi (kassa yoki bank orqali)</span>
+      </div>
+      <div class="provodka-item">
+        <span class="deb">Deb 6420</span>
+        <span class="arrow">—</span>
+        <span class="kred">Kred 5110</span>
+        <span class="p-sum">251 451 so'm</span>
+        <span class="p-desc">JShDS davlatga o'tkazildi (bank orqali)</span>
+      </div>
+      <div class="provodka-item">
+        <span class="deb">Deb 6530</span>
+        <span class="arrow">—</span>
+        <span class="kred">Kred 5110</span>
+        <span class="p-sum">2 114 so'm</span>
+        <span class="p-desc">INPS bank orqali to'landi</span>
+      </div>
+      <div class="provodka-item">
+        <span class="deb">Deb 6520</span>
+        <span class="arrow">—</span>
+        <span class="kred">Kred 5110</span>
+        <span class="p-sum">253 565 so'm</span>
+        <span class="p-desc">Ijtimoiy soliq bank orqali to'landi</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. QONUNLAR -->
+  <div class="section" id="qonun">
+    <div class="section-header">
+      <div class="section-icon si-orange">⚖️</div>
+      <div>
+        <h2>5. Qonuniy Asoslar — Moddalar va Qarorlar</h2>
+        <span>Mehnat Kodeksi · Soliq Kodeksi · Qarorlar · 2026 yil holatida</span>
+      </div>
+    </div>
+
+    <div class="law-block">
+      <div class="law-item">
+        <div class="law-ref">
+          <span>MK 217-modda</span>
+          <span class="law-source">Mehnat Kodeksi</span>
+        </div>
+        <div class="law-text">Yillik asosiy ta'til kamida <strong>21 kalendar kun</strong>. 18 yoshga to'lmagan va I–II guruh nogironlarga — <strong>30 kalendar kun</strong> uzaytirilgan ta'til beriladi.</div>
+      </div>
+      <div class="law-item">
+        <div class="law-ref">
+          <span>MK 219-modda</span>
+          <span class="law-source">Mehnat Kodeksi</span>
+        </div>
+        <div class="law-text">Qo'shimcha ta'til: noqulay sharoit, og'ir ishlar, 14 yoshgacha (nogironda 16 yoshgacha) bolali ayollar, ko'p yillik staj uchun qo'shimcha ta'til beriladi.</div>
+      </div>
+      <div class="law-item">
+        <div class="law-ref">
+          <span>MK 220-modda</span>
+          <span class="law-source">Mehnat Kodeksi</span>
+        </div>
+        <div class="law-text">Bitta tashkilotda <strong>har 5 yil</strong> uchun +2 kalendar kun qo'shimcha ta'til, lekin jami <strong>8 kundan oshmasligi</strong> kerak.</div>
+      </div>
+      <div class="law-item">
+        <div class="law-ref">
+          <span>MK 221-modda</span>
+          <span class="law-source">Mehnat Kodeksi</span>
+        </div>
+        <div class="law-text">Ta'til muddati <strong>kalendar kunlarda</strong> hisoblanadi. Ishlangan vaqtga mutanosib hisoblashda: yillik ta'til ÷ 12 × to'liq oylar. <strong>15 kun va undan ko'p → 1 oy</strong>, 15 kundan kam → chiqariladi.</div>
+      </div>
+      <div class="law-item">
+        <div class="law-ref">
+          <span>MK 233-modda</span>
+          <span class="law-source">Mehnat Kodeksi</span>
+        </div>
+        <div class="law-text"><strong>O'RQ-1030-sonli Qonun</strong> bilan kiritilgan o'zgartirish: ta'til uchun haq to'lashda <strong>yakshanba kuni hisobga olinmaydi</strong>. Pedagoglar uchun ham yakshanba va bayram kunlari ta'til kuniga kirmaydi.</div>
+      </div>
+      <div class="law-item">
+        <div class="law-ref">
+          <span>MK 257-modda</span>
+          <span class="law-source">Mehnat Kodeksi</span>
+        </div>
+        <div class="law-text">O'rtacha ish haqi hisoblash tartibi: oxirgi <strong>12 kalendar oy</strong> daromadlari ÷ 12 ÷ 25.3. Ta'til puli ta'til boshlanishidan oldingi <strong>oxirgi ish kuni</strong> to'lanadi.</div>
+      </div>
+      <div class="law-item">
+        <div class="law-ref">
+          <span>SK 374-modda</span>
+          <span class="law-source">Soliq Kodeksi</span>
+        </div>
+        <div class="law-text">Ta'til uchun hisoblangan haq — <strong>ishlanmagan vaqt uchun to'langan mehnatga haq</strong> tarzidagi daromad sifatida JShDS va ijtimoiy soliqqa tortiladi.</div>
+      </div>
+      <div class="law-item">
+        <div class="law-ref">
+          <span>SK 387-modda</span>
+          <span class="law-source">Soliq Kodeksi</span>
+        </div>
+        <div class="law-text"><strong>JShDS stavkasi — 12%</strong> (2026 yil holatida o'zgarishsiz). Jismoniy shaxslar daromadidan ish beruvchi tomonidan ushlab qolinadi va davlatga o'tkaziladi.</div>
+      </div>
+      <div class="law-item">
+        <div class="law-ref">
+          <span>SK 403-modda</span>
+          <span class="law-source">Soliq Kodeksi</span>
+        </div>
+        <div class="law-text"><strong>Ijtimoiy soliq:</strong> Budjet tashkilotlari — <strong>25%</strong>, boshqa korxonalar — <strong>12%</strong> (korxona hisabidan, xodim emas). Ta'til pulidan ham hisoblanadi.</div>
+      </div>
+      <div class="law-item">
+        <div class="law-ref">
+          <span>MK 208-modda</span>
+          <span class="law-source">Mehnat Kodeksi</span>
+        </div>
+        <div class="law-text">Ishlanmaydigan <strong>9 ta bayram kuni</strong>: 1-yanvar, 14-mart, 21-mart, 9-may, 1-sentabr, 31-avgustdan 1-sentabrga o'tar kecha, 1-oktabr, 8-dekabr va boshqalar.</div>
+      </div>
+      <div class="law-item">
+        <div class="law-ref">
+          <span>O'RQ-1030</span>
+          <span class="law-source">O'zbekiston Respublikasi Qonuni</span>
+        </div>
+        <div class="law-text">Mehnat kodeksiga kiritilgan o'zgartirish — <strong>MK 233-modda yangi tahrir</strong>: ta'til vaqti uchun haq to'lashda yakshanba kuni inobatga olinmaydi.</div>
+      </div>
+      <div class="law-item">
+        <div class="law-ref">
+          <span>VMQ 263-2023</span>
+          <span class="law-source">Vazirlar Mahkamasi Qarori · 26.06.2023</span>
+        </div>
+        <div class="law-text">Pedagoglar uchun yillik uzaytirilgan ta'til me'yorlari belgilandi. Pedagog xodimlarga ta'til uchun haq to'lashda <strong>yakshanba va bayram kunlari</strong> hisobga olinmaydi.</div>
+      </div>
+      <div class="law-item">
+        <div class="law-ref">
+          <span>O'RQ-1117 · 2026</span>
+          <span class="law-source">O'zbekiston Qonuni · 05.02.2026</span>
+        </div>
+        <div class="law-text">Soliq kodeksining 16-moddasiga 2026 yil 5-fevraldagi yangi tahrir kiritildi — soliq munosabatlarini tartibga soluvchi qoidalar yangilandi.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. KALKULYATOR -->
+  <div class="section" id="kalkulyator">
+    <div class="section-header">
+      <div class="section-icon si-orange">🧮</div>
+      <div>
+        <h2>6. Mehnat Ta'tili Kalkulyatori</h2>
+        <span>MK 257-modda · JShDS 12% · Ijtimoiy soliq 12%/25% · 2026 yil</span>
+      </div>
+    </div>
+
+    <style>
+      .kalk-wrap {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        overflow: hidden;
+      }
+      .kalk-tabs {
+        display: flex;
+        border-bottom: 1px solid var(--border);
+      }
+      .kalk-tab {
+        flex: 1;
+        padding: 14px;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        color: var(--muted);
+        background: transparent;
+        border: none;
+        transition: all 0.2s;
+        letter-spacing: 0.5px;
+      }
+      .kalk-tab.active {
+        color: #c4b5fd;
+        background: rgba(124,58,237,0.12);
+        border-bottom: 2px solid #7c3aed;
+      }
+      .kalk-tab:hover:not(.active) { background: rgba(255,255,255,0.03); }
+      .kalk-body { padding: 28px; }
+      .kalk-panel { display: none; }
+      .kalk-panel.active { display: block; }
+
+      .inp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px; }
+      .inp-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+      @media(max-width:600px){ .inp-grid, .inp-grid-3 { grid-template-columns: 1fr; } }
+
+      .inp-group { display: flex; flex-direction: column; gap: 6px; }
+      .inp-label {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .inp-field {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 10px;
+        padding: 11px 14px;
+        font-size: 14px;
+        font-family: 'Fira Code', monospace;
+        font-weight: 600;
+        color: var(--white);
+        outline: none;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        width: 100%;
+      }
+      .inp-field:focus {
+        border-color: rgba(124,58,237,0.6);
+        box-shadow: 0 0 0 3px rgba(124,58,237,0.12);
+      }
+      .inp-field::placeholder { color: rgba(148,163,184,0.5); font-weight: 400; }
+      select.inp-field { cursor: pointer; }
+
+      .kalk-btn {
+        width: 100%;
+        padding: 14px;
+        border-radius: 12px;
+        border: none;
+        background: linear-gradient(135deg, #7c3aed, #ec4899);
+        color: white;
+        font-size: 14px;
+        font-weight: 800;
+        font-family: 'Montserrat', sans-serif;
+        cursor: pointer;
+        transition: opacity 0.2s, transform 0.1s;
+        letter-spacing: 0.5px;
+        margin-top: 6px;
+      }
+      .kalk-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+      .kalk-btn:active { transform: translateY(0); }
+
+      .result-box {
+        margin-top: 22px;
+        background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(236,72,153,0.07));
+        border: 1px solid rgba(124,58,237,0.3);
+        border-radius: 16px;
+        padding: 22px;
+        display: none;
+      }
+      .result-box.show { display: block; }
+      .result-title {
+        font-size: 11px;
+        font-weight: 700;
+        color: #c4b5fd;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .result-rows { display: flex; flex-direction: column; gap: 8px; }
+      .result-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 14px;
+        border-radius: 10px;
+        background: rgba(255,255,255,0.03);
+        font-size: 13px;
+      }
+      .result-row.highlight {
+        background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(6,182,212,0.1));
+        border: 1px solid rgba(16,185,129,0.3);
+      }
+      .result-row.minus { background: rgba(239,68,68,0.07); border: 1px solid rgba(239,68,68,0.18); }
+      .result-row.total {
+        background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(236,72,153,0.15));
+        border: 1px solid rgba(124,58,237,0.4);
+        font-weight: 800;
+      }
+      .r-label { color: #94a3b8; font-size: 12px; }
+      .r-val { color: var(--white); font-family: 'Fira Code', monospace; font-weight: 700; font-size: 14px; }
+      .r-val.green { color: #6ee7b7; }
+      .r-val.red { color: #fca5a5; }
+      .r-val.purple { color: #c4b5fd; font-size: 16px; }
+
+      .steps-mini { margin-top: 16px; }
+      .step-mini {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 8px;
+        font-size: 12px;
+        color: #94a3b8;
+        align-items: flex-start;
+        line-height: 1.6;
+      }
+      .sn { color: #7c3aed; font-weight: 800; min-width: 18px; }
+
+      .inp-hint { font-size: 11px; color: rgba(148,163,184,0.6); margin-top: 3px; }
+
+      .months-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 12px; }
+      .months-table th { padding: 8px 10px; background: rgba(124,58,237,0.15); color: #c4b5fd; font-size: 11px; font-weight: 700; text-align: left; }
+      .months-table td { padding: 6px 10px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+      .months-table input { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 5px 8px; color: white; font-family: 'Fira Code', monospace; font-size: 12px; outline: none; }
+      .months-table input:focus { border-color: rgba(124,58,237,0.5); }
+    </style>
+
+    <div class="kalk-wrap">
+      <div class="kalk-tabs">
+        <button class="kalk-tab active" onclick="switchTab('oddiy', this)">⚡ Oddiy Hisob</button>
+        <button class="kalk-tab" onclick="switchTab('toliq', this)">📊 To'liq (12 oy)</button>
+        <button class="kalk-tab" onclick="switchTab('mutanosib', this)">📅 Mutanosib</button>
+      </div>
+
+      <div class="kalk-body">
+
+        <!-- ODDIY -->
+        <div class="kalk-panel active" id="panel-oddiy">
+          <div class="inp-grid">
+            <div class="inp-group">
+              <label class="inp-label">Oylik maosh (so'm)</label>
+              <input class="inp-field" id="o-maosh" type="number" placeholder="3 000 000">
+            </div>
+            <div class="inp-group">
+              <label class="inp-label">Ovqat / boshqa to'lov (so'm/oy)</label>
+              <input class="inp-field" id="o-ovqat" type="number" placeholder="500 000">
+            </div>
+            <div class="inp-group">
+              <label class="inp-label">Yillik mukofot (so'm, jami)</label>
+              <input class="inp-field" id="o-mukofot" type="number" placeholder="2 000 000">
+            </div>
+            <div class="inp-group">
+              <label class="inp-label">Ta'til kalendar kunlari</label>
+              <input class="inp-field" id="o-kun" type="number" placeholder="21">
+            </div>
+            <div class="inp-group">
+              <label class="inp-label">Shundan yakshanba kunlari</label>
+              <input class="inp-field" id="o-yaksh" type="number" placeholder="3">
+            </div>
+            <div class="inp-group">
+              <label class="inp-label">Tashkilot turi</label>
+              <select class="inp-field" id="o-torg">
+                <option value="12">Tijoriy (ijt. soliq 12%)</option>
+                <option value="25">Budjet (ijt. soliq 25%)</option>
+              </select>
+            </div>
+          </div>
+          <button class="kalk-btn" onclick="hisoblash_oddiy()">🧮 Hisoblash</button>
+
+          <div class="result-box" id="res-oddiy">
+            <div class="result-title">✅ Hisoblash Natijalari</div>
+            <div class="result-rows" id="rows-oddiy"></div>
+            <div class="steps-mini" id="steps-oddiy"></div>
+          </div>
+        </div>
+
+        <!-- TO'LIQ 12 OY -->
+        <div class="kalk-panel" id="panel-toliq">
+          <p style="font-size:12px;color:var(--muted);margin-bottom:14px;">Har oyning haqiqiy hisoblangan maoshini kiriting (MK 257-modda bo'yicha):</p>
+          <table class="months-table" id="months-tbl">
+            <thead><tr><th>Oy</th><th>Maosh (so'm)</th><th>Mukofot (so'm)</th><th>Qo'shimcha to'lov (so'm)</th></tr></thead>
+            <tbody id="months-body"></tbody>
+          </table>
+          <div class="inp-grid inp-grid-3" style="margin-bottom:14px;">
+            <div class="inp-group">
+              <label class="inp-label">Ta'til kunlari (kalendar)</label>
+              <input class="inp-field" id="t-kun" type="number" placeholder="21">
+            </div>
+            <div class="inp-group">
+              <label class="inp-label">Yakshanba kunlari</label>
+              <input class="inp-field" id="t-yaksh" type="number" placeholder="3">
+            </div>
+            <div class="inp-group">
+              <label class="inp-label">Tashkilot turi</label>
+              <select class="inp-field" id="t-torg">
+                <option value="12">Tijoriy 12%</option>
+                <option value="25">Budjet 25%</option>
+              </select>
+            </div>
+          </div>
+          <button class="kalk-btn" onclick="hisoblash_toliq()">🧮 Hisoblash</button>
+          <div class="result-box" id="res-toliq">
+            <div class="result-title">✅ Hisoblash Natijalari</div>
+            <div class="result-rows" id="rows-toliq"></div>
+          </div>
+        </div>
+
+        <!-- MUTANOSIB -->
+        <div class="kalk-panel" id="panel-mutanosib">
+          <p style="font-size:12px;color:var(--muted);margin-bottom:16px;">Xodim yil to'liq ishlamagan bo'lsa — ishlangan vaqtga mutanosib ta'til kunlarini hisoblang (MK 221-modda):</p>
+          <div class="inp-grid">
+            <div class="inp-group">
+              <label class="inp-label">Ishlangan oy soni</label>
+              <input class="inp-field" id="m-oy" type="number" placeholder="6">
+            </div>
+            <div class="inp-group">
+              <label class="inp-label">Ishlangan qo'shimcha kunlar</label>
+              <input class="inp-field" id="m-kun" type="number" placeholder="20">
+              <span class="inp-hint">15 kun ≥ → 1 oyga qo'shiladi | 15 kundan kam → chiqariladi</span>
+            </div>
+            <div class="inp-group">
+              <label class="inp-label">Yillik ta'til (kalendar kun)</label>
+              <input class="inp-field" id="m-yillik" type="number" placeholder="21">
+            </div>
+            <div class="inp-group">
+              <label class="inp-label">Oylik o'rtacha maosh (so'm)</label>
+              <input class="inp-field" id="m-maosh" type="number" placeholder="3 000 000">
+            </div>
+          </div>
+          <button class="kalk-btn" onclick="hisoblash_mutanosib()">🧮 Hisoblash</button>
+          <div class="result-box" id="res-mutanosib">
+            <div class="result-title">✅ Hisoblash Natijalari</div>
+            <div class="result-rows" id="rows-mutanosib"></div>
+            <div class="steps-mini" id="steps-mutanosib"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script>
+    // Months table init
+    const oylar = ['Yanvar','Fevral','Mart','Aprel','May','Iyun','Iyul','Avgust','Sentabr','Oktabr','Noyabr','Dekabr'];
+    const tbody = document.getElementById('months-body');
+    oylar.forEach((oy, i) => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td style="color:#94a3b8;font-weight:600">${oy}</td>
+        <td><input type="number" id="m${i}-maosh" placeholder="0"></td>
+        <td><input type="number" id="m${i}-mukofot" placeholder="0"></td>
+        <td><input type="number" id="m${i}-qosh" placeholder="0"></td>`;
+      tbody.appendChild(tr);
+    });
+
+    function switchTab(tab, el) {
+      document.querySelectorAll('.kalk-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.kalk-panel').forEach(p => p.classList.remove('active'));
+      if (el) el.classList.add('active');
+      document.getElementById('panel-' + tab).classList.add('active');
+    }
+
+    function fmt(n) {
+      return Math.round(n).toLocaleString('uz-UZ') + ' so\'m';
+    }
+
+    function showRows(containerId, rows) {
+      const el = document.getElementById(containerId);
+      el.innerHTML = rows.map(r => `
+        <div class="result-row ${r.cls||''}">
+          <span class="r-label">${r.label}</span>
+          <span class="r-val ${r.valcls||''}">${r.val}</span>
+        </div>`).join('');
+    }
+
+    function hisoblash_oddiy() {
+      const maosh = +document.getElementById('o-maosh').value || 0;
+      const ovqat = +document.getElementById('o-ovqat').value || 0;
+      const mukofot = +document.getElementById('o-mukofot').value || 0;
+      const kunKalend = +document.getElementById('o-kun').value || 21;
+      const yaksh = +document.getElementById('o-yaksh').value || 0;
+      const ijtSoliqP = +document.getElementById('o-torg').value;
+
+      const jami12 = maosh * 12 + ovqat * 12 + mukofot;
+      const ortachaOylik = jami12 / 12;
+      const ortachaKunlik = ortachaOylik / 25.3;
+      const ishKunlari = kunKalend - yaksh;
+      const tatilPuli = ortachaKunlik * ishKunlari;
+      const JShDS = tatilPuli * 0.12;
+      const INPS = JShDS * 0.001;
+      const JShDS_davlat = JShDS - INPS;
+      const qolga = tatilPuli - JShDS;
+      const ijtSoliq = tatilPuli * (ijtSoliqP / 100);
+
+      const res = document.getElementById('res-oddiy');
+      res.classList.add('show');
+      showRows('rows-oddiy', [
+        {label: '12 oylik jami daromad', val: fmt(jami12)},
+        {label: 'O\'rtacha oylik ish haqi', val: fmt(ortachaOylik)},
+        {label: 'O\'rtacha kunlik (÷ 25.3)', val: fmt(ortachaKunlik) + '/kun'},
+        {label: `Ish kunlari (${kunKalend} − ${yaksh} yakshanba)`, val: `${ishKunlari} kun`},
+        {label: 'Hisoblangan ta\'til puli', val: fmt(tatilPuli), cls:'highlight', valcls:'green'},
+        {label: 'JShDS ushlanadi (12%) — SK 387', val: '− ' + fmt(JShDS), cls:'minus', valcls:'red'},
+        {label: '  ↳ Shundan INPS (0.1%) — xodim hisobidan', val: fmt(INPS), cls:'minus'},
+        {label: "  ↳ Davlatga o'tkaziladigan JShDS (INPSdan keyin)", val: fmt(JShDS_davlat)},
+        {label: "Xodim qo'liga beriladi (JShDS ushlanganidan keyin)", val: fmt(qolga), cls:'total', valcls:'purple'},
+        {label: `Korxona to'laydigan ijtimoiy soliq (${ijtSoliqP}%) — bank orqali davlatga`, val: fmt(ijtSoliq), cls:'minus'},
+        {label: 'Korxonaning umumiy xarajati', val: fmt(tatilPuli + ijtSoliq)},
+      ]);
+
+      document.getElementById('steps-oddiy').innerHTML = `
+        <div style="font-size:11px;color:#64748b;margin-top:12px;font-family:'Fira Code',monospace;line-height:2;">
+          (${Math.round(maosh*12).toLocaleString()} + ${Math.round(ovqat*12).toLocaleString()} + ${Math.round(mukofot).toLocaleString()}) ÷ 12 = ${Math.round(ortachaOylik).toLocaleString()} so'm/oy<br>
+          ${Math.round(ortachaOylik).toLocaleString()} ÷ 25.3 = ${Math.round(ortachaKunlik).toLocaleString()} so'm/kun<br>
+          ${Math.round(ortachaKunlik).toLocaleString()} × ${ishKunlari} kun = ${Math.round(tatilPuli).toLocaleString()} so'm<br>
+          JShDS: ${Math.round(tatilPuli).toLocaleString()} × 12% = ${Math.round(JShDS).toLocaleString()} so'm<br>
+          INPS: ${Math.round(JShDS).toLocaleString()} × 0.1% = ${Math.round(INPS).toLocaleString()} so'm
+        </div>`;
+    }
+
+    function hisoblash_toliq() {
+      let jami = 0;
+      for (let i = 0; i < 12; i++) {
+        jami += (+document.getElementById(`m${i}-maosh`).value || 0)
+              + (+document.getElementById(`m${i}-mukofot`).value || 0)
+              + (+document.getElementById(`m${i}-qosh`).value || 0);
+      }
+      const kunKalend = +document.getElementById('t-kun').value || 21;
+      const yaksh = +document.getElementById('t-yaksh').value || 0;
+      const ijtSoliqP = +document.getElementById('t-torg').value;
+
+      const ortachaOylik = jami / 12;
+      const ortachaKunlik = ortachaOylik / 25.3;
+      const ishKunlari = kunKalend - yaksh;
+      const tatilPuli = ortachaKunlik * ishKunlari;
+      const JShDS = tatilPuli * 0.12;
+      const INPS = JShDS * 0.001;
+      const JShDS_davlat = JShDS - INPS;
+      const qolga = tatilPuli - JShDS;
+      const ijtSoliq = tatilPuli * (ijtSoliqP / 100);
+
+      const res = document.getElementById('res-toliq');
+      res.classList.add('show');
+      showRows('rows-toliq', [
+        {label: '12 oylik jami daromad (kiritilgan)', val: fmt(jami)},
+        {label: 'O\'rtacha oylik (÷ 12)', val: fmt(ortachaOylik)},
+        {label: 'O\'rtacha kunlik (÷ 25.3)', val: fmt(ortachaKunlik) + '/kun'},
+        {label: `Ish kunlari (${kunKalend} − ${yaksh} yakshanba)`, val: `${ishKunlari} kun`},
+        {label: 'Hisoblangan ta\'til puli', val: fmt(tatilPuli), cls:'highlight', valcls:'green'},
+        {label: 'JShDS (12%) — SK 387', val: '− ' + fmt(JShDS), cls:'minus', valcls:'red'},
+        {label: '  ↳ Shundan INPS (0.1%) — xodim hisobidan', val: fmt(INPS), cls:'minus'},
+        {label: "  ↳ Davlatga o'tkaziladigan JShDS (INPSdan keyin)", val: fmt(JShDS_davlat)},
+        {label: "Xodim qo'liga beriladi (JShDS ushlanganidan keyin)", val: fmt(qolga), cls:'total', valcls:'purple'},
+        {label: `Korxona to'laydigan ijtimoiy soliq (${ijtSoliqP}%) — bank orqali davlatga`, val: fmt(ijtSoliq), cls:'minus'},
+        {label: 'Korxonaning umumiy xarajati', val: fmt(tatilPuli + ijtSoliq)},
+      ]);
+    }
+
+    function hisoblash_mutanosib() {
+      let oylar_son = +document.getElementById('m-oy').value || 0;
+      const qoshKun = +document.getElementById('m-kun').value || 0;
+      const yillikKun = +document.getElementById('m-yillik').value || 21;
+      const maosh = +document.getElementById('m-maosh').value || 0;
+
+      // Yaxlitlash MK 221
+      let tolovOy = oylar_son;
+      if (qoshKun >= 15) tolovOy += 1;
+
+      const kunUlush = yillikKun / 12;
+      const tatilKun = kunUlush * tolovOy;
+      const ortachaKunlik = maosh / 25.3;
+      const tatilPuli = ortachaKunlik * tatilKun;
+      const JShDS = tatilPuli * 0.12;
+      const INPS = JShDS * 0.001;
+      const JShDS_davlat = JShDS - INPS;
+      const qolga = tatilPuli - JShDS;
+
+      const res = document.getElementById('res-mutanosib');
+      res.classList.add('show');
+      showRows('rows-mutanosib', [
+        {label: `Ishlangan davr`, val: `${oylar_son} oy ${qoshKun} kun`},
+        {label: `Hisoblash uchun oylar (MK 221)`, val: `${tolovOy} oy ${qoshKun >= 15 ? '(+1 oy yaxlitlandi ✅)' : '(kun chiqarildi)'}`},
+        {label: `1 oylik ta'til ulushi (${yillikKun} ÷ 12)`, val: `${kunUlush.toFixed(2)} kun`},
+        {label: 'Hisoblangan ta\'til kunlari', val: `${Math.round(tatilKun)} kun`, cls:'highlight', valcls:'green'},
+        {label: 'O\'rtacha kunlik ish haqi', val: fmt(ortachaKunlik) + '/kun'},
+        {label: 'Ta\'til puli', val: fmt(tatilPuli), cls:'highlight', valcls:'green'},
+        {label: 'JShDS (12%)', val: '− ' + fmt(JShDS), cls:'minus', valcls:'red'},
+        {label: '  ↳ Shundan INPS (0.1%) — xodim hisobidan', val: fmt(INPS), cls:'minus'},
+        {label: "  ↳ Davlatga o'tkaziladigan JShDS (INPSdan keyin)", val: fmt(JShDS_davlat)},
+        {label: "Xodim qo'liga beriladi (JShDS ushlanganidan keyin)", val: fmt(qolga), cls:'total', valcls:'purple'},
+      ]);
+
+      document.getElementById('steps-mutanosib').innerHTML = `
+        <div style="font-size:11px;color:#64748b;margin-top:12px;font-family:'Fira Code',monospace;line-height:2;">
+          ${yillikKun} ÷ 12 = ${kunUlush.toFixed(2)} kun (oylik ulush)<br>
+          ${kunUlush.toFixed(2)} × ${tolovOy} oy = ${tatilKun.toFixed(2)} kun<br>
+          ${Math.round(maosh).toLocaleString()} ÷ 25.3 = ${Math.round(ortachaKunlik).toLocaleString()} so'm/kun<br>
+          ${Math.round(ortachaKunlik).toLocaleString()} × ${Math.round(tatilKun)} = ${Math.round(tatilPuli).toLocaleString()} so'm<br>
+          JShDS: ${Math.round(tatilPuli).toLocaleString()} × 12% = ${Math.round(JShDS).toLocaleString()} so'm<br>
+          INPS: ${Math.round(JShDS).toLocaleString()} × 0.1% = ${Math.round(INPS).toLocaleString()} so'm
+        </div>`;
+    }
+    </script>
+  </div>
+
+  <!-- 7. ESLATMALAR -->
+  <div class="section" id="eslatma">
+    <div class="section-header">
+      <div class="section-icon si-red">⚠️</div>
+      <div>
+        <h2>7. Muhim Eslatmalar va Xatolar</h2>
+        <span>Buxgalterlar ko'p qiladigan xatolar</span>
+      </div>
+    </div>
+
+    <div class="warn-block">
+      <div class="warn-item">
+        <div class="warn-icon">❌</div>
+        <div><strong style="color:#fca5a5">Xato:</strong> Ta'til pulini oylik maoshga teng deb hisoblash. <strong style="color:#6ee7b7">To'g'ri:</strong> Har doim o'rtacha kunlik ish haqi × ish kunlari formulasidan foydalanish.</div>
+      </div>
+      <div class="warn-item">
+        <div class="warn-icon">❌</div>
+        <div><strong style="color:#fca5a5">Xato:</strong> Yakshanba va bayram kunlarini ta'til kuniga qo'shish. <strong style="color:#6ee7b7">To'g'ri:</strong> O'RQ-1030 va MK 233-modda bo'yicha faqat ish kunlari hisoblanadi.</div>
+      </div>
+      <div class="warn-item">
+        <div class="warn-icon">❌</div>
+        <div><strong style="color:#fca5a5">Xato:</strong> 29.3 koeffitsientdan foydalanish. <strong style="color:#6ee7b7">To'g'ri:</strong> O'zbekistonda <strong>25.3</strong> — chunki O'zbekistonda 9 ta bayram kuni bor (Rossiyada 14 ta, shuning uchun ular 29.3 ishlatadi).</div>
+      </div>
+      <div class="warn-item">
+        <div class="warn-icon">✅</div>
+        <div><strong style="color:#6ee7b7">Shart:</strong> Ta'til puli xodim ketishidan kamida <strong>oxirgi ish kunida to'lanishi</strong> shart. Kechiktirish — MK buzilishi.</div>
+      </div>
+      <div class="warn-item">
+        <div class="warn-icon">✅</div>
+        <div><strong style="color:#6ee7b7">Soliq:</strong> Ta'til puliga ham <strong>JShDS 12%</strong> va korxonadan <strong>ijtimoiy soliq 12%</strong> (budjet — 25%) hisoblanadi. (SK 374, 387, 403-moddalar)</div>
+      </div>
+      <div class="warn-item">
+        <div class="warn-icon">✅</div>
+        <div><strong style="color:#6ee7b7">Kompensatsiya:</strong> Xodim ishdan bo'shatilganda foydalanmagan ta'tili uchun <strong>pul kompensatsiyasi</strong> to'lanadi. MK 268-modda.</div>
+      </div>
+      <div class="warn-item">
+        <div class="warn-icon">✅</div>
+        <div><strong style="color:#6ee7b7">Hujjatlar:</strong> Ta'til uchun: <strong>1) Xodim arizasi → 2) Rahbar buyrug'i (prikaz) → 3) T-60 hisob-varaqasi → 4) T-2 shaxsiy karta belgilash</strong></div>
+      </div>
+      <div class="warn-item">
+        <div class="warn-icon">📌</div>
+        <div><strong style="color:#fcd34d">2026 yangilik:</strong> JShDS 12%, ijtimoiy soliq 12%/25% stavkalar o'zgarishsiz saqlanadi. (Iqtisodiyot va moliya vazirligi, 2025 yil noyabr)</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong>Mehnat Ta'tili Hisob-Kitobi</strong> · To'liq Buxgalteriya Qo'llanmasi<br>
+  Kitob 136–145 betlar + Mehnat Kodeksi + Soliq Kodeksi asosida tuzilgan<br>
+  <span style="color:rgba(148,163,184,0.5)">2026 yil may holatida · O'zbekiston Respublikasi qonunchiligiga mos</span>
+</div>
+
+
+<!-- CHAT BUTTON -->
+<button class="support-fab" onclick="chatToggle()" title="Yordam va Chat" id="chatFab">
+  💬<span id="chatBadge" style="display:none;position:absolute;top:-4px;right:-4px;background:#FF6B6B;color:#fff;border-radius:50%;width:18px;height:18px;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center"></span>
+</button>
+
+<!-- CHAT WINDOW -->
+<div id="chatWindow" style="display:none;position:fixed;bottom:90px;right:24px;z-index:998;width:320px;background:#1A1435;border:1px solid rgba(108,63,232,0.35);border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.6)">
+  <!-- Header -->
+  <div style="padding:14px 16px;background:linear-gradient(135deg,rgba(108,63,232,0.3),rgba(0,201,167,0.1));display:flex;align-items:center;justify-content:space-between">
+    <div>
+      <div style="font-family:Unbounded,sans-serif;font-size:11px;font-weight:700;color:#9B7BFF">💬 MOLIYA STUDIYASI</div>
+      <div style="font-size:11px;color:rgba(240,236,255,0.5);margin-top:2px">Yordam xizmati</div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <a href="https://t.me/ynurov" target="_blank" style="width:30px;height:30px;border-radius:50%;background:rgba(0,136,204,0.2);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:15px" title="Telegram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.92c-.12.56-.48.7-.96.44l-2.64-1.94-1.28 1.22c-.14.14-.26.26-.52.26l.18-2.66 4.74-4.28c.2-.18-.04-.28-.32-.1L7.4 14.48l-2.58-.8c-.56-.18-.58-.56.12-.82l10.08-3.88c.46-.18.88.1.62.82z" fill="#0088cc"/></svg>
+      </a>
+      <a href="mailto:yahyonurov05@gmail.com" style="width:30px;height:30px;border-radius:50%;background:rgba(234,67,53,0.2);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:15px" title="Gmail">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="#EA4335"/></svg>
+      </a>
+      <button onclick="chatToggle()" style="width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.08);border:none;color:#F0ECFF;font-size:16px;cursor:pointer">×</button>
+    </div>
+  </div>
+  <!-- Messages -->
+  <div id="chatMessages" style="height:260px;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px">
+    <div style="text-align:center;color:rgba(240,236,255,0.3);font-size:12px;padding:20px 0">Xabarlar yuklanmoqda...</div>
+  </div>
+  <!-- Emoji bar -->
+  <div style="padding:8px 12px;border-top:1px solid rgba(255,255,255,0.06);display:flex;gap:6px">
+    <span onclick="emojiQosh('👍')" style="cursor:pointer;font-size:18px">👍</span>
+    <span onclick="emojiQosh('🙏')" style="cursor:pointer;font-size:18px">🙏</span>
+    <span onclick="emojiQosh('✅')" style="cursor:pointer;font-size:18px">✅</span>
+    <span onclick="emojiQosh('❓')" style="cursor:pointer;font-size:18px">❓</span>
+    <span onclick="emojiQosh('😊')" style="cursor:pointer;font-size:18px">😊</span>
+    <span onclick="emojiQosh('📚')" style="cursor:pointer;font-size:18px">📚</span>
+    <span onclick="emojiQosh('💡')" style="cursor:pointer;font-size:18px">💡</span>
+    <span onclick="emojiQosh('🔥')" style="cursor:pointer;font-size:18px">🔥</span>
+  </div>
+  <!-- Input -->
+  <div style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.08);display:flex;gap:8px">
+    <input id="chatInput" type="text" placeholder="Xabar yozing..." style="flex:1;padding:9px 12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:#F0ECFF;font-size:13px;font-family:Onest,sans-serif;outline:none"
+      onkeypress="if(event.key==='Enter')chatYuborish()">
+    <button onclick="chatYuborish()" style="padding:9px 14px;background:linear-gradient(135deg,#6C3FE8,#9B7BFF);border:none;border-radius:10px;color:#fff;font-size:13px;font-weight:700;cursor:pointer">→</button>
+  </div>
+</div>
+
+<script>
+const SB_URL='https://dovhuxkzctjvlhwhcveg.supabase.co';
+const SB_KEY='sb_publishable_zJkKgBt7pT4ZMINElu0A4Q_0_L3TC1G';
+const sbChat=supabase.createClient(SB_URL,SB_KEY);
+
+function chatToggle(){
+  const w=document.getElementById('chatWindow');
+  const open=w.style.display==='none';
+  w.style.display=open?'block':'none';
+  if(open){chatXabarlarYukla();chatBadgeYangi();}
+}
+
+function emojiQosh(e){
+  const input=document.getElementById('chatInput');
+  input.value+=e;input.focus();
+}
+
+function chatXabarlarRender(data){
+  const box=document.getElementById('chatMessages');
+  if(!data||data.length===0){
+    box.innerHTML='<div style="text-align:center;color:rgba(240,236,255,0.3);font-size:12px;padding:20px 0">Hali xabar yo\'q. Savolingizni yozing!</div>';
+    return;
+  }
+  box.innerHTML=data.map(x=>{
+    const isAdmin=x.admin_xabar;
+    return `<div style="display:flex;flex-direction:column;align-items:${isAdmin?'flex-end':'flex-start'}">
+      <div style="max-width:80%;padding:9px 12px;border-radius:${isAdmin?'12px 12px 3px 12px':'12px 12px 12px 3px'};background:${isAdmin?'linear-gradient(135deg,#6C3FE8,#9B7BFF)':'rgba(255,255,255,0.08)'};color:#F0ECFF;font-size:13px;line-height:1.5">${x.xabar}</div>
+      <div style="font-size:10px;color:rgba(240,236,255,0.3);margin-top:2px;padding:0 3px">${isAdmin?'Admin':'Siz'}</div>
+    </div>`;
+  }).join('');
+  box.scrollTop=box.scrollHeight;
+}
+
+async function chatXabarlarYukla(){
+  const token=localStorage.getItem('ms_token')||'anon';
+  const {data}=await sbChat.from('xabarlar').select('*').eq('token',token).order('sana',{ascending:true});
+  chatXabarlarRender(data);
+}
+
+async function chatBadgeYangi(){
+  const token=localStorage.getItem('ms_token')||'anon';
+  const {data}=await sbChat.from('xabarlar').select('id').eq('token',token).eq('admin_xabar',true).eq('oqildi',false);
+  const badge=document.getElementById('chatBadge');
+  if(data&&data.length>0&&badge){badge.style.display='flex';badge.textContent=data.length;}
+  else if(badge){badge.style.display='none';}
+}
+
+async function chatYuborish(){
+  const msg=document.getElementById('chatInput').value.trim();
+  if(!msg)return;
+  const token=localStorage.getItem('ms_token')||'anon';
+  const ism=localStorage.getItem('ms_ism')||'O\'quvchi';
+  await sbChat.from('xabarlar').insert({ism,token,xabar:msg,sana:new Date().toISOString(),oqildi:false,admin_xabar:false});
+  document.getElementById('chatInput').value='';
+  chatXabarlarYukla();
+}
+
+// REALTIME — refresh kerak emas!
+const token_rt = localStorage.getItem('ms_token') || 'anon';
+sbChat.channel('xabarlar_' + token_rt)
+  .on('postgres_changes', {
+    event: 'INSERT',
+    schema: 'public',
+    table: 'xabarlar',
+    filter: 'token=eq.' + token_rt
+  }, (payload) => {
+    // Yangi xabar keldi
+    if(document.getElementById('chatWindow').style.display !== 'none'){
+      chatXabarlarYukla();
+    }
+    chatBadgeYangi();
+  })
+  .subscribe();
+
+chatBadgeYangi();
+
+document.addEventListener('click',function(e){
+  const w=document.getElementById('chatWindow');
+  const fab=document.getElementById('chatFab');
+  if(w&&w.style.display!=='none'&&!w.contains(e.target)&&fab&&!fab.contains(e.target)){
+    w.style.display='none';
+  }
+});
+</script>
+
+</body>
+</html>
