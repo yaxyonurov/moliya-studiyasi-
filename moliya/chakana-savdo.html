@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chakana Savdo — Moliya Studiyasi</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --c1: #0f2447;
+  --c2: #1a4080;
+  --c3: #0d7a5f;
+  --c4: #0fa880;
+  --grad: linear-gradient(135deg, #0f2447 0%, #1a4080 45%, #0d7a5f 100%);
+  --grad2: linear-gradient(135deg, #1a4080, #0d7a5f);
+  --grad3: linear-gradient(135deg, #0f2447, #0d7a5f);
+  --white: #ffffff;
+  --bg: #f4f6fb;
+  --bg2: #eef1f8;
+  --card: #ffffff;
+  --border: rgba(26,64,128,0.12);
+  --text: #1a1f2e;
+  --muted: #5a6380;
+  --muted2: #8892aa;
+  --green: #059669;
+  --red: #dc2626;
+  --orange: #d97706;
+  --purple: #6d28d9;
+  --shadow: 0 4px 24px rgba(15,36,71,0.10);
+  --shadow2: 0 2px 12px rgba(15,36,71,0.07);
+  --radius: 14px;
+  --radius-sm: 8px;
+}
+
+[data-theme="dark"] {
+  --bg: #0d1117;
+  --bg2: #161b24;
+  --card: #1a2133;
+  --border: rgba(100,140,220,0.15);
+  --text: #e8edf8;
+  --muted: #8895b3;
+  --muted2: #5a6880;
+  --shadow: 0 4px 24px rgba(0,0,0,0.35);
+  --shadow2: 0 2px 12px rgba(0,0,0,0.25);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background .3s, color .3s;
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(15,36,71,0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+}
+.topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.topbar-logo {
+  width: 32px;
+  height: 32px;
+  background: var(--grad2);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -1px;
+}
+.topbar-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+}
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.topbar-back {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255,255,255,0.7);
+  font-size: 13px;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.15);
+  transition: all .2s;
+}
+.topbar-back:hover { background: rgba(255,255,255,0.1); color: #fff; }
+.theme-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.8);
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .2s;
+}
+.theme-btn:hover { background: rgba(255,255,255,0.18); }
+
+/* ── HERO ── */
+.hero {
+  background: var(--grad);
+  padding: 3.5rem 1.5rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 320px; height: 320px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 50%;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -60px; left: 10%;
+  width: 240px; height: 240px;
+  background: rgba(15,168,128,0.12);
+  border-radius: 50%;
+}
+.hero-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.92);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+  letter-spacing: .4px;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.hero h1 {
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: .8rem;
+  letter-spacing: -1px;
+}
+.hero h1 span {
+  background: linear-gradient(90deg, #4dd9b0, #7ed4ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-desc {
+  color: rgba(255,255,255,0.75);
+  font-size: 15px;
+  line-height: 1.7;
+  max-width: 520px;
+  margin-bottom: 1.8rem;
+}
+.hero-stats {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+.stat-num {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+}
+.stat-label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.6);
+  margin-top: 2px;
+}
+
+/* ── PROGRESS ── */
+.progress-bar-wrap {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  padding: 0 1.5rem;
+  position: sticky;
+  top: 56px;
+  z-index: 90;
+  box-shadow: var(--shadow2);
+}
+.progress-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.progress-inner::-webkit-scrollbar { display: none; }
+.prog-tab {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 14px 18px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: all .2s;
+  flex-shrink: 0;
+}
+.prog-tab:hover { color: var(--text); }
+.prog-tab.active {
+  color: var(--c2);
+  border-bottom-color: var(--c2);
+  font-weight: 600;
+}
+[data-theme="dark"] .prog-tab.active { color: #4da8ff; border-bottom-color: #4da8ff; }
+.prog-num {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--bg2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  transition: all .2s;
+}
+.prog-tab.active .prog-num {
+  background: var(--grad2);
+  color: #fff;
+}
+
+/* ── MAIN ── */
+.main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+/* ── SECTIONS ── */
+.section { display: none; }
+.section.active { display: block; animation: fadeUp .35s ease; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── CARDS ── */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.4rem;
+  margin-bottom: 1.2rem;
+  box-shadow: var(--shadow2);
+}
+.card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: .6rem;
+}
+.card-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+.card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+.card-sub {
+  font-size: 12px;
+  color: var(--muted2);
+  margin-top: 2px;
+}
+
+/* ── TABLE ── */
+.tbl-wrap { overflow-x: auto; border-radius: var(--radius-sm); border: 1px solid var(--border); }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+thead th {
+  background: linear-gradient(135deg, rgba(15,36,71,0.06), rgba(13,122,95,0.06));
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  padding: 9px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+[data-theme="dark"] thead th { background: rgba(255,255,255,0.04); }
+tbody td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+  line-height: 1.4;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: rgba(26,64,128,0.04); }
+[data-theme="dark"] tbody tr:hover { background: rgba(255,255,255,0.03); }
+.mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--c2);
+  font-weight: 600;
+}
+[data-theme="dark"] .mono { color: #4da8ff; }
+
+/* ── PILLS ── */
+.pill {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+.pill-blue   { background: #dbeafe; color: #1d4ed8; }
+.pill-green  { background: #d1fae5; color: #065f46; }
+.pill-red    { background: #fee2e2; color: #991b1b; }
+.pill-orange { background: #fef3c7; color: #92400e; }
+.pill-purple { background: #ede9fe; color: #5b21b6; }
+.pill-teal   { background: #ccfbf1; color: #0f766e; }
+[data-theme="dark"] .pill-blue   { background: rgba(30,64,175,0.3); color: #93c5fd; }
+[data-theme="dark"] .pill-green  { background: rgba(6,95,70,0.3);  color: #6ee7b7; }
+[data-theme="dark"] .pill-red    { background: rgba(153,27,27,0.3); color: #fca5a5; }
+[data-theme="dark"] .pill-orange { background: rgba(146,64,14,0.3); color: #fcd34d; }
+[data-theme="dark"] .pill-purple { background: rgba(91,33,182,0.3); color: #c4b5fd; }
+[data-theme="dark"] .pill-teal   { background: rgba(15,118,110,0.3);color: #5eead4; }
+
+/* ── JOURNAL ── */
+.journal {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  margin-bottom: 1.2rem;
+  box-shadow: var(--shadow2);
+}
+.journal-head {
+  padding: .9rem 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.journal-head span { color: #fff; font-size: 14px; font-weight: 700; }
+.journal-head small { color: rgba(255,255,255,0.72); font-size: 12px; }
+.jh-blue   { background: linear-gradient(135deg, #1a4080, #1e5c8e); }
+.jh-green  { background: linear-gradient(135deg, #0d7a5f, #059669); }
+.jh-orange { background: linear-gradient(135deg, #b45309, #d97706); }
+.jh-purple { background: linear-gradient(135deg, #5b21b6, #7c3aed); }
+.jh-red    { background: linear-gradient(135deg, #991b1b, #dc2626); }
+.jh-teal   { background: linear-gradient(135deg, #0f766e, #0d9488); }
+.jh-dark   { background: linear-gradient(135deg, #0f2447, #1a4080); }
+
+.j-row {
+  display: grid;
+  grid-template-columns: 52px 1fr 100px 100px;
+  align-items: center;
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  background: var(--card);
+  gap: 4px;
+}
+.j-row:last-child { border-bottom: none; }
+.j-row.j-head {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--muted2);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  padding: 7px 14px;
+  background: var(--bg2);
+}
+.j-row.j-total {
+  background: var(--bg2);
+  font-weight: 700;
+}
+.j-debet  { color: #059669; font-weight: 700; font-family: 'JetBrains Mono', monospace; font-size: 12px; text-align: right; }
+.j-kredit { color: #dc2626; font-weight: 700; font-family: 'JetBrains Mono', monospace; font-size: 12px; text-align: right; }
+.j-dash   { color: var(--muted2); text-align: right; font-size: 13px; }
+.j-indent { padding-left: 1.4rem; color: var(--muted); }
+.j-sana   { color: var(--muted2); font-size: 12px; font-family: 'JetBrains Mono', monospace; }
+
+/* ── FORMULA BOX ── */
+.formula-box {
+  background: linear-gradient(135deg, rgba(15,36,71,0.06), rgba(13,122,95,0.06));
+  border-left: 3px solid var(--c3);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: .9rem 1.1rem;
+  margin: .8rem 0;
+}
+[data-theme="dark"] .formula-box { background: rgba(13,122,95,0.1); }
+.formula-code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c3);
+  margin-bottom: 4px;
+}
+[data-theme="dark"] .formula-code { color: #4dd9b0; }
+.formula-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+/* ── ALERT BOX ── */
+.alert {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+.alert-icon { font-size: 18px; flex-shrink: 0; margin-top: -1px; }
+.alert-blue  { background: rgba(219,234,254,0.7); border: 1px solid rgba(147,197,253,0.5); color: #1e40af; }
+.alert-green { background: rgba(209,250,229,0.7); border: 1px solid rgba(110,231,183,0.5); color: #065f46; }
+.alert-orange{ background: rgba(254,243,199,0.7); border: 1px solid rgba(252,211,77,0.5);  color: #92400e; }
+.alert-red   { background: rgba(254,226,226,0.7); border: 1px solid rgba(252,165,165,0.5); color: #991b1b; }
+[data-theme="dark"] .alert-blue   { background: rgba(30,64,175,0.2);  border-color: rgba(59,130,246,0.3);  color: #93c5fd; }
+[data-theme="dark"] .alert-green  { background: rgba(6,78,59,0.2);    border-color: rgba(52,211,153,0.3);  color: #6ee7b7; }
+[data-theme="dark"] .alert-orange { background: rgba(120,53,15,0.2);  border-color: rgba(245,158,11,0.3);  color: #fcd34d; }
+[data-theme="dark"] .alert-red    { background: rgba(127,29,29,0.2);  border-color: rgba(248,113,113,0.3); color: #fca5a5; }
+
+/* ── PROBLEM BOX ── */
+.problem-box {
+  background: linear-gradient(135deg, rgba(15,36,71,0.07), rgba(13,122,95,0.07));
+  border: 1.5px solid rgba(26,64,128,0.2);
+  border-radius: var(--radius);
+  padding: 1.3rem;
+  margin-bottom: 1.2rem;
+}
+[data-theme="dark"] .problem-box { background: rgba(26,64,128,0.15); border-color: rgba(77,168,255,0.2); }
+.problem-label {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--c3);
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  margin-bottom: 8px;
+}
+.problem-text {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text);
+}
+.problem-text strong { color: var(--c2); font-weight: 700; }
+[data-theme="dark"] .problem-text strong { color: #4da8ff; }
+
+/* ── STEPS ── */
+.step {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+  align-items: flex-start;
+}
+.step-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--grad2);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+  box-shadow: 0 2px 8px rgba(13,122,95,0.25);
+}
+.step-body { flex: 1; font-size: 13px; line-height: 1.7; color: var(--text); }
+.step-body b { color: var(--c2); font-weight: 700; }
+[data-theme="dark"] .step-body b { color: #4da8ff; }
+
+/* ── FLOW DIAGRAM ── */
+.flow-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+.flow-node {
+  flex: 1;
+  min-width: 100px;
+  text-align: center;
+  padding: .7rem .5rem;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #fff;
+}
+.flow-arrow { color: var(--muted2); font-size: 18px; flex-shrink: 0; }
+.fn-blue   { background: linear-gradient(135deg, #1a4080, #1e5c8e); }
+.fn-green  { background: linear-gradient(135deg, #0d7a5f, #059669); }
+.fn-orange { background: linear-gradient(135deg, #b45309, #d97706); }
+.fn-purple { background: linear-gradient(135deg, #5b21b6, #7c3aed); }
+.fn-teal   { background: linear-gradient(135deg, #0f766e, #0d9488); }
+.fn-dark   { background: linear-gradient(135deg, #0f2447, #1a4080); }
+.flow-sub { font-size: 10px; font-weight: 400; opacity: .85; margin-top: 3px; }
+
+/* ── RESULT BOX ── */
+.result-box {
+  background: linear-gradient(135deg, rgba(5,150,105,0.1), rgba(13,122,95,0.15));
+  border: 1.5px solid rgba(5,150,105,0.3);
+  border-radius: var(--radius-sm);
+  padding: .9rem 1.1rem;
+  margin: .8rem 0;
+}
+.result-formula {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: #059669;
+  margin-bottom: 4px;
+}
+[data-theme="dark"] .result-formula { color: #34d399; }
+.result-desc { font-size: 12px; color: var(--muted); }
+
+/* ── HUJJAT TAGS ── */
+.tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  margin: 2px;
+}
+
+/* ── SECTION TITLE ── */
+.sec-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 4px;
+  letter-spacing: -.3px;
+}
+.sec-desc {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 1.4rem;
+  line-height: 1.5;
+}
+
+/* ── NAV BTNS ── */
+.nav-btns {
+  display: flex;
+  gap: 10px;
+  margin-top: 2rem;
+  justify-content: space-between;
+}
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 20px;
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all .2s;
+}
+.btn-prev {
+  background: var(--bg2);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+.btn-prev:hover { background: var(--card); color: var(--text); }
+.btn-next {
+  background: var(--grad2);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(13,122,95,0.3);
+}
+.btn-next:hover { box-shadow: 0 6px 20px rgba(13,122,95,0.4); transform: translateY(-1px); }
+.btn-next:disabled { opacity: .4; transform: none; box-shadow: none; cursor: default; }
+
+/* ── INFO GRID ── */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+.info-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: .9rem 1rem;
+}
+.info-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: var(--muted2);
+  margin-bottom: 5px;
+}
+.info-val {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1;
+}
+.info-val span { font-size: 12px; font-weight: 500; color: var(--muted); }
+
+@media(max-width:600px) {
+  .j-row { grid-template-columns: 44px 1fr 80px 80px; padding: 8px 10px; font-size: 12px; }
+  .info-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 1.6rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<nav class="topbar">
+  <a href="index.html" class="topbar-brand">
+    <div class="topbar-logo">MS</div>
+    <span class="topbar-name">Moliya Studiyasi</span>
+  </a>
+  <div class="topbar-right">
+    <a href="index.html" class="topbar-back">← Orqaga</a>
+    <button class="theme-btn" onclick="toggleTheme()" title="Tema o'zgartirish">🌙</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">📦 Modul · Savdo hisobi</div>
+    <h1>Chakana <span>Savdo</span><br>Buxgalteriyasi</h1>
+    <p class="hero-desc">
+      Tovar kirim, chiqim, QQS hisoblash va kassa hisob-kitoblari — amaliy misollar bilan to'liq qo'llanma
+    </p>
+    <div class="hero-stats">
+      <div class="stat-item"><span class="stat-num">8</span><span class="stat-label">Asosiy hisob</span></div>
+      <div class="stat-item"><span class="stat-num">5</span><span class="stat-label">Bo'lim</span></div>
+      <div class="stat-item"><span class="stat-num">12+</span><span class="stat-label">Yozuv namunasi</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESS TABS -->
+<div class="progress-bar-wrap">
+  <div class="progress-inner">
+    <div class="prog-tab active" onclick="goTab(0)">
+      <div class="prog-num">1</div>Hisoblar
+    </div>
+    <div class="prog-tab" onclick="goTab(1)">
+      <div class="prog-num">2</div>Tovar kirim
+    </div>
+    <div class="prog-tab" onclick="goTab(2)">
+      <div class="prog-num">3</div>Tovar chiqim
+    </div>
+    <div class="prog-tab" onclick="goTab(3)">
+      <div class="prog-num">4</div>QQS
+    </div>
+    <div class="prog-tab" onclick="goTab(4)">
+      <div class="prog-num">5</div>Kassa
+    </div>
+    <div class="prog-tab" onclick="goTab(5)">
+      <div class="prog-num">★</div>Masala
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+  <!-- ── 0: HISOBLAR ── -->
+  <div class="section active" id="sec-0">
+    <div class="sec-title">Asosiy hisoblar</div>
+    <div class="sec-desc">Chakana savdoda ishlatiladigan hisob raqamlari — O'zbekiston buxgalteriya hisobi</div>
+
+    <div class="card">
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Hisob №</th>
+              <th>Nomi</th>
+              <th>Turi</th>
+              <th>Guruh</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="mono">2900</span></td>
+              <td><strong>Tovarlar</strong></td>
+              <td><span class="pill pill-blue">Aktiv</span></td>
+              <td>Inventarlar</td>
+            </tr>
+            <tr>
+              <td><span class="mono">4010</span></td>
+              <td><strong>Xaridorlar va buyurtmachilar</strong></td>
+              <td><span class="pill pill-blue">Aktiv</span></td>
+              <td>Debitorlik qarzi</td>
+            </tr>
+            <tr>
+              <td><span class="mono">4410</span></td>
+              <td><strong>QQS kredit (hisobga olingan)</strong></td>
+              <td><span class="pill pill-blue">Aktiv</span></td>
+              <td>Soliq</td>
+            </tr>
+            <tr>
+              <td><span class="mono">5010</span></td>
+              <td><strong>Kassa (naqd pul)</strong></td>
+              <td><span class="pill pill-blue">Aktiv</span></td>
+              <td>Naqd pul</td>
+            </tr>
+            <tr>
+              <td><span class="mono">5110</span></td>
+              <td><strong>Hisob-kitob schyoti (bank)</strong></td>
+              <td><span class="pill pill-blue">Aktiv</span></td>
+              <td>Bank pul</td>
+            </tr>
+            <tr>
+              <td><span class="mono">6010</span></td>
+              <td><strong>Yetkazib beruvchilar</strong></td>
+              <td><span class="pill pill-red">Passiv</span></td>
+              <td>Kreditorlik qarzi</td>
+            </tr>
+            <tr>
+              <td><span class="mono">6410</span></td>
+              <td><strong>QQS bo'yicha majburiyat</strong></td>
+              <td><span class="pill pill-red">Passiv</span></td>
+              <td>Soliq majburiyati</td>
+            </tr>
+            <tr>
+              <td><span class="mono">9010</span></td>
+              <td><strong>Tovarlar sotishdan daromad</strong></td>
+              <td><span class="pill pill-green">Daromad</span></td>
+              <td>Savdo daromadi</td>
+            </tr>
+            <tr>
+              <td><span class="mono">9110</span></td>
+              <td><strong>Sotilgan tovarlar tannarxi</strong></td>
+              <td><span class="pill pill-orange">Xarajat</span></td>
+              <td>Tannarx</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon" style="background:linear-gradient(135deg,#e0f2fe,#bae6fd)">🔄</div>
+        <div>
+          <div class="card-title">Savdo jarayoni — umumiy ko'rinish</div>
+          <div class="card-sub">Tovar harakati va hisob bog'liqligi</div>
+        </div>
+      </div>
+      <div class="flow-wrap">
+        <div class="flow-node fn-dark">Yetkazib beruvchi<br><span class="flow-sub">(6010)</span></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node fn-orange">Ombor / tovar<br><span class="flow-sub">(2900)</span></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node fn-purple">Sotish<br><span class="flow-sub">(9010)</span></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node fn-green">Kassa / Bank<br><span class="flow-sub">(5010/5110)</span></div>
+      </div>
+      <div class="alert alert-blue" style="margin-top:.5rem;margin-bottom:0">
+        <span class="alert-icon">💡</span>
+        <span>Tovar <b>2900</b>dan chiqib, xaridorga o'tganda ikkita parallel yozuv yoziladi: daromad yozuvi va tannarx yozuvi. Bu ikki yozuvning farqi — sof foyda.</span>
+      </div>
+    </div>
+
+    <div class="nav-btns">
+      <button class="nav-btn btn-prev" disabled>← Oldingi</button>
+      <button class="nav-btn btn-next" onclick="goTab(1)">Tovar kirim →</button>
+    </div>
+  </div>
+
+  <!-- ── 1: TOVAR KIRIM ── -->
+  <div class="section" id="sec-1">
+    <div class="sec-title">Tovar kirim (xarid)</div>
+    <div class="sec-desc">Yetkazib beruvchidan tovar kelganda yoziladigan buxgalteriya yozuvlari</div>
+
+    <div class="alert alert-blue">
+      <span class="alert-icon">📌</span>
+      <span><b>Asosiy qoida:</b> Tovar kirimda <b>2900-hisob</b> Debet tomonida ortadi (tovarimiz ko'paydi), <b>6010-hisob</b> Kredit tomonida ortadi (yetkazib beruvchiga qarzimiz tug'ildi).</span>
+    </div>
+
+    <!-- Yozuv 1: QQSsiz -->
+    <div class="journal">
+      <div class="journal-head jh-blue">
+        <span>📥 Tovar kirim — QQSsiz</span>
+        <small>Miqdor: 10 000 000 so'm</small>
+      </div>
+      <div class="j-row j-head">
+        <span>Sana</span><span>Hisob / Mazmun</span><span>Debet</span><span>Kredit</span>
+      </div>
+      <div class="j-row">
+        <span class="j-sana">01.06</span>
+        <span>Tovarlar <span class="mono">2900</span></span>
+        <span class="j-debet">10 000 000</span>
+        <span class="j-dash">—</span>
+      </div>
+      <div class="j-row">
+        <span></span>
+        <span class="j-indent">Yetkazib beruvchilar <span class="mono">6010</span></span>
+        <span class="j-dash">—</span>
+        <span class="j-kredit">10 000 000</span>
+      </div>
+      <div class="j-row j-total">
+        <span></span>
+        <span style="font-size:12px;color:var(--muted);font-weight:400;font-style:italic">Jami:</span>
+        <span class="j-debet">10 000 000</span>
+        <span class="j-kredit">10 000 000</span>
+      </div>
+    </div>
+
+    <!-- Yozuv 2: QQS bilan -->
+    <div class="journal">
+      <div class="journal-head jh-teal">
+        <span>📥 Tovar kirim — 15% QQS bilan</span>
+        <small>Tovar: 10 000 000 · QQS: 1 500 000</small>
+      </div>
+      <div class="j-row j-head">
+        <span>Sana</span><span>Hisob / Mazmun</span><span>Debet</span><span>Kredit</span>
+      </div>
+      <div class="j-row">
+        <span class="j-sana">01.06</span>
+        <span>Tovarlar <span class="mono">2900</span></span>
+        <span class="j-debet">10 000 000</span>
+        <span class="j-dash">—</span>
+      </div>
+      <div class="j-row">
+        <span></span>
+        <span>QQS kredit <span class="mono">4410</span></span>
+        <span class="j-debet">1 500 000</span>
+        <span class="j-dash">—</span>
+      </div>
+      <div class="j-row">
+        <span></span>
+        <span class="j-indent">Yetkazib beruvchilar <span class="mono">6010</span></span>
+        <span class="j-dash">—</span>
+        <span class="j-kredit">11 500 000</span>
+      </div>
+      <div class="j-row j-total">
+        <span></span>
+        <span style="font-size:12px;color:var(--muted);font-weight:400;font-style:italic">Jami:</span>
+        <span class="j-debet">11 500 000</span>
+        <span class="j-kredit">11 500 000</span>
+      </div>
+    </div>
+
+    <div class="formula-box">
+      <div class="formula-code">QQS = 10 000 000 × 15% = 1 500 000 so'm</div>
+      <div class="formula-desc">4410-hisob — keyinchalik 6410-hisobga qarshi yopiladi (offseting). Bu tovar tannarxiga kirmasligi muhim.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="margin-bottom:.7rem">✅ Eslatmalar</div>
+      <div style="font-size:13px;line-height:1.9;color:var(--text)">
+        • <b>2900</b> — tovar aktivimiz, Debet tomonida doim ortadi<br>
+        • <b>6010</b> — yetkazib beruvchiga qarz, Kredit tomonida ortadi<br>
+        • QQS bilan kelganda <b>4410</b> alohida Debet yoziladi — tovar narxiga qo'shilmaydi<br>
+        • Hujjat: <span class="tag pill-blue">Tovar-transport faktura (TTF)</span> <span class="tag pill-green">Kirim orderi</span>
+      </div>
+    </div>
+
+    <div class="nav-btns">
+      <button class="nav-btn btn-prev" onclick="goTab(0)">← Hisoblar</button>
+      <button class="nav-btn btn-next" onclick="goTab(2)">Tovar chiqim →</button>
+    </div>
+  </div>
+
+  <!-- ── 2: TOVAR CHIQIM ── -->
+  <div class="section" id="sec-2">
+    <div class="sec-title">Tovar chiqim (sotish)</div>
+    <div class="sec-desc">Xaridorga tovar sotganda yoziladigan 2 ta parallel yozuv</div>
+
+    <div class="alert alert-orange">
+      <span class="alert-icon">⚠️</span>
+      <span><b>Muhim:</b> Tovar sotganda bitta yozuv emas — <b>ikki ta parallel yozuv</b> yoziladi. Birinchisi daromad, ikkinchisi tannarx. Ikkalasi ham bir kunda yoziladi.</span>
+    </div>
+
+    <!-- Yozuv 1: Daromad -->
+    <div class="journal">
+      <div class="journal-head jh-purple">
+        <span>📤 1-yozuv — Daromad yozuvi</span>
+        <small>Sotish narxi: 14 000 000 so'm</small>
+      </div>
+      <div class="j-row j-head">
+        <span>Sana</span><span>Hisob / Mazmun</span><span>Debet</span><span>Kredit</span>
+      </div>
+      <div class="j-row">
+        <span class="j-sana">05.06</span>
+        <span>Xaridorlar <span class="mono">4010</span></span>
+        <span class="j-debet">14 000 000</span>
+        <span class="j-dash">—</span>
+      </div>
+      <div class="j-row">
+        <span></span>
+        <span class="j-indent">Savdo daromadi <span class="mono">9010</span></span>
+        <span class="j-dash">—</span>
+        <span class="j-kredit">14 000 000</span>
+      </div>
+      <div class="j-row j-total">
+        <span></span>
+        <span style="font-size:12px;color:var(--muted);font-weight:400;font-style:italic">Jami:</span>
+        <span class="j-debet">14 000 000</span>
+        <span class="j-kredit">14 000 000</span>
+      </div>
+    </div>
+
+    <!-- Yozuv 2: Tannarx -->
+    <div class="journal">
+      <div class="journal-head jh-orange">
+        <span>📤 2-yozuv — Tannarx yozuvi</span>
+        <small>Kirim narxi: 10 000 000 so'm</small>
+      </div>
+      <div class="j-row j-head">
+        <span>Sana</span><span>Hisob / Mazmun</span><span>Debet</span><span>Kredit</span>
+      </div>
+      <div class="j-row">
+        <span class="j-sana">05.06</span>
+        <span>Sotilgan tovar tannarxi <span class="mono">9110</span></span>
+        <span class="j-debet">10 000 000</span>
+        <span class="j-dash">—</span>
+      </div>
+      <div class="j-row">
+        <span></span>
+        <span class="j-indent">Tovarlar <span class="mono">2900</span></span>
+        <span class="j-dash">—</span>
+        <span class="j-kredit">10 000 000</span>
+      </div>
+      <div class="j-row j-total">
+        <span></span>
+        <span style="font-size:12px;color:var(--muted);font-weight:400;font-style:italic">Jami:</span>
+        <span class="j-debet">10 000 000</span>
+        <span class="j-kredit">10 000 000</span>
+      </div>
+    </div>
+
+    <div class="result-box">
+      <div class="result-formula">Yalpi foyda = 14 000 000 − 10 000 000 = 4 000 000 so'm ✅</div>
+      <div class="result-desc">9010 (daromad) − 9110 (tannarx) = sof savdo foydasi. Bu yil oxiridagi moliyaviy natijani ko'rsatadi.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="margin-bottom:.7rem">Yodlash formulasi</div>
+      <div class="formula-box" style="margin:0">
+        <div class="formula-code">Deb 4010 / Kred 9010 → Daromad (sotish narxi)</div>
+        <div class="formula-desc" style="margin-top:6px">↓</div>
+        <div class="formula-code" style="margin-top:4px">Deb 9110 / Kred 2900 → Tannarx (kirim narxi)</div>
+      </div>
+    </div>
+
+    <div class="nav-btns">
+      <button class="nav-btn btn-prev" onclick="goTab(1)">← Tovar kirim</button>
+      <button class="nav-btn btn-next" onclick="goTab(3)">QQS →</button>
+    </div>
+  </div>
+
+  <!-- ── 3: QQS ── -->
+  <div class="section" id="sec-3">
+    <div class="sec-title">QQS hisoblash</div>
+    <div class="sec-desc">Qo'shilgan qiymat solig'i — stavka 15% (2024)</div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-label">Joriy stavka</div>
+        <div class="info-val">15% <span>QQS</span></div>
+      </div>
+      <div class="info-card">
+        <div class="info-label">Majburiy to'lovchi</div>
+        <div class="info-val">Yillik <span>≥1 mlrd</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>Vaziyat</th><th>Yozuv</th><th>Hisob</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Sotishda QQS hisoblash</td>
+              <td><span class="mono">Deb 4010 / Kred 6410</span></td>
+              <td><span class="pill pill-red">6410 — Majburiyat</span></td>
+            </tr>
+            <tr>
+              <td>Kirimda QQS hisobga olish</td>
+              <td><span class="mono">Deb 4410 / Kred 6010</span></td>
+              <td><span class="pill pill-purple">4410 — Kredit</span></td>
+            </tr>
+            <tr>
+              <td>QQS byudjetga to'lash</td>
+              <td><span class="mono">Deb 6410 / Kred 5110</span></td>
+              <td><span class="pill pill-blue">5110 — Bank</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- QQS sotishda yozuvi -->
+    <div class="journal">
+      <div class="journal-head jh-red">
+        <span>📋 Sotishda QQS — buxgalteriya yozuvi</span>
+        <small>Sotish: 14 000 000 · QQS: 2 100 000</small>
+      </div>
+      <div class="j-row j-head">
+        <span>Sana</span><span>Hisob / Mazmun</span><span>Debet</span><span>Kredit</span>
+      </div>
+      <div class="j-row">
+        <span class="j-sana">05.06</span>
+        <span>Xaridorlar <span class="mono">4010</span></span>
+        <span class="j-debet">16 100 000</span>
+        <span class="j-dash">—</span>
+      </div>
+      <div class="j-row">
+        <span></span>
+        <span class="j-indent">Savdo daromadi <span class="mono">9010</span></span>
+        <span class="j-dash">—</span>
+        <span class="j-kredit">14 000 000</span>
+      </div>
+      <div class="j-row">
+        <span></span>
+        <span class="j-indent">QQS majburiyati <span class="mono">6410</span></span>
+        <span class="j-dash">—</span>
+        <span class="j-kredit">2 100 000</span>
+      </div>
+      <div class="j-row j-total">
+        <span></span>
+        <span style="font-size:12px;color:var(--muted);font-weight:400;font-style:italic">Jami:</span>
+        <span class="j-debet">16 100 000</span>
+        <span class="j-kredit">16 100 000</span>
+      </div>
+    </div>
+
+    <div class="formula-box">
+      <div class="formula-code">QQS = 14 000 000 × 15% = 2 100 000 so'm</div>
+      <div class="formula-desc">Xaridor jami 16 100 000 so'm to'laydi. 6410-hisob — byudjetga to'lanadigan QQS. Oylik 20-gacha topshiriladi.</div>
+    </div>
+
+    <div class="alert alert-green">
+      <span class="alert-icon">✅</span>
+      <span><b>Ofset (hisob-kitob):</b> Kirimda to'langan 4410-QQS, sotishda hisoblangan 6410-QQSdan ayiriladi. Byudjetga faqat <b>farq</b> to'lanadi.</span>
+    </div>
+
+    <div class="nav-btns">
+      <button class="nav-btn btn-prev" onclick="goTab(2)">← Tovar chiqim</button>
+      <button class="nav-btn btn-next" onclick="goTab(4)">Kassa →</button>
+    </div>
+  </div>
+
+  <!-- ── 4: KASSA ── -->
+  <div class="section" id="sec-4">
+    <div class="sec-title">Kassa va bank hisoblari</div>
+    <div class="sec-desc">Naqd (5010) va naqdsiz (5110) to'lovlar farqi</div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-label">5010 — Kassa</div>
+        <div class="info-val">Naqd <span>pul</span></div>
+        <div style="font-size:12px;color:var(--muted);margin-top:5px">Do'kon kassasida saqlanadigan naqd pul. Hujjat: KO-1 kirim orderi</div>
+      </div>
+      <div class="info-card">
+        <div class="info-label">5110 — Bank schyot</div>
+        <div class="info-val">Bank <span>o'tkazma</span></div>
+        <div style="font-size:12px;color:var(--muted);margin-top:5px">Plastik, Payme, Click, bank o'tkazma. Hujjat: Bank ko'chirma</div>
+      </div>
+    </div>
+
+    <!-- Naqd -->
+    <div class="journal">
+      <div class="journal-head jh-green">
+        <span>💵 Xaridor naqd to'lovi — 5010 Kassa</span>
+        <small>QQS bilan: 16 100 000 so'm</small>
+      </div>
+      <div class="j-row j-head">
+        <span>Sana</span><span>Hisob / Mazmun</span><span>Debet</span><span>Kredit</span>
+      </div>
+      <div class="j-row">
+        <span class="j-sana">05.06</span>
+        <span>Kassa <span class="mono">5010</span></span>
+        <span class="j-debet">16 100 000</span>
+        <span class="j-dash">—</span>
+      </div>
+      <div class="j-row">
+        <span></span>
+        <span class="j-indent">Xaridorlar <span class="mono">4010</span></span>
+        <span class="j-dash">—</span>
+        <span class="j-kredit">16 100 000</span>
+      </div>
+      <div class="j-row j-total">
+        <span></span>
+        <span style="font-size:12px;color:var(--muted);font-weight:400;font-style:italic">Jami:</span>
+        <span class="j-debet">16 100 000</span>
+        <span class="j-kredit">16 100 000</span>
+      </div>
+    </div>
+
+    <!-- Bank -->
+    <div class="journal">
+      <div class="journal-head jh-dark">
+        <span>🏦 Xaridor bank orqali to'lovi — 5110</span>
+        <small>Plastik / Payme / Click</small>
+      </div>
+      <div class="j-row j-head">
+        <span>Sana</span><span>Hisob / Mazmun</span><span>Debet</span><span>Kredit</span>
+      </div>
+      <div class="j-row">
+        <span class="j-sana">05.06</span>
+        <span>Bank h/r <span class="mono">5110</span></span>
+        <span class="j-debet">16 100 000</span>
+        <span class="j-dash">—</span>
+      </div>
+      <div class="j-row">
+        <span></span>
+        <span class="j-indent">Xaridorlar <span class="mono">4010</span></span>
+        <span class="j-dash">—</span>
+        <span class="j-kredit">16 100 000</span>
+      </div>
+      <div class="j-row j-total">
+        <span></span>
+        <span style="font-size:12px;color:var(--muted);font-weight:400;font-style:italic">Jami:</span>
+        <span class="j-debet">16 100 000</span>
+        <span class="j-kredit">16 100 000</span>
+      </div>
+    </div>
+
+    <div class="alert alert-orange">
+      <span class="alert-icon">📄</span>
+      <div>
+        <b>Hujjatlar:</b><br>
+        🏪 Kassa (5010) → <span class="tag pill-green">KO-1 Kirim kassasi orderi</span><br>
+        🏦 Bank (5110) → <span class="tag pill-blue">Bank ko'chirma (выписка)</span>
+      </div>
+    </div>
+
+    <div class="nav-btns">
+      <button class="nav-btn btn-prev" onclick="goTab(3)">← QQS</button>
+      <button class="nav-btn btn-next" onclick="goTab(5)">Misol masala →</button>
+    </div>
+  </div>
+
+  <!-- ── 5: MASALA ── -->
+  <div class="section" id="sec-5">
+    <div class="sec-title">Misol masala</div>
+    <div class="sec-desc">Barcha yozuvlarni birlashtirib, amaliy masala yechamiz</div>
+
+    <div class="problem-box">
+      <div class="problem-label">📝 Masala sharti</div>
+      <div class="problem-text">
+        <strong>"Baraka" savdo do'koni</strong> 2024-yil 10-iyunda:<br><br>
+        🔹 Yetkazib beruvchidan <strong>50 ta telefon</strong> oldi — har biri <strong>2 000 000 so'm</strong> (15% QQS bilan)<br>
+        🔹 O'sha kuni <strong>40 ta telefonni</strong> <strong>2 800 000 so'mdan</strong> naqd kassaga sotdi<br><br>
+        Barcha buxgalteriya yozuvlarini tuzing va yalpi foydani hisoblang.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="margin-bottom:1rem">📐 Hisob-kitob</div>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <b>Kirim narxi:</b> 50 × 2 000 000 = 100 000 000 so'm<br>
+          QQS (15%): 100 000 000 × 0.15 = 15 000 000 so'm<br>
+          Yetkazib beruvchiga jami: <b>115 000 000 so'm</b>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <b>Sotish:</b> 40 × 2 800 000 = 112 000 000 so'm<br>
+          QQS (15%): 112 000 000 × 0.15 = 16 800 000 so'm<br>
+          Xaridor to'lovi: <b>128 800 000 so'm</b>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <b>Sotilgan 40 ta telefonning tannarxi:</b><br>
+          40 × 2 000 000 = <b>80 000 000 so'm</b>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <b>Yalpi foyda:</b><br>
+          112 000 000 − 80 000 000 = <b style="color:#059669;font-size:15px">32 000 000 so'm</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- To'liq yozuvlar jadvali -->
+    <div class="journal">
+      <div class="journal-head jh-dark">
+        <span>📗 Barcha buxgalteriya yozuvlari — 10.06.2024</span>
+        <small>"Baraka" savdo do'koni</small>
+      </div>
+      <div class="j-row j-head">
+        <span>№</span><span>Hisob va mazmun</span><span>Debet</span><span>Kredit</span>
+      </div>
+      <!-- 1 -->
+      <div class="j-row" style="background:rgba(26,64,128,0.05)">
+        <span style="font-weight:800;color:var(--c2);font-size:13px">1</span>
+        <span style="font-weight:700;color:var(--c2)">Tovar kirim — Deb 2900 / Kred 6010</span>
+        <span class="j-debet">100 000 000</span>
+        <span class="j-kredit">100 000 000</span>
+      </div>
+      <!-- 2 -->
+      <div class="j-row" style="background:rgba(26,64,128,0.05)">
+        <span style="font-weight:800;color:var(--c2);font-size:13px">2</span>
+        <span style="font-weight:700;color:var(--c2)">Kirim QQS — Deb 4410 / Kred 6010</span>
+        <span class="j-debet">15 000 000</span>
+        <span class="j-kredit">15 000 000</span>
+      </div>
+      <!-- 3 -->
+      <div class="j-row" style="background:rgba(13,122,95,0.05)">
+        <span style="font-weight:800;color:var(--c3);font-size:13px">3</span>
+        <span style="font-weight:700;color:var(--c3)">Daromad — Deb 4010 / Kred 9010 + 6410</span>
+        <span class="j-debet">128 800 000</span>
+        <span class="j-kredit">128 800 000</span>
+      </div>
+      <div class="j-row" style="background:rgba(13,122,95,0.03)">
+        <span></span>
+        <span class="j-indent" style="font-size:12px">• Savdo daromadi 9010</span>
+        <span class="j-dash">—</span>
+        <span class="j-kredit">112 000 000</span>
+      </div>
+      <div class="j-row" style="background:rgba(13,122,95,0.03)">
+        <span></span>
+        <span class="j-indent" style="font-size:12px">• QQS majburiyati 6410</span>
+        <span class="j-dash">—</span>
+        <span class="j-kredit">16 800 000</span>
+      </div>
+      <!-- 4 -->
+      <div class="j-row" style="background:rgba(217,119,6,0.05)">
+        <span style="font-weight:800;color:var(--orange);font-size:13px">4</span>
+        <span style="font-weight:700;color:var(--orange)">Tannarx — Deb 9110 / Kred 2900</span>
+        <span class="j-debet">80 000 000</span>
+        <span class="j-kredit">80 000 000</span>
+      </div>
+      <!-- 5 -->
+      <div class="j-row" style="background:rgba(5,150,105,0.06)">
+        <span style="font-weight:800;color:var(--green);font-size:13px">5</span>
+        <span style="font-weight:700;color:var(--green)">Kassa tushumi — Deb 5010 / Kred 4010</span>
+        <span class="j-debet">128 800 000</span>
+        <span class="j-kredit">128 800 000</span>
+      </div>
+    </div>
+
+    <div class="result-box">
+      <div class="result-formula">✅ Yalpi foyda = 112 000 000 − 80 000 000 = 32 000 000 so'm</div>
+      <div class="result-desc">
+        Qolgan 10 ta telefon (20 000 000 so'm tannarxi) hali 2900-hisobda — omborда.<br>
+        Byudjetga QQS: 16 800 000 − 15 000 000 = 1 800 000 so'm (ofset).
+      </div>
+    </div>
+
+    <div class="alert alert-green">
+      <span class="alert-icon">🎓</span>
+      <span>Dars tugadi! Barcha 5 ta bo'limni o'rgandingiz: hisoblar, kirim, chiqim, QQS va kassa. Qo'shimcha savollar bo'lsa, ustozga murojaat qiling.</span>
+    </div>
+
+    <div class="nav-btns">
+      <button class="nav-btn btn-prev" onclick="goTab(4)">← Kassa</button>
+      <button class="nav-btn btn-next" onclick="goTab(0)">Boshidan ↺</button>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+var current = 0;
+var totalTabs = 6;
+
+function goTab(n) {
+  document.querySelectorAll('.section').forEach(function(s){ s.classList.remove('active'); });
+  document.querySelectorAll('.prog-tab').forEach(function(t){ t.classList.remove('active'); });
+  document.getElementById('sec-'+n).classList.add('active');
+  document.querySelectorAll('.prog-tab')[n].classList.add('active');
+  current = n;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleTheme() {
+  var html = document.documentElement;
+  var isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? '' : 'dark');
+  document.querySelector('.theme-btn').textContent = isDark ? '🌙' : '☀️';
+  localStorage.setItem('ms-theme', isDark ? 'light' : 'dark');
+}
+
+// Saved theme
+(function(){
+  var t = localStorage.getItem('ms-theme');
+  if(t === 'dark') {
+    document.documentElement.setAttribute('data-theme','dark');
+    document.querySelector('.theme-btn').textContent = '☀️';
+  }
+})();
+</script>
+</body>
+</html>
