@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asosiy Vositalar — Moliya Studiyasi</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;900&family=Onest:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080617;
+  --bg2: #0e0b24;
+  --bg3: #13103a;
+  --pu: #7C3AED;
+  --pu2: #9B7BFF;
+  --pu3: #c4b5fd;
+  --teal: #2DD4BF;
+  --teal2: #5eead4;
+  --gold: #F59E0B;
+  --red: #EF4444;
+  --green: #10B981;
+  --border: rgba(124,58,237,0.2);
+  --border2: rgba(124,58,237,0.4);
+  --text: #f1f0ff;
+  --text2: #a09ec0;
+  --text3: #6b6890;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Onest',sans-serif;
+  font-size:15px;
+  line-height:1.7;
+  min-height:100vh;
+}
+
+/* BACK BUTTON */
+.back-btn{
+  position:fixed;top:16px;left:20px;z-index:200;
+  display:flex;align-items:center;gap:7px;
+  font-family:'Unbounded',sans-serif;
+  font-size:10px;font-weight:700;
+  color:var(--pu2);text-decoration:none;
+  background:rgba(8,6,23,0.9);
+  backdrop-filter:blur(20px);
+  border:1px solid var(--border2);
+  padding:8px 14px;border-radius:100px;
+  transition:all 0.2s;
+}
+.back-btn:hover{background:rgba(124,58,237,0.15);border-color:var(--pu2);}
+.back-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5}
+
+/* NAV */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(8,6,23,0.95);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+  padding:0 20px 0 180px;
+  display:flex;align-items:center;
+  height:48px;
+  gap:4px;
+  flex-wrap:wrap;
+  overflow:visible;
+}
+.nav-spacer{display:none}
+.nav-links{display:flex;gap:2px;flex-wrap:wrap;align-items:center}
+.nav-link{
+  display:flex;align-items:center;gap:4px;
+  padding:5px 9px;border-radius:6px;
+  font-size:11px;color:var(--text2);
+  cursor:pointer;white-space:nowrap;
+  text-decoration:none;
+  border:none;background:none;
+  transition:all 0.15s;
+  font-family:'Onest',sans-serif;
+  line-height:1;
+}
+.nav-link:hover{color:var(--text);background:rgba(124,58,237,0.1)}
+.nav-link.active{color:var(--pu2);background:rgba(124,58,237,0.12)}
+.nav-dot{width:4px;height:4px;border-radius:50%;background:currentColor;opacity:0.5}
+
+/* HERO */
+.hero{
+  padding:36px 24px 24px;
+  text-align:center;
+  background:radial-gradient(ellipse 70% 100% at 50% 0%, rgba(124,58,237,0.13) 0%, transparent 70%);
+}
+.hero-title{
+  font-family:'Unbounded',sans-serif;
+  font-size:clamp(22px,4vw,38px);
+  font-weight:900;line-height:1.1;
+  margin-bottom:10px;
+  background:linear-gradient(135deg, #fff 30%, var(--pu3) 70%, var(--teal) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero-sub{
+  font-size:13px;color:var(--text3);
+  max-width:560px;margin:0 auto;
+  line-height:1.6;
+}
+
+/* MAVZULAR */
+.mavzular{padding:12px 24px;max-width:1000px;margin:0 auto}
+.section-label{
+  font-family:'Unbounded',sans-serif;
+  font-size:11px;color:var(--teal);
+  letter-spacing:0.1em;margin-bottom:8px;
+}
+.section-title{
+  font-family:'Unbounded',sans-serif;
+  font-size:22px;font-weight:700;
+  margin-bottom:32px;
+}
+.mavzu-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4px;
+}
+.mavzu-card{
+  background:transparent;
+  border:none;
+  border-radius:0;
+  padding:9px 12px;
+  cursor:pointer;
+  transition:all 0.15s;
+  display:flex;align-items:center;gap:10px;
+  border-bottom:1px solid rgba(124,58,237,0.1);
+}
+.mavzu-card:hover{background:rgba(124,58,237,0.07)}
+.mavzu-card.active{
+  background:rgba(124,58,237,0.12);
+  border-bottom-color:rgba(124,58,237,0.2);
+}
+.mavzu-num{
+  font-family:'Unbounded',sans-serif;
+  font-size:10px;color:var(--text3);
+  flex-shrink:0;width:22px;
+}
+.mavzu-name{
+  font-size:12.5px;font-weight:400;
+  color:var(--text2);line-height:1.3;
+  flex:1;
+}
+.mavzu-card:hover .mavzu-name{color:var(--text)}
+.mavzu-card.active .mavzu-name{color:var(--pu3);font-weight:500}
+.mavzu-tag{
+  display:inline-block;
+  font-size:9px;padding:1px 6px;
+  border-radius:4px;
+  background:rgba(124,58,237,0.12);
+  color:var(--pu3);flex-shrink:0;
+}
+.mavzu-card.active .mavzu-tag{
+  background:rgba(45,212,191,0.12);
+  color:var(--teal);
+}
+
+/* DARS CONTENT */
+.dars-wrap{
+  max-width:860px;margin:0 auto;
+  padding:0 24px 80px;
+}
+
+/* TUSHUNTIRISH BOX */
+.explain-box{
+  background:linear-gradient(135deg, rgba(245,158,11,0.08), rgba(245,158,11,0.04));
+  border:1px solid rgba(245,158,11,0.25);
+  border-left:3px solid var(--gold);
+  border-radius:10px;
+  padding:16px 20px;
+  margin-bottom:20px;
+}
+.explain-icon{
+  font-size:11px;font-weight:600;
+  color:var(--gold);margin-bottom:6px;
+  font-family:'Unbounded',sans-serif;
+  letter-spacing:0.05em;
+}
+.explain-text{font-size:13.5px;color:var(--text2);line-height:1.8}
+
+/* INFO BOX */
+.info-box{
+  background:rgba(124,58,237,0.08);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:14px 18px;
+  margin-bottom:20px;
+  font-size:13.5px;color:var(--text2);line-height:1.7;
+}
+.info-box b{color:var(--pu3)}
+
+.warn-box{
+  background:rgba(239,68,68,0.07);
+  border:1px solid rgba(239,68,68,0.25);
+  border-radius:10px;
+  padding:14px 18px;
+  margin-bottom:20px;
+  font-size:13.5px;color:var(--text2);
+}
+.warn-box b{color:#fca5a5}
+
+.ok-box{
+  background:rgba(16,185,129,0.07);
+  border:1px solid rgba(16,185,129,0.25);
+  border-radius:10px;
+  padding:14px 18px;
+  margin-bottom:20px;
+  font-size:13.5px;color:var(--text2);
+}
+.ok-box b{color:#6ee7b7}
+
+/* DARS SARLAVHA */
+.dars-header{
+  padding:32px 0 24px;
+  border-bottom:1px solid var(--border);
+  margin-bottom:28px;
+}
+.dars-badge{
+  display:inline-block;
+  font-family:'Unbounded',sans-serif;
+  font-size:10px;color:var(--teal);
+  background:rgba(45,212,191,0.1);
+  border:1px solid rgba(45,212,191,0.2);
+  padding:4px 12px;border-radius:6px;
+  margin-bottom:12px;letter-spacing:0.05em;
+}
+.dars-title{
+  font-family:'Unbounded',sans-serif;
+  font-size:24px;font-weight:700;
+  line-height:1.2;margin-bottom:8px;
+}
+.dars-sub{font-size:14px;color:var(--text2)}
+
+/* PROVODKA TABLE */
+.prov-wrap{
+  border-radius:10px;
+  border:1px solid var(--border);
+  overflow:hidden;
+  margin-bottom:20px;
+}
+.prov-title{
+  padding:10px 16px;
+  background:rgba(124,58,237,0.1);
+  font-size:12px;font-weight:600;
+  color:var(--pu3);
+  font-family:'Unbounded',sans-serif;
+  letter-spacing:0.04em;
+}
+table.prov{width:100%;border-collapse:collapse}
+table.prov th{
+  background:rgba(14,11,36,0.8);
+  padding:10px 14px;
+  font-size:11px;font-weight:600;
+  color:var(--text3);
+  text-align:left;
+  font-family:'Unbounded',sans-serif;
+  letter-spacing:0.04em;
+  border-bottom:1px solid var(--border);
+}
+table.prov td{
+  padding:10px 14px;
+  font-size:13px;
+  border-bottom:1px solid rgba(124,58,237,0.08);
+  vertical-align:middle;
+}
+table.prov tr:last-child td{border-bottom:none}
+table.prov tr:hover td{background:rgba(124,58,237,0.05)}
+.dt{
+  font-family:'Onest',sans-serif;
+  font-weight:600;font-size:14px;
+  color:var(--teal);
+}
+.kt{
+  font-family:'Onest',sans-serif;
+  font-weight:600;font-size:14px;
+  color:var(--gold);
+}
+.summa{font-size:13px;color:var(--text2)}
+.izoh{font-size:13px;color:var(--text2)}
+
+/* TAQQOSLASH TABLE */
+table.comp{width:100%;border-collapse:collapse;margin-bottom:20px}
+table.comp th{
+  background:rgba(124,58,237,0.15);
+  padding:10px 14px;
+  font-size:12px;font-weight:600;color:var(--pu3);
+  text-align:left;
+  font-family:'Unbounded',sans-serif;
+  letter-spacing:0.03em;
+}
+table.comp td{
+  padding:10px 14px;
+  font-size:13px;color:var(--text2);
+  border-bottom:1px solid var(--border);
+  vertical-align:top;
+}
+table.comp tr:last-child td{border-bottom:none}
+table.comp td:first-child{
+  color:var(--text);font-weight:500;
+  width:30%;
+}
+.c-red{color:#fca5a5!important}
+.c-green{color:#6ee7b7!important}
+.c-teal{color:var(--teal)!important;font-weight:600}
+.c-pu{color:var(--pu3)!important;font-weight:600}
+
+/* FORMULA */
+.formula-box{
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:16px 20px;
+  margin-bottom:20px;
+  font-family:'Courier New',monospace;
+  font-size:13px;color:var(--text2);
+  line-height:2;
+}
+.formula-box .hi{color:var(--teal);font-weight:600}
+
+/* QOIDALAR */
+.rule-list{
+  display:flex;flex-direction:column;gap:8px;
+  margin-bottom:20px;
+}
+.rule-item{
+  display:flex;align-items:flex-start;gap:10px;
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:12px 14px;
+  font-size:13px;
+}
+.rule-dot{
+  width:6px;height:6px;border-radius:50%;
+  flex-shrink:0;margin-top:7px;
+}
+.rule-dot.ok{background:var(--green)}
+.rule-dot.warn{background:var(--red)}
+.rule-dot.info{background:var(--pu2)}
+
+/* 1C BOX */
+.box-1c{
+  display:flex;gap:12px;align-items:flex-start;
+  background:rgba(45,212,191,0.06);
+  border:1px solid rgba(45,212,191,0.2);
+  border-radius:10px;
+  padding:12px 16px;
+  margin-bottom:20px;
+  font-size:13px;
+}
+.box-1c-label{
+  font-family:'Unbounded',sans-serif;
+  font-size:9px;font-weight:700;
+  color:var(--teal);white-space:nowrap;
+  letter-spacing:0.05em;margin-top:1px;
+}
+.box-1c-text{color:var(--text2);font-style:italic;line-height:1.6}
+
+/* DIVIDER */
+.divider{
+  border:none;
+  border-top:1px solid var(--border);
+  margin:32px 0;
+}
+
+/* H3 */
+.dars-h3{
+  font-family:'Unbounded',sans-serif;
+  font-size:13px;font-weight:600;
+  color:var(--text);margin:24px 0 12px;
+  letter-spacing:0.02em;
+}
+
+/* SOLIQ TABLE */
+table.soliq{width:100%;border-collapse:collapse;margin-bottom:20px;font-size:13px}
+table.soliq thead tr{background:rgba(14,11,36,0.8)}
+table.soliq th{
+  padding:10px 12px;
+  font-size:11px;font-weight:600;
+  color:var(--text3);text-align:left;
+  font-family:'Unbounded',sans-serif;
+  letter-spacing:0.04em;
+  border-bottom:1px solid var(--border);
+}
+table.soliq td{
+  padding:9px 12px;
+  border-bottom:1px solid rgba(124,58,237,0.08);
+  color:var(--text2);vertical-align:middle;
+}
+table.soliq tr:last-child td{border-bottom:none}
+table.soliq tr:hover td{background:rgba(124,58,237,0.04)}
+table.soliq td.guruh{
+  font-family:'Unbounded',sans-serif;
+  font-weight:700;color:var(--pu2);
+  font-size:12px;text-align:center;
+}
+table.soliq td.norma{
+  font-family:'Unbounded',sans-serif;
+  font-weight:700;color:var(--teal);
+  font-size:14px;text-align:center;
+}
+table.soliq td.norma.big{color:var(--red);font-size:16px}
+table.soliq tr.guruh-row td{
+  background:rgba(124,58,237,0.08);
+  color:var(--text);font-weight:600;
+}
+
+/* YAKUNIY JADVAL */
+table.final{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:20px}
+table.final th{
+  background:var(--bg3);
+  padding:10px 12px;
+  font-size:11px;font-weight:600;
+  color:var(--text3);text-align:left;
+  font-family:'Unbounded',sans-serif;
+  letter-spacing:0.04em;
+  border-bottom:1px solid var(--border);
+}
+table.final td{
+  padding:9px 12px;
+  border-bottom:1px solid rgba(124,58,237,0.06);
+  vertical-align:middle;
+}
+table.final tr:hover td{background:rgba(124,58,237,0.05)}
+table.final td.n{
+  color:var(--pu3);font-weight:600;
+  font-family:'Unbounded',sans-serif;
+  font-size:12px;text-align:center;
+}
+
+/* CONTENT SECTIONS (hidden/shown) */
+.dars-section{display:none}
+.dars-section.show{display:block}
+
+/* AV GURUHI TABLE */
+table.av{width:100%;border-collapse:collapse;margin-bottom:20px;font-size:13px}
+table.av th{
+  background:rgba(14,11,36,0.8);padding:10px 12px;
+  font-size:11px;color:var(--text3);text-align:left;
+  font-family:'Unbounded',sans-serif;letter-spacing:0.04em;
+  border-bottom:1px solid var(--border);font-weight:600;
+}
+table.av td{
+  padding:9px 12px;
+  border-bottom:1px solid rgba(124,58,237,0.08);
+  color:var(--text2);vertical-align:middle;
+}
+table.av td.schot{
+  font-family:'Unbounded',sans-serif;
+  color:var(--pu2);font-weight:700;font-size:13px;
+}
+table.av td.norma-s{
+  color:var(--teal);font-weight:600;text-align:center;
+}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .mavzu-grid{grid-template-columns:1fr 1fr}
+  .dars-title{font-size:18px}
+  table.prov th:nth-child(3),table.prov td:nth-child(3){display:none}
+}
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-btn">
+  <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+  Moliya Studiyasi
+</a>
+
+<nav class="nav">
+  <div class="nav-spacer"></div>
+  <div class="nav-links" id="navLinks">
+    <a class="nav-link active" href="#" onclick="showSection(0,this)"><span class="nav-dot"></span>Tan olish</a>
+    <a class="nav-link" href="#" onclick="showSection(1,this)"><span class="nav-dot"></span>Dastlabki qiymat</a>
+    <a class="nav-link" href="#" onclick="showSection(2,this)"><span class="nav-dot"></span>Amortizatsiya</a>
+    <a class="nav-link" href="#" onclick="showSection(3,this)"><span class="nav-dot"></span>Ta'mirlash</a>
+    <a class="nav-link" href="#" onclick="showSection(4,this)"><span class="nav-dot"></span>Qayta baholash</a>
+    <a class="nav-link" href="#" onclick="showSection(5,this)"><span class="nav-dot"></span>Sotilishi</a>
+    <a class="nav-link" href="#" onclick="showSection(6,this)"><span class="nav-dot"></span>Konservatsiya</a>
+    <a class="nav-link" href="#" onclick="showSection(7,this)"><span class="nav-dot"></span>Lizing</a>
+    <a class="nav-link" href="#" onclick="showSection(8,this)"><span class="nav-dot"></span>Tekinga</a>
+    <a class="nav-link" href="#" onclick="showSection(9,this)"><span class="nav-dot"></span>O'z kuchi</a>
+    <a class="nav-link" href="#" onclick="showSection(10,this)"><span class="nav-dot"></span>Inventar</a>
+    <a class="nav-link" href="#" onclick="showSection(11,this)"><span class="nav-dot"></span>Soliq farqi</a>
+    <a class="nav-link" href="#" onclick="showSection(12,this)"><span class="nav-dot"></span>Ustav</a>
+    <a class="nav-link" href="#" onclick="showSection(13,this)"><span class="nav-dot"></span>Komplektatsiya</a>
+    <a class="nav-link" href="#" onclick="showSection(14,this)"><span class="nav-dot"></span>Mol-mulk solig'i</a>
+    <a class="nav-link" href="#" onclick="showSection(15,this)"><span class="nav-dot"></span>Hisobdan chiqarish</a>
+    <a class="nav-link" href="#" onclick="showSection(16,this)" style="color:var(--teal)"><span class="nav-dot" style="background:var(--teal)"></span>Barcha provodkalar</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1 class="hero-title">Asosiy Vositalar</h1>
+  <p class="hero-sub">O'zbekiston BHMS 5 standarti asosida — 16 mavzu, 30+ provodka, Soliq Kodeksi normalari. Har mavzuda tushuntirish va 1C yo'riqnomalari.</p>
+</div>
+
+<!-- MAVZULAR GRID -->
+<div class="mavzular" style="padding:12px 24px 8px;">
+  
+  <div class="mavzu-grid" id="mavzuGrid">
+    <div class="mavzu-card active" onclick="showSection(0,null,this)"><div class="mavzu-num">01</div><div class="mavzu-name">AV tan olish mezonlari</div><div class="mavzu-tag">BHMS 5</div></div>
+    <div class="mavzu-card" onclick="showSection(1,null,this)"><div class="mavzu-num">02</div><div class="mavzu-name">Dastlabki qiymat</div><div class="mavzu-tag">0810 / 0820</div></div>
+    <div class="mavzu-card" onclick="showSection(2,null,this)"><div class="mavzu-num">03</div><div class="mavzu-name">Amortizatsiya</div><div class="mavzu-tag">02xx schot</div></div>
+    <div class="mavzu-card" onclick="showSection(3,null,this)"><div class="mavzu-num">04</div><div class="mavzu-name">Ta'mirlash va modernizatsiya</div><div class="mavzu-tag">Muhim farq!</div></div>
+    <div class="mavzu-card" onclick="showSection(4,null,this)"><div class="mavzu-num">05</div><div class="mavzu-name">Qayta baholash</div><div class="mavzu-tag">8510 zaxira</div></div>
+    <div class="mavzu-card" onclick="showSection(5,null,this)"><div class="mavzu-num">06</div><div class="mavzu-name">AV sotilishi</div><div class="mavzu-tag">9210 schot</div></div>
+    <div class="mavzu-card" onclick="showSection(6,null,this)"><div class="mavzu-num">07</div><div class="mavzu-name">Konservatsiya</div><div class="mavzu-tag">3 oy qoida</div></div>
+    <div class="mavzu-card" onclick="showSection(7,null,this)"><div class="mavzu-num">08</div><div class="mavzu-name">Lizing va operativ ijara</div><div class="mavzu-tag">0310 / 011</div></div>
+    <div class="mavzu-card" onclick="showSection(8,null,this)"><div class="mavzu-num">09</div><div class="mavzu-name">Tekinga olingan AV</div><div class="mavzu-tag">8530 kapital</div></div>
+    <div class="mavzu-card" onclick="showSection(9,null,this)"><div class="mavzu-num">10</div><div class="mavzu-name">O'z kuchi bilan qurish</div><div class="mavzu-tag">0810 xo'jalik</div></div>
+    <div class="mavzu-card" onclick="showSection(10,null,this)"><div class="mavzu-num">11</div><div class="mavzu-name">Inventarizatsiya</div><div class="mavzu-tag">INV-1</div></div>
+    <div class="mavzu-card" onclick="showSection(11,null,this)"><div class="mavzu-num">12</div><div class="mavzu-name">Soliq vs buxg. amortizatsiya</div><div class="mavzu-tag">IAS 12</div></div>
+    <div class="mavzu-card" onclick="showSection(12,null,this)"><div class="mavzu-num">13</div><div class="mavzu-name">Ustav kapitaliga AV</div><div class="mavzu-tag">4610 schot</div></div>
+    <div class="mavzu-card" onclick="showSection(13,null,this)"><div class="mavzu-num">14</div><div class="mavzu-name">Komplektatsiya va ajratish</div><div class="mavzu-tag">0820</div></div>
+    <div class="mavzu-card" onclick="showSection(14,null,this)"><div class="mavzu-num">15</div><div class="mavzu-name">Mol-mulk solig'i bog'liqligi</div><div class="mavzu-tag">1.5% yillik</div></div>
+    <div class="mavzu-card" onclick="showSection(15,null,this)"><div class="mavzu-num">16</div><div class="mavzu-name">Yaroqsiz AV hisobdan chiqarish</div><div class="mavzu-tag">OC-4 shakl</div></div>
+  </div>
+</div>
+
+<!-- DARS MAZMUNI -->
+<div class="dars-wrap">
+
+<!-- S0: TAN OLISH -->
+<div class="dars-section show" id="s0">
+  <div class="dars-header">
+    <div class="dars-badge">01 · BHMS 5 · OC-6 shakli</div>
+    <h2 class="dars-title">AV tan olish mezonlari</h2>
+    <p class="dars-sub">To'rtta shart bir vaqtda bajarilishi kerak</p>
+  </div>
+  <div class="explain-box">
+    <div class="explain-icon">💡 NIMA VA NIMA UCHUN?</div>
+    <div class="explain-text">Asosiy vosita (AV) — korxona uzoq muddat ishlatadigna, ko'rish va ushlab bo'ladigan mulk: bino, stanok, mashina, kompyuter. Lekin har qanday narsa AV bo'lavermaydi — quyidagi 4 shart bir vaqtda bajarilishi kerak. Bajarilmasa — bu material, inventar yoki nomoddiy aktiv bo'ladi.</div>
+  </div>
+  <div class="rule-list">
+    <div class="rule-item"><div class="rule-dot ok"></div><div><b style="color:var(--text)">1-shart: Moddiy shakli bor</b><br><span style="color:var(--text2);font-size:13px">Ko'rish, ushlab bo'ladi: bino, mashina, kompyuter. Ko'rinmasa → NMA (0400-schot)</span></div></div>
+    <div class="rule-item"><div class="rule-dot ok"></div><div><b style="color:var(--text)">2-shart: 12 oydan ORTIQ ishlatiladi</b><br><span style="color:var(--text2);font-size:13px">1 yildan kam ishlatilsa → material (1000-schot) yoki MBP</span></div></div>
+    <div class="rule-item"><div class="rule-dot ok"></div><div><b style="color:var(--text)">3-shart: Iqtisodiy foyda keltiradi</b><br><span style="color:var(--text2);font-size:13px">Korxonaga pul yoki tejamkorlik beradi — kelajakda foyda kutiladi</span></div></div>
+    <div class="rule-item"><div class="rule-dot ok"></div><div><b style="color:var(--text)">4-shart: Qiymati chegaradan YUQORI</b><br><span style="color:var(--text2);font-size:13px">50 × 412,000 = <b style="color:var(--teal)">20,600,000 so'm</b> dan yuqori. Bundan past → MBP</span></div></div>
+  </div>
+  <hr class="divider">
+  <div class="dars-h3">AV GURUHLARI, SCHOTLAR VA AMORTIZATSIYA</div>
+  <div style="overflow-x:auto">
+  <table class="av">
+    <thead><tr><th>AV Schot</th><th>Amort Schot</th><th>Guruh nomi</th><th>Misol</th><th>Soliq norma</th></tr></thead>
+    <tbody>
+      <tr><td class="schot">0110</td><td style="color:var(--red)">— (yo'q)</td><td>Yer uchastkalar</td><td style="color:var(--text3)">Zavod uchun yer</td><td style="color:var(--red);text-align:center;font-weight:600">Eskirimaydi!</td></tr>
+      <tr><td class="schot">0120</td><td class="schot">0220</td><td>Binolar va inshootlar</td><td style="color:var(--text3)">Ombor, do'kon binosi</td><td class="norma-s">5–10%</td></tr>
+      <tr><td class="schot">0130</td><td class="schot">0230</td><td>Mashina va uskunalar</td><td style="color:var(--text3)">Stanok, agregat</td><td class="norma-s">20%</td></tr>
+      <tr><td class="schot">0140</td><td class="schot">0240</td><td>Mebel va ofis jihozlari</td><td style="color:var(--text3)">Stol, stul, shkaf</td><td class="norma-s">15%</td></tr>
+      <tr><td class="schot">0150</td><td class="schot">0250</td><td>Kompyuter va IT</td><td style="color:var(--text3)">Server, noutbuk</td><td class="norma-s" style="color:var(--red)">40%</td></tr>
+      <tr><td class="schot">0160</td><td class="schot">0260</td><td>Transport vositalari</td><td style="color:var(--text3)">Yuk mashina, avtobus</td><td class="norma-s">10–20%</td></tr>
+      <tr><td class="schot">0170</td><td class="schot">0270</td><td>Xo'jalik inventari</td><td style="color:var(--text3)">Katta asbob-uskunalar</td><td class="norma-s">15%</td></tr>
+      <tr><td class="schot">0190</td><td class="schot">0290</td><td>Boshqa AV</td><td style="color:var(--text3)">Boshqalar</td><td class="norma-s">15%</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="info-box"><b>0810</b> = Tugallanmagan qurilish — bino, inshoot QURISH uchun<br><b>0820</b> = AV yig'ish va o'rnatish — mashina SOTIB OLIB MONTAJ qilish uchun<br><b>OC-6</b> — har bir AVga alohida inventar kartochka</div>
+  <div class="box-1c"><div class="box-1c-label">1C:Enterprise</div><div class="box-1c-text">«Принятие к учету ОС» — AV guruh, schot, amortizatsiya usuli va muddati belgilanadi. Inventar raqami avtomatik beriladi.</div></div>
+</div>
+
+<!-- S1: DASTLABKI QIYMAT -->
+<div class="dars-section" id="s1">
+  <div class="dars-header">
+    <div class="dars-badge">02 · 0810 / 0820 schot</div>
+    <h2 class="dars-title">Dastlabki qiymat shakllantirish</h2>
+    <p class="dars-sub">0810 — qurilish · 0820 — yig'ish/montaj</p>
+  </div>
+  <div class="explain-box">
+    <div class="explain-icon">💡 NIMA VA NIMA UCHUN?</div>
+    <div class="explain-text">AV sotib olinganida uning «dastlabki qiymati» aniqlanadi. Bu faqat sotib olish puli emas — AVni ishga tushirguncha ketgan BARCHA xarajatlar yig'indisi. Shu qiymatdan amortizatsiya hisoblanadi va mol-mulk solig'i to'lanadi. <b style="color:var(--gold)">Muhim farq:</b> bino/inshoot qurish → 0810, mashina sotib olish → 0820.</div>
+  </div>
+  <div style="overflow-x:auto">
+  <table class="comp">
+    <thead><tr><th></th><th>0810 — QURILISH</th><th>0820 — YIG'ISH / MONTAJ</th></tr></thead>
+    <tbody>
+      <tr><td>Nomi</td><td>Tugallanmagan qurilish</td><td>AV yig'ish va o'rnatish</td></tr>
+      <tr><td>Qachon</td><td>Bino, inshoot, yo'l QURGANDA</td><td>Mashina, stanok SOTIB OLGANDA</td></tr>
+      <tr><td>Nima kiradi</td><td>Materiallar, ish haqi, pudratchi</td><td>Narxi, yetkazib berish, montaj, sozlash (QQSsiz)</td></tr>
+      <tr><td>Natija</td><td class="c-teal">0120 (bino) ga o'tkaziladi</td><td class="c-teal">0130/0160/... ga o'tkaziladi</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="dars-h3">MISOL — Stanok (0130) sotib olish, 0820 orqali</div>
+  <div class="formula-box">
+    Narxi (QQSsiz):    <span class="hi">48,000,000</span> so'm<br>
+    Yetkazib berish:    <span class="hi"> 1,500,000</span> so'm<br>
+    Montaj (pudratchi): <span class="hi"> 2,000,000</span> so'm<br>
+    Sozlash:            <span class="hi">   500,000</span> so'm<br>
+    ─────────────────────────────────────<br>
+    Dastlabki qiymat:  <span class="hi" style="color:var(--teal);font-size:15px">52,000,000</span> so'm
+  </div>
+  <div class="prov-wrap">
+    <div class="prov-title">PROVODKALAR</div>
+    <table class="prov"><thead><tr><th>Debet</th><th>Kredit</th><th>Summa</th><th>Xo'jalik muomalasi</th></tr></thead>
+    <tbody>
+      <tr><td class="dt">0820</td><td class="kt">6010</td><td class="summa">48,000,000</td><td class="izoh">Stanok narxi (QQSsiz)</td></tr>
+      <tr><td class="dt">0820</td><td class="kt">6010</td><td class="summa">1,500,000</td><td class="izoh">Yetkazib berish</td></tr>
+      <tr><td class="dt">0820</td><td class="kt">6010</td><td class="summa">2,000,000</td><td class="izoh">Montaj xarajati</td></tr>
+      <tr><td class="dt">0820</td><td class="kt">6010</td><td class="summa">500,000</td><td class="izoh">Sozlash</td></tr>
+      <tr><td class="dt">0130</td><td class="kt">0820</td><td class="summa">52,000,000</td><td class="izoh">✅ Stanok ishga tushdi — 0130 (Mashinalar)</td></tr>
+    </tbody></table>
+  </div>
+  <div class="info-box"><b>Kiradi ✅:</b> narx, yetkazib berish, bojxona, montaj, sozlash<br><b>Kirmaydi ❌:</b> QQS (hisobga olinsa), bank foizlari, ma'muriy xarajatlar, reklama<br><b>QQS:</b> Dt 4410 — Kt 6410 (alohida, 0820 ga emas!)</div>
+  <div class="box-1c"><div class="box-1c-label">1C:Enterprise</div><div class="box-1c-text">«Поступление ОС» + «Принятие к учету ОС». 0810 → materiallar «Требование-накладная», ish haqi tabeli.</div></div>
+</div>
+
+<!-- S2: AMORTIZATSIYA -->
+<div class="dars-section" id="s2">
+  <div class="dars-header">
+    <div class="dars-badge">03 · To'g'ri chiziqli usul</div>
+    <h2 class="dars-title">Amortizatsiya hisoblash</h2>
+    <p class="dars-sub">Har 01xx schoti → o'ziga mos 02xx schoti</p>
+  </div>
+  <div class="explain-box">
+    <div class="explain-icon">💡 NIMA VA NIMA UCHUN?</div>
+    <div class="explain-text">Amortizatsiya — AVning eskirish qiymati har oy xarajatga o'tkaziladi. 52,000,000 so'mlik stanokni 10 yil ishlatamiz — har yil 5,200,000, har oy 433,333 so'm yoziladi. Amortizatsiya 0 bo'lganda AV to'liq eskirgan hisoblanadi.</div>
+  </div>
+  <div class="formula-box">
+    Yillik norma   = <span class="hi">100%</span> ÷ Foydali xizmat muddati (yil)<br>
+    Yillik amort.  = <span class="hi">Dastlabki qiymat</span> × Norma %<br>
+    Oylik amort.   = <span class="hi">Yillik</span> ÷ 12<br>
+    Qoldiq qiymat  = <span class="hi">Dastlabki qiymat</span> − Yig'ilgan amortizatsiya<br><br>
+    Misol: 52,000,000 so'm, 10 yil → Norma <span class="hi">10%</span> → Yillik <span class="hi">5,200,000</span> → Oylik <span class="hi">433,333</span> so'm
+  </div>
+  <div class="rule-list">
+    <div class="rule-item"><div class="rule-dot ok"></div><div><b style="color:var(--text)">Qachon BOSHLANADI</b><br><span style="color:var(--text2);font-size:13px">Ishga tushirilgan oydan KEYINGI oy 1-sanasidan</span></div></div>
+    <div class="rule-item"><div class="rule-dot warn"></div><div><b style="color:var(--text)">Qachon TO'XTATILADI</b><br><span style="color:var(--text2);font-size:13px">AVni chiqarish oyida + Konservatsiya (3 oydan ortiq bo'lsa)</span></div></div>
+    <div class="rule-item"><div class="rule-dot info"></div><div><b style="color:var(--text)">TO'XTATILMAYDI</b><br><span style="color:var(--text2);font-size:13px">Ta'mirlash paytida, qisqa to'xtatishlarda (3 oygacha)</span></div></div>
+    <div class="rule-item"><div class="rule-dot ok"></div><div><b style="color:var(--text)">Qachon TUGAYDI</b><br><span style="color:var(--text2);font-size:13px">Yig'ilgan amort = Dastlabki qiymat bo'lganda (qoldiq = 0)</span></div></div>
+    <div class="rule-item"><div class="rule-dot warn"></div><div><b style="color:var(--text)">0110 — YER</b><br><span style="color:var(--text2);font-size:13px">Amortizatsiya HISOBLANMAYDI — yer eskirimaydi!</span></div></div>
+  </div>
+  <div class="prov-wrap">
+    <div class="prov-title">PROVODKA NAMUNALARI</div>
+    <table class="prov"><thead><tr><th>Debet</th><th>Kredit</th><th>Summa</th><th>Xo'jalik muomalasi</th></tr></thead>
+    <tbody>
+      <tr><td class="dt">2010</td><td class="kt">0230</td><td class="summa">433,333</td><td class="izoh">Stanok (0130) — ishlab chiqarishda → 0230!</td></tr>
+      <tr><td class="dt">9420</td><td class="kt">0220</td><td class="summa">350,000</td><td class="izoh">Bino (0120) — ma'muriyatda → 0220!</td></tr>
+      <tr><td class="dt">9420</td><td class="kt">0260</td><td class="summa">433,333</td><td class="izoh">Transport (0160) — ma'muriyatda → 0260!</td></tr>
+      <tr><td class="dt">9420</td><td class="kt">0250</td><td class="summa">83,333</td><td class="izoh">Kompyuter (0150) — ma'muriyatda → 0250!</td></tr>
+    </tbody></table>
+  </div>
+  <div class="box-1c"><div class="box-1c-label">1C:Enterprise</div><div class="box-1c-text">«Закрытие месяца» → 'Амортизация ОС' — har AV uchun schot «Принятие к учету ОС» da o'rnatiladi.</div></div>
+</div>
+
+<!-- S3: TA'MIRLASH -->
+<div class="dars-section" id="s3">
+  <div class="dars-header">
+    <div class="dars-badge">04 · Eng ko'p adashadigan mavzu</div>
+    <h2 class="dars-title">Ta'mirlash va modernizatsiya</h2>
+    <p class="dars-sub">Farqini bilib ol — buxgalteriya oqibatlari butunlay boshqacha</p>
+  </div>
+  <div class="explain-box">
+    <div class="explain-icon">💡 NIMA VA NIMA UCHUN?</div>
+    <div class="explain-text">1) TA'MIRLASH — avvalgi holatga qaytarish. Xarajatga o'tadi, AV qiymati o'zgarmaydi.<br>2) MODERNIZATSIYA — yaxshilash, kuchaytirish. AV qiymatini OSHIRADI, amortizatsiya yangi qiymatdan qayta hisoblanadi.</div>
+  </div>
+  <div style="overflow-x:auto">
+  <table class="comp">
+    <thead><tr><th></th><th>TA'MIRLASH</th><th>MODERNIZATSIYA</th></tr></thead>
+    <tbody>
+      <tr><td>Maqsad</td><td>Avvalgi HOLATINI TIKLASH</td><td>Texnik imkoniyatni OSHIRISH</td></tr>
+      <tr><td>AV qiymati</td><td class="c-red">O'ZGARMAYDI ❌</td><td class="c-green">OSHADI ✅</td></tr>
+      <tr><td>Schot</td><td>Xarajatga (9420 yoki 2010)</td><td>0810 (bino) yoki 0820 (mashina)</td></tr>
+      <tr><td>Amortizatsiya</td><td>To'xtatilmaydi</td><td>Yangi qiymatdan qayta hisoblanadi</td></tr>
+      <tr><td>Bino misoli</td><td>Tomni tuzatish, bo'yash</td><td>Qo'shimcha qavat qurish → 0810</td></tr>
+      <tr><td>Stanok misoli</td><td>Shinani almashtirish, yog'lash</td><td>Dvigatelni kuchliroqqa → 0820</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="prov-wrap">
+    <div class="prov-title">TA'MIRLASH PROVODKASI</div>
+    <table class="prov"><thead><tr><th>Debet</th><th>Kredit</th><th>Summa</th><th>Xo'jalik muomalasi</th></tr></thead>
+    <tbody><tr><td class="dt">9420</td><td class="kt">6010</td><td class="summa">5,000,000</td><td class="izoh">Ta'mirlash — to'g'ridan xarajatga</td></tr></tbody>
+    </table>
+  </div>
+  <div class="prov-wrap">
+    <div class="prov-title">MODERNIZATSIYA PROVODKASI (stanok — 0820)</div>
+    <table class="prov"><thead><tr><th>Debet</th><th>Kredit</th><th>Summa</th><th>Xo'jalik muomalasi</th></tr></thead>
+    <tbody>
+      <tr><td class="dt">0820</td><td class="kt">6010</td><td class="summa">8,000,000</td><td class="izoh">Modernizatsiya xarajati → 0820</td></tr>
+      <tr><td class="dt">0130</td><td class="kt">0820</td><td class="summa">8,000,000</td><td class="izoh">Stanok qiymatiga qo'shish</td></tr>
+    </tbody></table>
+  </div>
+  <div class="ok-box"><b>Modernizatsiyadan keyin:</b> 52,000,000 + 8,000,000 = <b>60,000,000 so'm</b> yangi qiymat. Qolgan muddat 6 yil → oylik amort: 60,000,000 ÷ 6 ÷ 12 = <b>833,333 so'm</b></div>
+  <div class="box-1c"><div class="box-1c-label">1C:Enterprise</div><div class="box-1c-text">Ta'mirlash: «Поступление (акт) услуг». Modernizatsiya: «Модернизация ОС» — 0820 yig'ib AVga qo'shadi.</div></div>
+</div>
+
+<!-- S4: QAYTA BAHOLASH -->
+<div class="dars-section" id="s4">
+  <div class="dars-header">
+    <div class="dars-badge">05 · 8510 schot</div>
+    <h2 class="dars-title">Qayta baholash — dootsenka va utsenka</h2>
+    <p class="dars-sub">Bozor qiymatiga moslashtirish</p>
+  </div>
+  <div class="explain-box">
+    <div class="explain-icon">💡 NIMA VA NIMA UCHUN?</div>
+    <div class="explain-text">Vaqt o'tishi bilan AVning bozor qiymati o'zgarishi mumkin. Dootsenka — qiymat oshirish (8510 kapitalga). Utsenka — qiymat kamaytirish (9410 xarajatga). Avval dootsenka bo'lgan AVning utsenкasi avval 8510 dan, keyin 9410 dan hisoblanadi.</div>
+  </div>
+  <div class="prov-wrap">
+    <div class="prov-title">DOOTSENKA — qiymat OSHADI ⬆</div>
+    <table class="prov"><thead><tr><th>Debet</th><th>Kredit</th><th>Summa</th><th>Xo'jalik muomalasi</th></tr></thead>
+    <tbody>
+      <tr><td class="dt">01xx</td><td class="kt">8510</td><td class="summa">farq</td><td class="izoh">Dastlabki qiymat oshishi — 8510 KAPITAL!</td></tr>
+      <tr><td class="dt">8510</td><td class="kt">02xx</td><td class="summa">farq</td><td class="izoh">Amortizatsiya oshishi</td></tr>
+    </tbody></table>
+  </div>
+  <div class="prov-wrap">
+    <div class="prov-title">UTSENKA — qiymat KAMAYADI ⬇</div>
+    <table class="prov"><thead><tr><th>Debet</th><th>Kredit</th><th>Summa</th><th>Xo'jalik muomalasi</th></tr></thead>
+    <tbody>
+      <tr><td class="dt">9410</td><td class="kt">01xx</td><td class="summa">farq</td><td class="izoh">Dastlabki qiymat kamayishi</td></tr>
+      <tr><td class="dt">02xx</td><td class="kt">9410</td><td class="summa">farq</td><td class="izoh">Amortizatsiya kamayishi</td></tr>
+    </tbody></table>
+  </div>
+  <div class="formula-box">
+    Misol — Transport (0160), koeffitsient 1.2:<br>
+    Dastlabki qiymat: 52,000,000  |  Yig'ilgan amort (0260): 20,000,000<br>
+    Qoldiq qiymat:    32,000,000  |  Bozor qiymati:          38,400,000<br>
+    Koeffitsient = 38,400,000 ÷ 32,000,000 = <span class="hi">1.2</span><br>
+    Yangi dastlabki qiymat: 52,000,000 × 1.2 = <span class="hi">62,400,000</span> (farq: +10,400,000)<br>
+    Yangi amortizatsiya:    20,000,000 × 1.2 = <span class="hi">24,000,000</span> (farq: +4,000,000)
+  </div>
+  <div class="prov-wrap">
+    <div class="prov-title">DOOTSENKA PROVODKALARI (transport misoli)</div>
+    <table class="prov"><thead><tr><th>Debet</th><th>Kredit</th><th>Summa</th><th>Xo'jalik muomalasi</th></tr></thead>
+    <tbody>
+      <tr><td class="dt">0160</td><td class="kt">8510</td><td class="summa">10,400,000</td><td class="izoh">Dastlabki qiymat oshishi</td></tr>
+      <tr><td class="dt">8510</td><td class="kt">0260</td><td class="summa">4,000,000</td><td class="izoh">Amortizatsiya oshishi (0160→0260)</td></tr>
+    </tbody></table>
+  </div>
+  <div class="box-1c"><div class="box-1c-label">1C:Enterprise</div><div class="box-1c-text">«Переоценка ОС» — guruhlar bo'yicha bajariladi.</div></div>
+</div>
+
+<!-- S5: SOTILISHI -->
+<div class="dars-section" id="s5">
+  <div class="dars-header">
+    <div class="dars-badge">06 · 9210 schot</div>
+    <h2 class="dars-title">AV sotilishi</h2>
+    <p class="dars-sub">To'g'ri ketma-ketlik — 4 bosqich</p>
+  </div>
+  <div class="explain-box">
+    <div class="explain-icon">💡 NIMA VA NIMA UCHUN?</div>
+    <div class="explain-text">AV sotilganida 4 bosqich amalga oshiriladi. Avval yig'ilgan amortizatsiya yopiladi (02xx→01xx). Keyin qoldiq qiymat 9210 ga chiqariladi. So'ng sotish narxi 9210 ga daromad sifatida kiritiladi. <b style="color:var(--red)">DIQQAT:</b> amortizatsiya 9110 ga emas, 02xx→01xx ga yopiladi!</div>
+  </div>
+  <div class="info-box"><b>9210 KREDIT saldosi</b> = FOYDA ✅ · <b>9210 DEBET saldosi</b> = ZARAR ❌</div>
+  <div class="prov-wrap">
+    <div class="prov-title">SOTISH BOSQICHLARI — Transport (0160) misoli</div>
+    <table class="prov"><thead><tr><th>Debet</th><th>Kredit</th><th>Summa</th><th>Xo'jalik muomalasi</th></tr></thead>
+    <tbody>
+      <tr><td class="dt">0260</td><td class="kt">0160</td><td class="summa">20,000,000</td><td class="izoh">1. Yig'ilgan amortizatsiyani yopish (0260→0160)</td></tr>
+      <tr><td class="dt">9210</td><td class="kt">0160</td><td class="summa">32,000,000</td><td class="izoh">2. Qoldiq qiymatni 9210 ga chiqarish</td></tr>
+      <tr><td class="dt">4010</td><td class="kt">9210</td><td class="summa">37,200,000</td><td class="izoh">3. Sotish narxi — xaridor qarzi</td></tr>
+      <tr><td class="dt">9210</td><td class="kt">6410</td><td class="summa">4,000,000</td><td class="izoh">4. QQS hisoblash (12%)</td></tr>
+    </tbody></table>
+  </div>
+  <div class="formula-box">
+    Kredit: 37,200,000<br>
+    Debet: 32,000,000 + 4,000,000 = 36,000,000<br>
+    NATIJA: <span class="hi" style="color:var(--green)">+1,200,000 so'm — FOYDA ✅</span>
+  </div>
+  <div class="box-1c"><div class="box-1c-label">1C:Enterprise</div><div class="box-1c-text">«Передача ОС» / «Реализация ОС» — amortizatsiya va qoldiq qiymat avtomatik hisoblanadi.</div></div>
+</div>
+
+<!-- S6: KONSERVATSIYA -->
+<div class="dars-section" id="s6">
+  <div class="dars-header">
+    <div class="dars-badge">07 · Vaqtinchalik to'xtash</div>
+    <h2 class="dars-title">Konservatsiya</h2>
+    <p class="dars-sub">3 oy qoidasi</p>
+  </div>
+  <div class="explain-box">
+    <div class="explain-icon">💡 NIMA VA NIMA UCHUN?</div>
+    <div class="explain-text">AV ishlatilmasa ham buxgalteriya yuritiladi. Agar to'xtash 3 oydan OSHSA — rasmiy konservatsiya rasmiylashtiriladi va amortizatsiya TO'XTATILADI. Lekin mol-mulk solig'i to'xtamaydi!</div>
+  </div>
+  <div style="overflow-x:auto">
+  <table class="comp">
+    <thead><tr><th>Muddat</th><th>Amortizatsiya</th><th>Mol-mulk solig'i</th><th>Hujjat</th></tr></thead>
+    <tbody>
+      <tr><td>3 oygacha</td><td class="c-green">Davom etadi ✅</td><td class="c-green">Davom etadi ✅</td><td>Shart emas</td></tr>
+      <tr><td>3 oydan ORTIQ</td><td class="c-red">TO'XTATILADI ❌</td><td class="c-green">Davom etadi ✅</td><td>Buyruq + Akt SHART!</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="prov-wrap">
+    <div class="prov-title">PROVODKALAR</div>
+    <table class="prov"><thead><tr><th>Debet</th><th>Kredit</th><th>Summa</th><th>Xo'jalik muomalasi</th></tr></thead>
+    <tbody>
+      <tr><td class="dt">01xx/k</td><td class="kt">01xx/f</td><td class="summa">—</td><td class="izoh">Konservatsiyaga o'tkazish (subschot ochiladi)</td></tr>
+      <tr><td class="dt">9420</td><td class="kt">6010</td><td class="summa">xxx</td><td class="izoh">Konservatsiya xarajatlari (qo'riqchi, isitish)</td></tr>
+      <tr><td class="dt">01xx/f</td><td class="kt">01xx/k</td><td class="summa">—</td><td class="izoh">Qaytarilganda — faol holatga</td></tr>
+    </tbody></table>
+  </div>
+  <div class="warn-box"><b>MAJBURIY:</b> Rahbar buyrug'i + Konservatsiya akti (ikki tomonlama imzolangan)</div>
+  <div class="box-1c"><div class="box-1c-label">1C:Enterprise</div><div class="box-1c-text">«Консервация ОС» / «Расконсервация ОС» — amortizatsiya to'xtatish parametri o'rnatiladi.</div></div>
+</div>
+
+<!-- S7: LIZING -->
+<div class="dars-section" id="s7">
+  <div class="dars-header">
+    <div class="dars-badge">08 · 03xx / 011 / 001</div>
+    <h2 class="dars-title">Lizing va operativ ijara</h2>
+    <p class="dars-sub">Balansda kim ko'rsatadi — shu hisoblaydi</p>
+  </div>
+  <div class="explain-box">
+    <div class="explain-icon">💡 NIMA VA NIMA UCHUN?</div>
+    <div class="explain-text">1) OPERATIV IJARA — AV beruvchining balansida qoladi, oluvchi 001 schotida yuritadi. Beruvchi amortizatsiya hisoblaydi.<br>2) MOLIYAVIY LIZING — AV oluvchining balansiga o'tadi, u o'zi amortizatsiya hisoblaydi. Aslida sotib olish bilan tengdir.</div>
+  </div>
+  <div style="overflow-x:auto">
+  <table class="comp">
+    <thead><tr><th></th><th>Operativ ijara</th><th>Moliyaviy lizing</th></tr></thead>
+    <tbody>
+      <tr><td>Mulkchilik</td><td>Beruvchida qoladi</td><td>Lizing tugagach oluvchiga</td></tr>
+      <tr><td>Balans</td><td>Beruvchi balansida</td><td class="c-teal">OLUVCHI balansida</td></tr>
+      <tr><td>Amortizatsiya</td><td>Beruvchi hisoblaydi</td><td class="c-teal">Oluvchi hisoblaydi</td></tr>
+      <tr><td>Beruvchi schoti</td><td>01xx + 011 (balansdan tashq.)</td><td class="c-pu">0310 (Lizing aktivlari)</td></tr>
+      <tr><td>Oluvchi schoti</td><td>001 (balansdan tashq.)</td><td class="c-pu">01xx (o'z balansida)</td></tr>
+      <tr><td>To'lov</td><td>Beruvchi: Dt 4010 — Kt 9350</td><td>Lizing: Dt 7310 — Kt 5110</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="prov-wrap">
+    <div class="prov-title">PROVODKALAR</div>
+    <table class="prov"><thead><tr><th>Debet</th><th>Kredit</th><th>Summa</th><th>Xo'jalik muomalasi</th></tr></thead>
+    <tbody>
+      <tr><td class="dt">011 b/t</td><td class="kt">—</td><td class="summa">—</td><td class="izoh">Beruvchi: operativ ijara — nazorat uchun</td></tr>
+      <tr><td class="dt">001 b/t</td><td class="kt">—</td><td class="summa">—</td><td class="izoh">Oluvchi: ijaraga olingan AV</td></tr>
+      <tr><td class="dt">0310</td><td class="kt">01xx</td><td class="summa">xxx</td><td class="izoh">Beruvchi: mol. lizing — AVni 0310 ga</td></tr>
+      <tr><td class="dt">01xx</td><td class="kt">7310</td><td class="summa">xxx</td><td class="izoh">Oluvchi: mol. lizing — o'z balansiga qabul</td></tr>
+      <tr><td class="dt">9420</td><td class="kt">02xx</td><td class="summa">xxx</td><td class="izoh">Oluvchi: amortizatsiya hisoblash</td></tr>
+    </tbody></table>
+  </div>
+  <div class="box-1c"><div class="box-1c-label">1C:Enterprise</div><div class="box-1c-text">Operativ ijara: «Передача ОС в аренду». Moliyaviy lizing: «Передача ОС в лизинг» — 0310 subschot.</div></div>
+</div>
+
+<!-- S8: TEKINGA -->
+<div class="dars-section" id="s8">
+  <div class="dars-header">
+    <div class="dars-badge">09 · 8530 schot</div>
+    <h2 class="dars-title">Tekinga olingan AV</h2>
+    <p class="dars-sub">Kapital — asta-sekin daromadga aylanadi</p>
+  </div>
+  <div class="explain-box">
+    <div class="explain-icon">💡 NIMA VA NIMA UCHUN?</div>
+    <div class="explain-text">Korxona AVni bepul olsa — bu to'g'ridan daromad emas, kapitalga (8530) o'tkaziladi. Har oy amortizatsiya hisoblanganда — xuddi shu miqdor 8530 dan 9350 daromadga o'tadi. AV to'liq eskirganda 8530 = 0.</div>
+  </div>
+  <div class="prov-wrap">
+    <div class="prov-title">PROVODKALAR</div>
+    <table class="prov"><thead><tr><th>Debet</th><th>Kredit</th><th>Summa</th><th>Xo'jalik muomalasi</th></tr></thead>
+    <tbody>
+      <tr><td class="dt">01xx</td><td class="kt">8530</td><td class="summa">52,000,000</td><td class="izoh">AV bozor qiymatida qabul — kapitalga</td></tr>
+      <tr><td class="dt">9420</td><td class="kt">02xx</td><td class="summa">433,333</td><td class="izoh">HAR OY: Amortizatsiya (tegishli 02xx schot)</td></tr>
+      <tr><td class="dt">8530</td><td class="kt">9350</td><td class="summa">433,333</td><td class="izoh">HAR OY PARALLEL: 8530 dan daromadga o'tkazish</td></tr>
+    </tbody></table>
+  </div>
+  <div class="info-box"><b>Bozor qiymati</b> davlat organi yoki mustaqil ekspert xulosasi bo'yicha aniqlanadi.<br>8530 — passiv, kapital bo'limi. Daromad emas!</div>
+  <div class="box-1c"><div class="box-1c-label">1C:Enterprise</div><div class="box-1c-text">«Принятие к учету ОС» — 'безвозмездно получено' belgisi qo'yiladi. 8530 kapital bo'limida.</div></div>
+</div>
+
+<!-- S9: O'Z KUCHI -->
+<div class="dars-section" id="s9">
+  <div class="dars-header">
+    <div class="dars-badge">10 · Xo'jalik usuli</div>
+    <h2 class="dars-title">O'z kuchi bilan qurish</h2>
+    <p class="dars-sub">0810 schoti — faqat bino/inshoot qurish uchun</p>
+  </div>
+  <div class="explain-box">
+    <div class="explain-icon">💡 NIMA VA NIMA UCHUN?</div>
+    <div class="explain-text">Korxona binoni o'zi qurishi mumkin. Qurilish davomida barcha xarajatlar 0810 schotida yig'iladi. Bino tayyor bo'lgach, 0810 dan 0120 ga o'tkaziladi. Dastlabki qiymat = barcha haqiqiy xarajatlar yig'indisi.</div>
+  </div>
+  <div class="prov-wrap">
+    <div class="prov-title">PROVODKALAR — Ombor binosi qurish</div>
+    <table class="prov"><thead><tr><th>Debet</th><th>Kredit</th><th>Summa</th><th>Xo'jalik muomalasi</th></tr></thead>
+    <tbody>
+      <tr><td class="dt">0810</td><td class="kt">1010</td><td class="summa">15,000,000</td><td class="izoh">Qurilish materiallari</td></tr>
+      <tr><td class="dt">0810</td><td class="kt">6710</td><td class="summa">4,000,000</td><td class="izoh">Qurilish ishchilari ish haqi</td></tr>
+      <tr><td class="dt">0810</td><td class="kt">6520</td><td class="summa">480,000</td><td class="izoh">Ijtimoiy sug'urta 12% — 6520 (korxona hissi)</td></tr>
+      <tr><td class="dt">0810</td><td class="kt">0230</td><td class="summa">1,000,000</td><td class="izoh">Qurilish texnikasi amortizatsiyasi (0130→0230)</td></tr>
+      <tr><td class="dt">0810</td><td class="kt">6010</td><td class="summa">5,000,000</td><td class="izoh">Pudratchi xizmati</td></tr>
+      <tr><td class="dt">0120</td><td class="kt">0810</td><td class="summa">25,480,000</td><td class="izoh">✅ Bino ishga tushdi — 0120 (Binolar)</td></tr>
+    </tbody></table>
+  </div>
+  <div class="info-box"><b>6520</b> = Ijtimoiy sug'urta 12% — korxona to'laydi (xarajatga kiradi)<br><b>6530</b> = INPS 1% — xodim daromadidan USHLANADI (xarajat emas, majburiyat)</div>
+  <div class="box-1c"><div class="box-1c-label">1C:Enterprise</div><div class="box-1c-text">Materiallar: «Требование-накладная» → 0810. Ish haqi tabeli → 0810. Tugatish: «Принятие к учету ОС».</div></div>
+</div>
+
+<!-- S10: INVENTARIZATSIYA -->
+<div class="dars-section" id="s10">
+  <div class="dars-header">
+    <div class="dars-badge">11 · INV-1 / INV-18 shakl</div>
+    <h2 class="dars-title">Inventarizatsiya</h2>
+    <p class="dars-sub">Kamomad va ortiqcha — yil oxirida majburiy</p>
+  </div>
+  <div class="explain-box">
+    <div class="explain-icon">💡 NIMA VA NIMA UCHUN?</div>
+    <div class="explain-text">Yil oxirida inventarizatsiya o'tkaziladi — haqiqiy mavjud AVlar hisob kitobdagi ma'lumotlar bilan solishtiriladi. Agar hisob kitobda yo'q, lekin amalda bor → ORTIQCHA (daromad). Agar topilmayapti → KAMOMAD. Kamomadda aybdor aniqlanadi.</div>
+  </div>
+  <div class="prov-wrap">
+    <div class="prov-title">ORTIQCHA CHIQSA ➕</div>
+    <table class="prov"><thead><tr><th>Debet</th><th>Kredit</th><th>Summa</th><th>Xo'jalik muomalasi</th></tr></thead>
+    <tbody><tr><td class="dt">01xx</td><td class="kt">9390</td><td class="summa">bozor qiymati</td><td class="izoh">Bozor qiymatida daromadga kiritish</td></tr></tbody>
+    </table>
+  </div>
+  <div class="prov-wrap">
+    <div class="prov-title">KAMOMAD CHIQSA ➖</div>
+    <table class="prov"><thead><tr><th>Debet</th><th>Kredit</th><th>Summa</th><th>Xo'jalik muomalasi</th></tr></thead>
+    <tbody>
+      <tr><td class="dt">02xx</td><td class="kt">01xx</td><td class="summa">yig. amort</td><td class="izoh">1. Amortizatsiyani yopish (tegishli 02xx)</td></tr>
+      <tr><td class="dt">9390</td><td class="kt">01xx</td><td class="summa">qoldiq qiym.</td><td class="izoh">2. Balansdan chiqarish</td></tr>
+      <tr><td class="dt">4730</td><td class="kt">9390</td><td class="summa">bozor qiymati</td><td class="izoh">Aybdor ANIQLANSA — undan undirish</td></tr>
+      <tr><td class="dt">9390</td><td class="kt">6410</td><td class="summa">QQS</td><td class="izoh">Aybdordan undiruvda QQS hisoblash</td></tr>
+      <tr><td class="dt">9420</td><td class="kt">9390</td><td class="summa">qoldiq qiym.</td><td class="izoh">Aybdor ANIQLANMASA — ma'muriy xarajatga</td></tr>
+    </tbody></table>
+  </div>
+  <div class="warn-box"><b>MAJBURIY:</b> Komissiya (kamida 3 kishi) + INV-1 shakli + INV-18 solishtiruv varaqasi</div>
+  <div class="box-1c"><div class="box-1c-label">1C:Enterprise</div><div class="box-1c-text">«Инвентаризация ОС» — 1C da tashkil etiladi, natijalari avtomatik ko'rsatiladi.</div></div>
+</div>
+
+<!-- S11: SOLIQ FARQI -->
+<div class="dars-section" id="s11">
+  <div class="dars-header">
+    <div class="dars-badge">12 · IAS 12 / BHMS 21</div>
+    <h2 class="dars-title">Soliq va buxgalteriya amortizatsiyasi farqi</h2>
+    <p class="dars-sub">Kechiktirilgan soliq — yirik korxonalar uchun</p>
+  </div>
+  <div class="explain-box">
+    <div class="explain-icon">💡 NIMA VA NIMA UCHUN?</div>
+    <div class="explain-text">Buxgalteriya amortizatsiyasi va soliq amortizatsiyasi farq qilishi mumkin. Bu IAS 12 talabi — faqat IFRS bo'yicha hisobot beradigan yirik korxonalar uchun majburiy. Ko'pchilik O'zbek korxonalari uchun kechiktirilgan soliqni hisoblash shart emas.</div>
+  </div>
+  <div style="overflow-x:auto">
+  <table class="comp">
+    <thead><tr><th>Mezon</th><th>Buxgalteriya amort.</th><th>Soliq amort.</th></tr></thead>
+    <tbody>
+      <tr><td>Maqsad</td><td>Moliyaviy hisobot (BHMS)</td><td>Soliq bazasini hisoblash</td></tr>
+      <tr><td>Asos</td><td>BHMS 5 / IAS 16</td><td>O'zbekiston Soliq Kodeksi</td></tr>
+      <tr><td>Muddat</td><td>Korxona o'zi belgilaydi</td><td>Soliq Kodeksi jadvali</td></tr>
+      <tr><td>Usul</td><td>Erkin tanlash</td><td>Faqat to'g'ri chiziqli</td></tr>
+      <tr><td>Kimga majburiy</td><td>Barcha korxonalar</td><td class="c-teal">Faqat IFRS korxonalari</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="dars-h3">SOLIQ KODEKSI AMORTIZATSIYA NORMASI JADVALI</div>
+  <div style="overflow-x:auto">
+  <table class="soliq">
+    <thead><tr><th>Guruh</th><th>Kichik guruh</th><th>Nomi</th><th>Norma %</th></tr></thead>
+    <tbody>
+      <tr class="guruh-row"><td class="guruh">I</td><td></td><td><b>Binolar va inshootlar</b></td><td></td></tr>
+      <tr><td></td><td style="text-align:center;color:var(--text3)">1</td><td>Binolar</td><td class="norma">5%</td></tr>
+      <tr><td></td><td style="text-align:center;color:var(--text3)">2</td><td>Inshootlar</td><td class="norma">10%</td></tr>
+      <tr class="guruh-row"><td class="guruh">II</td><td></td><td><b>Quvurlar, elektr uzatish va telekommunikatsiyalar liniyalari</b></td><td class="norma" style="color:var(--teal);font-size:15px;font-weight:700">15%</td></tr>
+      <tr class="guruh-row"><td class="guruh">III</td><td></td><td><b>Mashinalar va uskunalar (transport uskunalaridan tashqari)</b></td><td class="norma" style="color:var(--teal);font-size:15px;font-weight:700">20%</td></tr>
+      <tr class="guruh-row"><td class="guruh">IV</td><td></td><td><b>Transport uskunalari</b></td><td></td></tr>
+      <tr><td></td><td style="text-align:center;color:var(--text3)">1</td><td>Havo, kosmik, temir yo'l, kemalar</td><td class="norma">10%</td></tr>
+      <tr><td></td><td style="text-align:center;color:var(--text3)">2</td><td>Avtotransport, tirkamalar, boshqa transport</td><td class="norma">20%</td></tr>
+      <tr class="guruh-row"><td class="guruh">V</td><td></td><td><b>Kompyuterlar va periferiya uskunalari</b></td><td class="norma big">40%</td></tr>
+      <tr class="guruh-row"><td class="guruh">VI</td><td></td><td><b>Boshqa guruhlarga kiritilmagan aktivlar</b></td><td class="norma" style="color:var(--teal);font-size:15px;font-weight:700">15%</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div style="overflow-x:auto">
+  <table class="comp">
+    <thead><tr><th>Holat</th><th>Tur</th><th>Schot</th><th>Provodka</th></tr></thead>
+    <tbody>
+      <tr><td>Buxgalt. amort > Soliq amort</td><td>Kechiktirilgan soliq MAJBURIYATI</td><td class="c-pu">8820</td><td>Dt 9820 — Kt 8820</td></tr>
+      <tr><td>Buxgalt. amort &lt; Soliq amort</td><td>Kechiktirilgan soliq AKTIVI</td><td class="c-teal">4650</td><td>Dt 4650 — Kt 9820</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- S12: USTAV -->
+<div class="dars-section" id="s12">
+  <div class="dars-header">
+    <div class="dars-badge">13 · 4610 schot</div>
+    <h2 class="dars-title">Ustav kapitaliga AV kiritish</h2>
+    <p class="dars-sub">Ta'sischi pul o'rniga AV kiritsa</p>
+  </div>
+  <div class="explain-box">
+    <div class="explain-icon">💡 NIMA VA NIMA UCHUN?</div>
+    <div class="explain-text">Ta'sischi pul o'rniga AV kiritishi mumkin. Avval 4610 schoti ochiladi, keyin AV qabul qilinib tegishli schotga o'tkaziladi. 20 mln so'mdan ortiq bo'lsa mustaqil baholovchi MAJBURIY.</div>
+  </div>
+  <div class="prov-wrap">
+    <div class="prov-title">PROVODKALAR</div>
+    <table class="prov"><thead><tr><th>Debet</th><th>Kredit</th><th>Summa</th><th>Xo'jalik muomalasi</th></tr></thead>
+    <tbody>
+      <tr><td class="dt">4610</td><td class="kt">8330</td><td class="summa">kelishilgan qiymat</td><td class="izoh">Ta'sischi ulushi e'lon qilinadi</td></tr>
+      <tr><td class="dt">0820</td><td class="kt">4610</td><td class="summa">kelishilgan qiymat</td><td class="izoh">Mashina bo'lsa → 0820 ga qabul</td></tr>
+      <tr><td class="dt">0810</td><td class="kt">4610</td><td class="summa">kelishilgan qiymat</td><td class="izoh">Bino bo'lsa → 0810 ga qabul</td></tr>
+      <tr><td class="dt">01xx</td><td class="kt">0820/0810</td><td class="summa">dastlabki qiymat</td><td class="izoh">Ishga tushirildi — tegishli AV schotiga</td></tr>
+    </tbody></table>
+  </div>
+  <div class="info-box"><b>QQS to'lanmaydi</b> — bu soliq imtiyozi<br><b>Qiymat:</b> 20,600,000 so'mdan ortiq bo'lsa mustaqil baholovchi MAJBURIY</div>
+  <div class="box-1c"><div class="box-1c-label">1C:Enterprise</div><div class="box-1c-text">«Принятие к учету ОС» — 'взнос в уставной капитал' manbai ko'rsatiladi.</div></div>
+</div>
+
+<!-- S13: KOMPLEKTATSIYA -->
+<div class="dars-section" id="s13">
+  <div class="dars-header">
+    <div class="dars-badge">14 · Yig'ish va bo'lish</div>
+    <h2 class="dars-title">Komplektatsiya va ajratish</h2>
+    <p class="dars-sub">Bir necha qismdan bitta AV — yoki bitta AVni qismlarga</p>
+  </div>
+  <div class="explain-box">
+    <div class="explain-icon">💡 NIMA VA NIMA UCHUN?</div>
+    <div class="explain-text">KOMPLEKTATSIYA: bir necha qismdan bitta AV yig'iladi (kompyuter, stanok). Har bir qism 0820 ga yig'iladi, tayyor bo'lgach 01xx ga o'tkaziladi.<br>AJRATISH: bitta katta AV qismlarga bo'linadi. Har bir qism alohida inventar raqami va alohida amortizatsiya oladi.</div>
+  </div>
+  <div class="prov-wrap">
+    <div class="prov-title">KOMPLEKTATSIYA — bir necha qismdan bitta AV</div>
+    <table class="prov"><thead><tr><th>Debet</th><th>Kredit</th><th>Summa</th><th>Xo'jalik muomalasi</th></tr></thead>
+    <tbody>
+      <tr><td class="dt">0820</td><td class="kt">1010</td><td class="summa">xxx</td><td class="izoh">1-qism materiallar → 0820!</td></tr>
+      <tr><td class="dt">0820</td><td class="kt">1010</td><td class="summa">xxx</td><td class="izoh">2-qism materiallar</td></tr>
+      <tr><td class="dt">0820</td><td class="kt">6710</td><td class="summa">xxx</td><td class="izoh">Montaj ish haqi</td></tr>
+      <tr><td class="dt">0820</td><td class="kt">6520</td><td class="summa">xxx</td><td class="izoh">Ijtimoiy sug'urta 12%</td></tr>
+      <tr><td class="dt">0130</td><td class="kt">0820</td><td class="summa">xxx</td><td class="izoh">✅ Tayyor stanok ishga tushdi</td></tr>
+    </tbody></table>
+  </div>
+  <div class="prov-wrap">
+    <div class="prov-title">AJRATISH — bitta AVni qismlarga bo'lish</div>
+    <table class="prov"><thead><tr><th>Debet</th><th>Kredit</th><th>Summa</th><th>Xo'jalik muomalasi</th></tr></thead>
+    <tbody>
+      <tr><td class="dt">01xx/A</td><td class="kt">01xx</td><td class="summa">propors.</td><td class="izoh">1-qism alohida AV bo'ldi</td></tr>
+      <tr><td class="dt">01xx/B</td><td class="kt">01xx</td><td class="summa">propors.</td><td class="izoh">2-qism alohida AV bo'ldi</td></tr>
+    </tbody></table>
+  </div>
+  <div class="info-box">Har bir qism: <b>Alohida inventar raqami</b> + <b>Alohida amortizatsiya</b> + <b>Alohida OC-6 kartochka</b></div>
+  <div class="box-1c"><div class="box-1c-label">1C:Enterprise</div><div class="box-1c-text">Komplektatsiya: «Принятие к учету ОС» + komponentlar ro'yxati. Ajratish: «Разукомплектация ОС».</div></div>
+</div>
+
+<!-- S14: MOL-MULK SOLIG'I -->
+<div class="dars-section" id="s14">
+  <div class="dars-header">
+    <div class="dars-badge">15 · 1.5% yillik</div>
+    <h2 class="dars-title">Mol-mulk solig'i bog'liqligi</h2>
+    <p class="dars-sub">Amortizatsiya ↑ → Qoldiq qiymat ↓ → Soliq ↓</p>
+  </div>
+  <div class="explain-box">
+    <div class="explain-icon">💡 NIMA VA NIMA UCHUN?</div>
+    <div class="explain-text">Mol-mulk solig'i AVning QOLDIQ QIYMATIDAN hisoblanadi — stavka 1.5% yillik. Amortizatsiya qancha ko'p hisoblansa — qoldiq qiymat shuncha kamayadi — mol-mulk solig'i ham kamayadi. Soliq har oy hisoblanadi va to'lanadi.</div>
+  </div>
+  <div class="formula-box">
+    Mol-mulk solig'i (oylik) = <span class="hi">Qoldiq qiymat</span> × 1.5% ÷ 12<br>
+    Qoldiq qiymat = Dastlabki qiymat − Yig'ilgan amortizatsiya<br><br>
+    Misol: Stanok 52,000,000 so'm, 10 yil → yillik amort 5,200,000<br>
+    1-yil oxiri: Qoldiq = 46,800,000 → Yillik soliq = <span class="hi">702,000 so'm</span>
+  </div>
+  <div style="overflow-x:auto">
+  <table class="comp">
+    <thead><tr><th>Yil</th><th>Dastlabki qiymat</th><th>Yig. amort</th><th>Qoldiq qiymat</th><th>Yillik soliq</th></tr></thead>
+    <tbody id="soliqTbl"></tbody>
+  </table>
+  </div>
+  <div class="prov-wrap" style="margin-top:20px">
+    <div class="prov-title">PROVODKA</div>
+    <table class="prov"><thead><tr><th>Debet</th><th>Kredit</th><th>Summa</th><th>Xo'jalik muomalasi</th></tr></thead>
+    <tbody><tr><td class="dt">9420</td><td class="kt">6410 (sub)</td><td class="summa">58,500</td><td class="izoh">Mol-mulk solig'i hisoblash (oylik) — 6410 subschot!</td></tr></tbody>
+    </table>
+  </div>
+  <div class="box-1c"><div class="box-1c-label">1C:Enterprise</div><div class="box-1c-text">«Закрытие месяца» → 'Расчет налога на имущество' — avtomatik hisoblab provodka qiladi.</div></div>
+</div>
+
+<!-- S15: HISOBDAN CHIQARISH -->
+<div class="dars-section" id="s15">
+  <div class="dars-header">
+    <div class="dars-badge">16 · OC-4 shakli</div>
+    <h2 class="dars-title">Yaroqsiz AV hisobdan chiqarish</h2>
+    <p class="dars-sub">Metallolom va ehtiyot qismlar</p>
+  </div>
+  <div class="explain-box">
+    <div class="explain-icon">💡 NIMA VA NIMA UCHUN?</div>
+    <div class="explain-text">AV butunlay ishdan chiqqanda hisobdan chiqariladi. Avval texnik ekspertiza akti tuziladi, rahbar buyruq chiqaradi. Amortizatsiya yopiladi, qoldiq qiymat 9210 ga zarar sifatida chiqariladi. Metallolom/ehtiyot qismlar bozor qiymatida 1010 ga kiritiladi.</div>
+  </div>
+  <div class="prov-wrap">
+    <div class="prov-title">PROVODKALAR — ketma-ketlik</div>
+    <table class="prov"><thead><tr><th>Debet</th><th>Kredit</th><th>Summa</th><th>Xo'jalik muomalasi</th></tr></thead>
+    <tbody>
+      <tr><td class="dt">02xx</td><td class="kt">01xx</td><td class="summa">20,000,000</td><td class="izoh">1. Yig'ilgan amortizatsiyani yopish — tegishli 02xx!</td></tr>
+      <tr><td class="dt">9210</td><td class="kt">01xx</td><td class="summa">32,000,000</td><td class="izoh">2. Qoldiq qiymat → 9210 (zarar ko'rinadi)</td></tr>
+      <tr><td class="dt">9210</td><td class="kt">6710</td><td class="summa">500,000</td><td class="izoh">3. Demontaj ish haqi</td></tr>
+      <tr><td class="dt">9210</td><td class="kt">6520</td><td class="summa">60,000</td><td class="izoh">4. Demontaj ijtimoiy sug'urta 12% (6520!)</td></tr>
+      <tr><td class="dt">1010</td><td class="kt">9210</td><td class="summa">2,000,000</td><td class="izoh">5. Metallolom — bozor qiymatida materiallar</td></tr>
+    </tbody></table>
+  </div>
+  <div class="formula-box">
+    9210 Debet  = 32,000,000 + 500,000 + 60,000 = <span class="hi">32,560,000</span> so'm<br>
+    9210 Kredit = <span class="hi">2,000,000</span> (metallolom)<br>
+    ──────────────────────────────────────────────<br>
+    ZARAR = <span class="hi" style="color:var(--red)">30,560,000 so'm</span> (9210 debet saldosi)
+  </div>
+  <div class="warn-box"><b>MAJBURIY hujjatlar:</b><br>1. Texnik ekspertiza akti (AV yaroqsiz ekanligini tasdiqlaydi)<br>2. Rahbar buyrug'i (hisobdan chiqarish to'g'risida)<br>3. OC-4 shakli — Hisobdan chiqarish akti</div>
+  <div class="box-1c"><div class="box-1c-label">1C:Enterprise</div><div class="box-1c-text">«Списание ОС» — amortizatsiya avtomatik yopiladi. Metallolom: «Оприходование материалов».</div></div>
+</div>
+
+<!-- S16: BARCHA PROVODKALAR -->
+<div class="dars-section" id="s16">
+  <div class="dars-header">
+    <div class="dars-badge">✅ YAKUNIY JADVAL · v5.0</div>
+    <h2 class="dars-title">Barcha provodkalar</h2>
+    <p class="dars-sub">30 ta asosiy muomala — barcha xatolar tuzatildi</p>
+  </div>
+  <div style="overflow-x:auto">
+  <table class="final">
+    <thead><tr><th>#</th><th>Xo'jalik muomalasi</th><th>Debet</th><th>Kredit</th><th>Izoh</th></tr></thead>
+    <tbody id="finalTbl"></tbody>
+  </table>
+  </div>
+</div>
+
+</div><!-- /dars-wrap -->
+
+<script>
+// MAVZU ALMASHTIRISH
+var sections=document.querySelectorAll('.dars-section');
+var navLinks=document.querySelectorAll('.nav-link');
+var mavzuCards=document.querySelectorAll('.mavzu-card');
+
+function showSection(idx,navEl,cardEl){
+  sections.forEach(function(s){s.classList.remove('show')});
+  var target=document.getElementById('s'+idx);
+  if(target){target.classList.add('show')}
+
+  navLinks.forEach(function(l){l.classList.remove('active')});
+  if(navEl){navEl.classList.add('active')}
+  else{if(navLinks[idx])navLinks[idx].classList.add('active')}
+
+  mavzuCards.forEach(function(c){c.classList.remove('active')});
+  if(cardEl){cardEl.classList.add('active')}
+  else{if(mavzuCards[idx])mavzuCards[idx].classList.add('active')}
+
+  // Dars sarlavhasiga scroll
+  var darsWrap=document.querySelector('.dars-wrap');
+  if(darsWrap){darsWrap.scrollIntoView({behavior:'smooth',block:'start'})}
+
+  return false;
+}
+
+// MOL-MULK SOLIG'I JADVALI
+(function(){
+  var tbl=document.getElementById('soliqTbl');
+  if(!tbl)return;
+  var base=52000000,amY=5200000;
+  var html='';
+  for(var yr=1;yr<=5;yr++){
+    var ya=amY*yr,qold=base-ya,soliq=Math.round(qold*0.015);
+    html+='<tr><td style="color:var(--text);font-weight:500">'+yr+'-yil</td>';
+    html+='<td style="color:var(--text2)">'+base.toLocaleString()+'</td>';
+    html+='<td style="color:var(--text2)">'+ya.toLocaleString()+'</td>';
+    html+='<td style="color:var(--text2)">'+qold.toLocaleString()+'</td>';
+    html+='<td style="color:var(--green);font-weight:600;font-family:Unbounded,sans-serif">'+soliq.toLocaleString()+'</td></tr>';
+  }
+  tbl.innerHTML=html;
+})();
+
+// BARCHA PROVODKALAR JADVALI
+(function(){
+  var tbl=document.getElementById('finalTbl');
+  if(!tbl)return;
+  var data=[
+    ['1','AV (mashina) sotib olish','0820','6010','Narx+yetkazib berish+montaj — 0820!'],
+    ['2','Bino qurishga xarajatlar','0810','1010/6710','Materiallar, ish haqi — 0810!'],
+    ['3','AV (mashina) ishga tushirish','0130/0160','0820','Tegishli guruh schotiga'],
+    ['4','Bino ishga tushirish','0120','0810','0120 — Binolar schoti'],
+    ['5','Amort — stanok (ishlab chiqarish)','2010','0230','0130 uchun → 0230!'],
+    ['6','Amort — bino (ma\'muriyat)','9420','0220','0120 uchun → 0220!'],
+    ['7','Amort — transport','9420','0260','0160 uchun → 0260!'],
+    ['8','Amort — kompyuter','9420','0250','0150 uchun → 0250!'],
+    ['9','Ta\'mirlash xarajati','9420','6010','To\'g\'ridan xarajatga'],
+    ['10','Modernizatsiya (mashina) xarajat','0820','6010','0820 ga yig\'iladi!'],
+    ['11','Modernizatsiya (mashina) qiymatga','0130','0820','Stanok qiymatiga'],
+    ['12','Modernizatsiya (bino) xarajat','0810','6010/1010','0810 ga yig\'iladi'],
+    ['13','Modernizatsiya (bino) qiymatga','0120','0810','Bino qiymatiga'],
+    ['14','Dootsenka — qiymat oshishi','01xx','8510','8510 = kapital!'],
+    ['15','Dootsenka — amort oshishi','8510','02xx','Tegishli 02xx'],
+    ['16','Utsenka — qiymat kamayishi','9410','01xx','Xarajatga'],
+    ['17','Utsenka — amort kamayishi','02xx','9410','Tegishli 02xx'],
+    ['18','Sotish: amort yopish','02xx','01xx','02xx→01xx (9110 EMAS!)'],
+    ['19','Sotish: qoldiq qiymat','9210','01xx','9210 ga chiqarish'],
+    ['20','Sotish: daromad','4010','9210','Xaridor qarzi'],
+    ['21','Sotish: QQS','9210','6410','QQS 12%'],
+    ['22','Konservatsiyaga o\'tkazish','01xx/k','01xx/f','Subschot orqali'],
+    ['23','Mol. lizing — berish','0310','01xx','Lizing aktivi'],
+    ['24','Mol. lizing — olish','01xx','7310','Oluvchi balansiga'],
+    ['25','Tekinga olish','01xx','8530','Bozor qiymatida kapitalga'],
+    ['26','Tekinga — oylik daromad','8530','9350','Parallel amort miqdorida'],
+    ['27','Ustav kapitaliga (mashina)','0820','4610','Keyin 01xx — Kt 0820'],
+    ['28','Inventar ortiqcha','01xx','9390','Bozor qiymatida'],
+    ['29','Inventar kamomad (aybdor)','4730','9390','Undiriladi'],
+    ['30','Yaroqsiz AV: metallolom','1010','9210','Bozor qiymatida'],
+  ];
+  var html='';
+  data.forEach(function(r){
+    html+='<tr>';
+    html+='<td class="n">'+r[0]+'</td>';
+    html+='<td style="color:var(--text);font-size:13px">'+r[1]+'</td>';
+    html+='<td style="font-family:Unbounded,sans-serif;font-weight:700;color:var(--teal);font-size:13px;text-align:center">'+r[2]+'</td>';
+    html+='<td style="font-family:Unbounded,sans-serif;font-weight:700;color:var(--gold);font-size:13px;text-align:center">'+r[3]+'</td>';
+    html+='<td style="color:var(--text3);font-size:12px">'+r[4]+'</td>';
+    html+='</tr>';
+  });
+  tbl.innerHTML=html;
+})();
+</script>
+
+</body>
+</html>
